@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =7
+let g:netrw_dirhist_7='/home/alizaidi/LearningProjects/react_typescript_todo'
+let g:netrw_dirhist_6='/home/alizaidi/LearningProjects/react_typescript_todo/src'
+let g:netrw_dirhist_5='/home/alizaidi/LearningProjects/react_typescript_todo'
+let g:netrw_dirhist_4='/home/alizaidi/networkProgramming'
+let g:netrw_dirhist_3='/home/alizaidi/.config/nvim/UltiSnips'
+let g:netrw_dirhist_2='/home/alizaidi'
+let g:netrw_dirhist_1='/home/alizaidi/Developement/GitForks/alacritty/alacritty/src'
+let g:netrw_dirhist_0='/home/alizaidi/Developement/GitForks/alacritty/alacritty/src/config'
+let g:netrw_dirhist_9='/home/alizaidi'
+let g:netrw_dirhist_8='/home/alizaidi/Languages/cpp'
