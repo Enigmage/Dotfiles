@@ -35,10 +35,8 @@ autocmd CompleteDone * pclose " Close preview when done
 set incsearch hlsearch ignorecase smartcase
 
 set nobackup noswapfile nowritebackup            " disable backup/swap files
-let g:netrw_liststyle = 3
 
 " Custom keymaps
-nnoremap ; :
 map <leader>r :source %<CR>
 map <leader>t :term<CR>
 set splitbelow
@@ -51,7 +49,6 @@ let g:netrw_localrmdir='rm -r'
 
 map <left> :bp<CR>
 map <right> :bn<CR>
-map <leader>; :set colorcolumn=81<CR>
 inoremap jj <ESC>
 
 xnoremap K :move '<-2<CR>gv-gv 
@@ -70,30 +67,7 @@ imap <down> <nop>
 imap <up> <nop>
 
 " Status line
-set laststatus=2
-function! GitBranch()
-    return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
-endfunction
-
-function! StatuslineGit()
-    let l:branchname = GitBranch()
-    return strlen(l:branchname) > 0?'  '.l:branchname.' ':''
-endfunction
-
-set statusline=
-set statusline+=%#PmenuSel#
-set statusline+=%{StatuslineGit()}
-set statusline+=%#LineNr#
-set statusline+=\ %f
-set statusline+=\ %m
-set statusline+=%=
-set statusline+=%#CursorColumn#
-set statusline+=\ %y
-set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
-set statusline+=\[%{&fileformat}\]
-set statusline+=\ %p%%
-set statusline+=\ %l:%c
-set statusline+=\ 
+so ~/.vim/statusline.vim
 
 " look and feel
 colorscheme gruvbox

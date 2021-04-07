@@ -1,8 +1,8 @@
-" --------------------------------Plugins--------------------------------------
-so  ~/.config/nvim/plugins.vim
-" so ~/.config/nvim/statusline.vim
+" 🙋 Welcome to my rice field.😊
+" --------------------------------Components-----------------------------------
+so ~/.config/nvim/plugins.vim
+so ~/.config/nvim/statusline.vim
 "--------------------------------General---------------------------------------
-" set noshowmode " Airline already displays mode.
 set nowrap
 set mouse=a
 set scrolloff=5
@@ -37,16 +37,13 @@ set colorcolumn=80
 ""highlight ColorColumn ctermbg=0 guibg=lightgrey
 setlocal omnifunc=syntaxcomplete#Complete 						 
 autocmd CompleteDone * pclose " Close preview when done
-" --------------------------------Keybinds-------------------------------------
+" --------------------------------General Keybinds-----------------------------
 
 " Move selected lines up and down a file.
 xnoremap K :move '<-2<CR>gv-gv 
 xnoremap J :move '>+1<CR>gv-gv
 
 nnoremap <F5> :UndotreeToggle<CR>
-""nnoremap ; :
-" nnoremap <right> :bn<CR>
-" nnoremap <left> :bp<CR>
 nnoremap <down> :bw<CR>
 
 inoremap ( ()<Esc>i
@@ -57,13 +54,15 @@ inoremap " ""<Esc>i
 inoremap ` ``<Esc>i
 
 inoremap <c-x><c-k> <c-x><c-k>
-""inoremap jj <ESC>
+inoremap jj <ESC>
 " keep stuff hightlighted after indent
 vnoremap < <gv
 vnoremap > >gv
 
 " Arroy keys bad
 map <up> <nop>
+nnoremap <right> gt
+nnoremap <left> gT
 
 imap <down> <nop>
 imap <up> <nop>
@@ -147,7 +146,7 @@ command! -nargs=0 Prettier :CocCommand prettier.formatFile
 map <F6> :Prettier<CR>
 
 "------------------------------ColorScheme Settings----------------------------
-colorscheme nord
+colorscheme gruvbox
 let g:one_allow_italics=1
 set bg=dark
 highlight Normal guibg=none
@@ -158,8 +157,8 @@ endif
 if (has("termguicolors"))
     set termguicolors
 endif
-
-
+" let g:vimsence_small_text='NeoVim'
+" let g:vimsence_small_image='neovim'
 "---------------------------Markup/Prose---------------------------------------
 let g:tex_flavor = 'latex'
 autocmd Filetype tex,md,txt :setlocal spell
@@ -176,7 +175,6 @@ let g:netrw_winsize = 20
 nnoremap <A-f> :Files<CR>
 nnoremap <A-r> :Rg<CR>
 nnoremap <A-b> :Buffers<CR>
-""nnoremap <A-/> :History/<CR>
 nnoremap <A-;> :History:<CR>
 nnoremap <A-m> :Marks<CR>
 let g:fzf_action = {
@@ -184,42 +182,24 @@ let g:fzf_action = {
             \ 'ctrl-s': 'split',
             \ 'ctrl-v': 'vsplit'
             \}
+let g:fzf_layout = { 'down': '40%' }
 
 "-------------------------Terminal---------------------------------------------
 " turn terminal to normal mode with escape
 tnoremap <C-[> <C-\><C-n>
 hi FloatermBorder guifg=cyan  guibg=black
-hi Floaterm guibg=none
+hi Floaterm guibg=black
 map <Leader>f :FloatermNew --position=right --height=0.97 --width=0.5<CR><C-[>
 map <Leader>t :FloatermToggle<CR><C-[>
 map <Leader>h :FloatermPrev<CR><C-[>
 map <Leader>l :FloatermNext<CR><C-[>
 map <Leader>s :FloatermSend<CR>
-
 "------------------------StartScreen-------------------------------------------
-let g:startify_bookmarks = [ {'c' : '~/.config/nvim/init.vim'}]
-set laststatus=2
-function! GitBranch()
-    return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
-endfunction
-
-function! StatuslineGit()
-    let l:branchname = GitBranch()
-    return strlen(l:branchname) > 0?'  '.l:branchname.' ':''
-endfunction
-
-set statusline=
-set statusline+=%#PmenuSel#
-set statusline+=%{StatuslineGit()}
-set statusline+=%#LineNr#
-set statusline+=\ %f
-set statusline+=\ %m
-set statusline+=%=
-set statusline+=%#CursorColumn#
-set statusline+=\ %y
-set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
-set statusline+=\[%{&fileformat}\]
-set statusline+=\ %p%%
-set statusline+=\ %l:%c
-set statusline+=\ 
-
+let g:startify_bookmarks = [ {'c' : '~/.config/nvim/init.vim'},{'p' : '~/Developement/chat_app'},]
+let g:startify_lists = [
+            \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
+            \ { 'type': 'files',     'header': ['   MRU']            },
+            \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
+            \ { 'type': 'sessions',  'header': ['   Sessions']       },
+            \ { 'type': 'commands',  'header': ['   Commands']       },
+            \ ]
