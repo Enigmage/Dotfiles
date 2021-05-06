@@ -107,8 +107,9 @@ font:
     # family: UbuntuMono Nerd Font
     # family: Monofur Nerd Font
     #family: mononoki Nerd Font Mono
-    # family: Inconsolata for Powerline
-    family: Source Code Pro for Powerline
+    #family: Inconsolata for Powerline
+    # family: Source Code Pro for Powerline
+    family: Monaco
     # family: Noto Mono for Powerline
     # The `style` can be specified to pick a specific face.
     style: Regular
@@ -165,7 +166,7 @@ font:
     #style: Bold Italic
 
   # Point size
-  size: 18.0
+  size: 16.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -201,32 +202,35 @@ draw_bold_text_with_bright_colors: true
 colors:
   # Default colors
   primary:
-    # hard contrast: background = '#1d2021'
-    background: '#282828'
-    # soft contrast: background = '#32302f'
-    foreground: '#ebdbb2'
+    background: '#292C3E'
+    foreground: '#EBEBEB'
+
+  # Cursor colors
+  cursor:
+    text: '#FF261E'
+    cursor: '#FF261E'
 
   # Normal colors
   normal:
-    black: '#282828'
-    red: '#cc241d'
-    green: '#98971a'
-    yellow: '#d79921'
-    blue: '#458588'
-    magenta: '#b16286'
-    cyan: '#689d6a'
-    white: '#a89984'
+    black: '#0d0d0d'
+    red: '#FF301B'
+    green: '#A0E521'
+    yellow: '#FFC620'
+    blue: '#1BA6FA'
+    magenta: '#8763B8'
+    cyan: '#21DEEF'
+    white: '#EBEBEB'
 
   # Bright colors
   bright:
-    black: '#928374'
-    red: '#fb4934'
-    green: '#b8bb26'
-    yellow: '#fabd2f'
-    blue: '#83a598'
-    magenta: '#d3869b'
-    cyan: '#8ec07c'
-    white: '#ebdbb2'
+    black: '#6D7070'
+    red: '#FF4352'
+    green: '#B8E466'
+    yellow: '#FFD750'
+    blue: '#1BA6FA'
+    magenta: '#A578EA'
+    cyan: '#73FBF1'
+    white: '#FEFEF8'
 # Visual Bell
 #
 # Any time the BEL code is received, Alacritty "rings" the visual bell. Once
@@ -256,7 +260,7 @@ colors:
 #
 # Window opacity as a floating point number from `0.0` to `1.0`.
 # The value `0.0` is completely transparent and `1.0` is opaque.
-background_opacity: 0.90
+background_opacity: 0.87
 
 #selection:
 #semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"

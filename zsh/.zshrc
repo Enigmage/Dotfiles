@@ -1,19 +1,22 @@
-# source ~/.zprofile
-# Environment variables 
-# source ~/.zshenv
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+#   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+# fi
 
 # Aliases
 alias nv='nvim'
 alias v='vim'
-alias ls='ls --color=auto'
-alias vconf='vim ~/.vimrc'
+alias ls='ls --color=auto' alias vconf='vim ~/.vimrc'
 alias nvconf='nvim ~/.config/nvim/init.vim'
-alias alaconf='v ~/.config/alacritty/alacritty.yml'
+alias alaconf='nvim ~/.config/alacritty/alacritty.yml'
+alias zconf='nvim ~/.zshrc'
 alias t='tmux'
 alias at='alacritty-themes'
 alias nve='floaterm'
 alias bat='batcat'
-alias todo='nv Tasks/todos/'
+alias todo='nv ~/Documents/productivity/cs/todos/'
 
 # Share history in all sessions
 setopt histignorealldups sharehistory
@@ -46,39 +49,26 @@ SAVEHIST=1000
 HISTFILE=~/.zsh_history
 
 
-# Plugins
-
-# Theme
-# source ~/zsh-plugins/minimal/minimal.zsh 2> /dev/null
-autoload -U colors && colors
-PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
-
-function powerline_precmd() {
-    PS1="$(powerline-shell --shell zsh $?)"
-}
-
-function install_powerline_precmd() {
-  for s in "${precmd_functions[@]}"; do
-    if [ "$s" = "powerline_precmd" ]; then
-      return
-    fi
-  done
-  precmd_functions+=(powerline_precmd)
-}
-
-if [ "$TERM" != "linux" ]; then
-    install_powerline_precmd
-fi
-
+#---------Plugins------------------
+#----Theme--------
+# source ~/zsh-plugins/denysdovhan/spaceship-prompt/spaceship.zsh 2> /dev/null
+# SPACESHIP_VI_MODE_SHOW=false
+source ~/zsh-plugins/minimal/minimal.zsh 2> /dev/null
+# source ~/zsh-plugins/powerlevel10k/powerlevel10k.zsh-theme 
+#-----------------
 # fzf
 source ~/.fzf.zsh 2> /dev/null
 if type rg &> /dev/null; then
   export FZF_DEFAULT_COMMAND='rg --files'
   export FZF_DEFAULT_OPTS='-m --height 50% --border'
 fi
-# Syntax highlighting
+
+# # Syntax highlighting
 source ~/zsh-plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
-# Autosuggestions
+# # Autosuggestions
 source ~/zsh-plugins/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
-# Git directory listing
+# # Git directory listing
 source ~/zsh-plugins/k/k.plugin.zsh 2> /dev/null
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

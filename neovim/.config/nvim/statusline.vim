@@ -17,14 +17,13 @@ function! StatuslineGit()
     return strlen(l:branchname) > 0?'⑆ '.l:branchname.' ':''
 endfunction
 
-
 set statusline=
 set statusline+=%#PmenuSel#
 set statusline+=\%{StatuslineGit()}
 set statusline+=%#DiffAdd#
 set statusline+=\ %t 
 set statusline+=\ %m
-set statusline+=%#Title#
+set statusline+=%#Pmenu#
 set statusline+=%<
 set statusline+=\ [%n]
 set statusline+=%<

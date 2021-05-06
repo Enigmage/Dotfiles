@@ -1,11 +1,10 @@
-" 🙋 Welcome to my rice field.😊
 " --------------------------------Components-----------------------------------
 so ~/.config/nvim/plugins.vim
 so ~/.config/nvim/statusline.vim
 "--------------------------------General---------------------------------------
 set nowrap
 set mouse=a
-set scrolloff=5
+set scrolloff=3
 set lazyredraw
 set encoding=utf-8
 set title
@@ -146,11 +145,14 @@ command! -nargs=0 Prettier :CocCommand prettier.formatFile
 map <F6> :Prettier<CR>
 
 "------------------------------ColorScheme Settings----------------------------
-colorscheme gruvbox
-let g:one_allow_italics=1
+let g:gruvbox_italic=1
+let g:gruvbox_improved_strings=1
+let g:gruvbox_improved_warnings=1
+let g:gruvbox_contrast_dark="hard"
+colorscheme one
 set bg=dark
-highlight Normal guibg=none
-
+let g:one_allow_italics=1
+" highlight Normal guibg=none
 if (has("nvim"))
     let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 endif
@@ -187,7 +189,7 @@ let g:fzf_layout = { 'down': '40%' }
 "-------------------------Terminal---------------------------------------------
 " turn terminal to normal mode with escape
 tnoremap <C-[> <C-\><C-n>
-hi FloatermBorder guifg=cyan  guibg=black
+hi FloatermBorder guifg=none  guibg=black
 hi Floaterm guibg=black
 map <Leader>f :FloatermNew --position=right --height=0.97 --width=0.5<CR><C-[>
 map <Leader>t :FloatermToggle<CR><C-[>
