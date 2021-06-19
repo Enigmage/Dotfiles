@@ -1,4 +1,4 @@
-" --------------------------------Components-----------------------------------
+"--------------------------------Components-----------------------------------
 so ~/.config/nvim/plugins.vim
 so ~/.config/nvim/statusline.vim
 "--------------------------------General---------------------------------------
@@ -69,16 +69,24 @@ imap <left> <nop>
 imap <right> <nop>
 
 " Easier split navigation
+" Navigate splits and buffers in any mode.
 nnoremap <A-h> <C-w>h
 nnoremap <A-j> <C-w>j
 nnoremap <A-k> <C-w>k
 nnoremap <A-l> <C-w>l
+tnoremap <A-h> <C-\><C-N><C-w>h
+tnoremap <A-j> <C-\><C-N><C-w>j
+tnoremap <A-k> <C-\><C-N><C-w>k
+tnoremap <A-l> <C-\><C-N><C-w>l
+inoremap <A-h> <C-\><C-N><C-w>h
+inoremap <A-j> <C-\><C-N><C-w>j
+inoremap <A-k> <C-\><C-N><C-w>k
+inoremap <A-l> <C-\><C-N><C-w>l
 
 " Program execution keybinds
-map <Leader>g :FloatermNew --autoclose=0 --position=topright --height=0.93 --width=0.5 cppc %<CR>
-map <Leader>c :FloatermNew --autoclose=0 --position=topright --height=0.93 --width=0.5 cgcc %<CR>
-map <Leader>p :FloatermNew --autoclose=0 --position=topright --height=0.93 --width=0.5 python3 %<CR>
-map <Leader>n :FloatermNew --autoclose=0 --position=topright --height=0.93 --width=0.5 node %<CR>
+map <Leader>g :FloatermNew cppc %<CR>
+map <Leader>c :FloatermNew cgcc %<CR>
+map <Leader>p :FloatermNew python3 %<CR>
 "------------------Snippets/Completion-----------------------------------------
 
 "" Use tab for autocomplete.
@@ -115,13 +123,13 @@ nmap <leader>do <Plug>(coc-codeaction)
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  elseif (coc#rpc#ready())
-    call CocActionAsync('doHover')
-  else
-    execute '!' . &keywordprg . " " . expand('<cword>')
-  endif
+    if (index(['vim','help'], &filetype) >= 0)
+        execute 'h '.expand('<cword>')
+    elseif (coc#rpc#ready())
+        call CocActionAsync('doHover')
+    else
+        execute '!' . &keywordprg . " " . expand('<cword>')
+    endif
 endfunction
 
 " Highlight the symbol and its references when holding the cursor.
@@ -134,13 +142,12 @@ let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsJumpForwardTrigger = '<c-j>'
 let g:UltiSnipsJumpBackwardTrigger = '<c-k>'
 
+let g:python3_host_prog="/usr/bin/python3"
 "emmet config
 "Disable for all except html,css
 let g:user_emmet_install_global=0 
 autocmd FileType *html*,css,*javascript*,*typescript* EmmetInstall
 let g:user_emmet_leader_key=','
-
-let g:python3_host_prog="~/.local/share/virtualenvs/neovim-TNDyTgHi/bin/python3.8"
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
 map <F6> :Prettier<CR>
 
@@ -149,6 +156,8 @@ let g:gruvbox_italic=1
 let g:gruvbox_improved_strings=1
 let g:gruvbox_improved_warnings=1
 let g:gruvbox_contrast_dark="hard"
+let g:gruvbox_material_background = 'hard'
+let g:gruvbox_material_better_performance = 1
 colorscheme one
 set bg=dark
 let g:one_allow_italics=1
@@ -159,8 +168,6 @@ endif
 if (has("termguicolors"))
     set termguicolors
 endif
-" let g:vimsence_small_text='NeoVim'
-" let g:vimsence_small_image='neovim'
 "---------------------------Markup/Prose---------------------------------------
 let g:tex_flavor = 'latex'
 autocmd Filetype tex,md,txt :setlocal spell
@@ -185,23 +192,71 @@ let g:fzf_action = {
             \ 'ctrl-v': 'vsplit'
             \}
 let g:fzf_layout = { 'down': '40%' }
+" let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
 
 "-------------------------Terminal---------------------------------------------
 " turn terminal to normal mode with escape
 tnoremap <C-[> <C-\><C-n>
-hi FloatermBorder guifg=none  guibg=black
-hi Floaterm guibg=black
-map <Leader>f :FloatermNew --position=right --height=0.97 --width=0.5<CR><C-[>
-map <Leader>t :FloatermToggle<CR><C-[>
-map <Leader>h :FloatermPrev<CR><C-[>
-map <Leader>l :FloatermNext<CR><C-[>
+hi FloatermBorder guifg=none guibg=none
+hi Floaterm guibg=none
+let g:floaterm_title="Zsh($1/$2)"
+let g:floaterm_position="topright"
+let g:floaterm_opener="edit"
+let g:floaterm_autoinsert="false"
+let g:floaterm_keymap_new="<Leader>f"
+let g:floaterm_keymap_toggle="<Leader>t"
+let g:floaterm_width=0.5
+let g:floaterm_height=0.9
 map <Leader>s :FloatermSend<CR>
 "------------------------StartScreen-------------------------------------------
-let g:startify_bookmarks = [ {'c' : '~/.config/nvim/init.vim'},{'p' : '~/Developement/chat_app'},]
+let g:startify_padding_left = 10
+let g:startify_session_persistence = 1
+let g:startify_enable_special = 0
+let g:startify_change_to_vcs_root = 1
 let g:startify_lists = [
-            \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
-            \ { 'type': 'files',     'header': ['   MRU']            },
-            \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
-            \ { 'type': 'sessions',  'header': ['   Sessions']       },
-            \ { 'type': 'commands',  'header': ['   Commands']       },
+            \ { 'type': 'dir'       },
+            \ { 'type': 'files'     },
+            \ { 'type': 'sessions'  },
+            \ { 'type': 'bookmarks' },
+            \ { 'type': 'commands' },
             \ ]
+
+" bookmark examples
+let  g:startify_bookmarks =  [
+            \ {'v': '~/.config/nvim'},
+            \ {'d': '~/.dotfiles' }
+            \ ]
+
+" custom commands
+let g:startify_commands = [
+            \ {'ch':  ['Health Check', ':checkhealth']},
+            \ {'ps': ['Plugins status', ':PlugStatus']},
+            \ {'pu': ['Update vim plugins',':PlugUpdate | PlugUpgrade']},
+            \ {'uc': ['Update coc Plugins', ':CocUpdate']},
+            \ {'h':  ['Help', ':help']},
+            \ ]
+
+" custom banner
+let g:startify_custom_header = [
+            \ '',
+            \ '                                                    ▟▙            ',
+            \ '                                                    ▝▘            ',
+            \ '            ██▃▅▇█▆▖  ▗▟████▙▖   ▄████▄   ██▄  ▄██  ██  ▗▟█▆▄▄▆█▙▖',
+            \ '            ██▛▔ ▝██  ██▄▄▄▄██  ██▛▔▔▜██  ▝██  ██▘  ██  ██▛▜██▛▜██',
+            \ '            ██    ██  ██▀▀▀▀▀▘  ██▖  ▗██   ▜█▙▟█▛   ██  ██  ██  ██',
+            \ '            ██    ██  ▜█▙▄▄▄▟▊  ▀██▙▟██▀   ▝████▘   ██  ██  ██  ██',
+            \ '            ▀▀    ▀▀   ▝▀▀▀▀▀     ▀▀▀▀       ▀▀     ▀▀  ▀▀  ▀▀  ▀▀',
+            \ '',
+            \ '',
+            \ '',
+            \]
+"-----------------------FireNvim-----------------------------------------------
+if exists('g:started_by_firenvim')
+    let g:gruvbox_italic=1
+    let g:gruvbox_improved_strings=1
+    let g:gruvbox_improved_warnings=1
+    let g:gruvbox_contrast_dark="hard"
+    colorscheme gruvbox 
+    set bg=dark
+    set laststatus=0
+endif

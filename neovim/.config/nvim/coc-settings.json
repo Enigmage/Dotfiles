@@ -1,4 +1,12 @@
 {
-    "prettier.tabWidth": 4,
-    "prettier.jsxBracketSameLine":true
+    "prettier.tabWidth": 2,
+    "prettier.jsxBracketSameLine":true, 
+    "languageserver": {
+    "haskell": {
+      "command": "haskell-language-server-wrapper",
+      "args": ["--lsp"],
+      "rootPatterns": ["*.cabal", "stack.yaml", "cabal.project", "package.yaml", "hie.yaml"],
+      "filetypes": ["haskell", "lhaskell"]
+    }
+  }
 }

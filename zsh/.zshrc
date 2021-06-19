@@ -17,6 +17,15 @@ alias at='alacritty-themes'
 alias nve='floaterm'
 alias bat='batcat'
 alias todo='nv ~/Documents/productivity/cs/todos/'
+alias sh='bash'
+alias reddit='rtv --theme colorblind-dark'
+# Git
+alias gch='git checkout'
+alias gp='git push'
+alias ga='git add'
+alias gco='git commit'
+alias gb='git branch'
+alias gm='git merge'
 
 # Share history in all sessions
 setopt histignorealldups sharehistory
@@ -51,9 +60,9 @@ HISTFILE=~/.zsh_history
 
 #---------Plugins------------------
 #----Theme--------
-# source ~/zsh-plugins/denysdovhan/spaceship-prompt/spaceship.zsh 2> /dev/null
-# SPACESHIP_VI_MODE_SHOW=false
-source ~/zsh-plugins/minimal/minimal.zsh 2> /dev/null
+source ~/zsh-plugins/denysdovhan/spaceship-prompt/spaceship.zsh 2> /dev/null
+SPACESHIP_VI_MODE_SHOW=false
+# source ~/zsh-plugins/minimal/minimal.zsh 2> /dev/null
 # source ~/zsh-plugins/powerlevel10k/powerlevel10k.zsh-theme 
 #-----------------
 # fzf

@@ -99,20 +99,15 @@ font:
     #   - (macOS) Menlo
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
-    # family: SauceCodePro Nerd Font
-    # family: CodeNewRoman Nerd Font
-    # family: RobotoMono Nerd Font
     # family: Hack
-    # family: JetBrains Mono
-    # family: UbuntuMono Nerd Font
-    # family: Monofur Nerd Font
-    #family: mononoki Nerd Font Mono
-    #family: Inconsolata for Powerline
-    # family: Source Code Pro for Powerline
-    family: Monaco
+    # family: mononoki Nerd Font Mono
+    # family: Inconsolata for Powerline
+    family: Source Code Pro for Powerline
+    # family: SauceCodePro Nerd Font
+    # family: Monaco
     # family: Noto Mono for Powerline
     # The `style` can be specified to pick a specific face.
-    style: Regular
+    style: Medium
     # Bold font face
     # bold:
     # Font family
@@ -166,7 +161,7 @@ font:
     #style: Bold Italic
 
   # Point size
-  size: 16.0
+  size: 18
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -260,7 +255,7 @@ colors:
 #
 # Window opacity as a floating point number from `0.0` to `1.0`.
 # The value `0.0` is completely transparent and `1.0` is opaque.
-background_opacity: 0.87
+background_opacity: 0.94
 
 #selection:
 #semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"

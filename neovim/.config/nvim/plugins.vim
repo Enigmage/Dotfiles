@@ -5,7 +5,9 @@ Plug 'rakr/vim-one'
 Plug 'ayu-theme/ayu-vim'
 Plug 'arcticicestudio/nord-vim'
 Plug 'mhinz/vim-startify'
+Plug 'sainnhe/gruvbox-material'
 "---------Utility----------------
+Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 Plug 'chrisbra/unicode.vim'
 Plug 'tpope/vim-commentary'
 Plug 'mbbill/undotree'
