@@ -174,7 +174,6 @@ autocmd Filetype tex,md,txt :setlocal spell
 "---------------------------Files/Explorer-------------------------------------
 set grepprg=rg\ --vimgrep\ --smart-case\ --follow
 map <silent> <C-n> :Vexplore<CR>
-map <silent> <C-q> :q<CR>
 let g:netrw_liststyle = 3
 let g:netrw_banner = 0
 let g:netrw_browse_split = 4
@@ -251,12 +250,27 @@ let g:startify_custom_header = [
             \ '',
             \]
 "-----------------------FireNvim-----------------------------------------------
+let g:firenvim_config = { 
+    \ 'globalSettings': {
+        \ 'alt': 'all',
+    \  },
+    \ 'localSettings': {
+        \ '.*': {
+            \ 'cmdline': 'neovim',
+            \ 'content': 'text',
+            \ 'priority': 0,
+            \ 'selector': 'textarea',
+            \ 'takeover': 'never',
+        \ },
+    \ }
+\ }
 if exists('g:started_by_firenvim')
     let g:gruvbox_italic=1
     let g:gruvbox_improved_strings=1
     let g:gruvbox_improved_warnings=1
     let g:gruvbox_contrast_dark="hard"
-    colorscheme gruvbox 
-    set bg=dark
+    colorscheme gruvbox
+    set bg=light
     set laststatus=0
+    nnoremap <C-s> :wq<CR>
 endif
