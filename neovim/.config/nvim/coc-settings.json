@@ -1,6 +1,7 @@
 {
     "prettier.tabWidth": 2,
     "prettier.jsxBracketSameLine":true, 
+    "prettier.arrowParens":"avoid",
     "languageserver": {
     "haskell": {
       "command": "haskell-language-server-wrapper",

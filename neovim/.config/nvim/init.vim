@@ -1,7 +1,8 @@
 "--------------------------------Components-----------------------------------
 so ~/.config/nvim/plugins.vim
 so ~/.config/nvim/statusline.vim
-"--------------------------------General---------------------------------------
+"--------------------------------Base---------------------------------------
+let mapleader=" "
 set nowrap
 set mouse=a
 set scrolloff=3
@@ -33,11 +34,13 @@ set undofile
 set undodir=~/.config/nvim/undodir/
 set noswapfile
 set colorcolumn=80
+" set foldmethod=indent
 ""highlight ColorColumn ctermbg=0 guibg=lightgrey
-setlocal omnifunc=syntaxcomplete#Complete 						 
+setlocal omnifunc=syntaxcomplete#Complete
 autocmd CompleteDone * pclose " Close preview when done
 " --------------------------------General Keybinds-----------------------------
-
+" Toggle folds
+nnoremap <Space>f :setlocal foldmethod=indent<CR>
 " Move selected lines up and down a file.
 xnoremap K :move '<-2<CR>gv-gv 
 xnoremap J :move '>+1<CR>gv-gv
@@ -59,7 +62,7 @@ vnoremap < <gv
 vnoremap > >gv
 
 " Arroy keys bad
-map <up> <nop>
+noremap <up> <nop>
 nnoremap <right> gt
 nnoremap <left> gT
 
@@ -84,9 +87,9 @@ inoremap <A-k> <C-\><C-N><C-w>k
 inoremap <A-l> <C-\><C-N><C-w>l
 
 " Program execution keybinds
-map <Leader>g :FloatermNew cppc %<CR>
-map <Leader>c :FloatermNew cgcc %<CR>
-map <Leader>p :FloatermNew python3 %<CR>
+noremap <Leader>g :FloatermNew cppc %<CR>
+noremap <Leader>c :FloatermNew cgcc %<CR>
+noremap <Leader>p :FloatermNew python3 %<CR>
 "------------------Snippets/Completion-----------------------------------------
 
 "" Use tab for autocomplete.
@@ -149,18 +152,30 @@ let g:user_emmet_install_global=0
 autocmd FileType *html*,css,*javascript*,*typescript* EmmetInstall
 let g:user_emmet_leader_key=','
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
-map <F6> :Prettier<CR>
+noremap <F6> :Prettier<CR>
 
 "------------------------------ColorScheme Settings----------------------------
+"---Gruvbox--------------------
 let g:gruvbox_italic=1
 let g:gruvbox_improved_strings=1
 let g:gruvbox_improved_warnings=1
-let g:gruvbox_contrast_dark="hard"
+let g:gruvbox_contrast_dark='soft'
+
+"---Gruvbox-material-----------
 let g:gruvbox_material_background = 'hard'
 let g:gruvbox_material_better_performance = 1
-colorscheme one
-set bg=dark
+
+"-----Everforest---------------
+let g:everforest_background='hard'
+let g:everforest_enable_italic = 1
+let g:everforest_disable_italic_comment = 0
+let g:everforest_transparent_background = 0
+
+"----One Dark-------------------
 let g:one_allow_italics=1
+"-------------------------------
+set bg=dark
+colorscheme nord
 " highlight Normal guibg=none
 if (has("nvim"))
     let $NVIM_TUI_ENABLE_TRUE_COLOR=1
@@ -170,10 +185,14 @@ if (has("termguicolors"))
 endif
 "---------------------------Markup/Prose---------------------------------------
 let g:tex_flavor = 'latex'
-autocmd Filetype tex,md,txt :setlocal spell
+autocmd Filetype tex,md,txt,vimwiki :setlocal spell
+let g:vimwiki_list = [{'path': '~/vimwiki/'
+                    \ , 'name': 'My knowledge base and diary'
+                    \ ,'path_html':'~/vimwiki/html/'
+                    \ ,'diary_rel_path':'.diary/', }]
 "---------------------------Files/Explorer-------------------------------------
 set grepprg=rg\ --vimgrep\ --smart-case\ --follow
-map <silent> <C-n> :Vexplore<CR>
+noremap <silent> <C-n> :Vexplore<CR>
 let g:netrw_liststyle = 3
 let g:netrw_banner = 0
 let g:netrw_browse_split = 4
@@ -195,6 +214,7 @@ let g:fzf_layout = { 'down': '40%' }
 
 "-------------------------Terminal---------------------------------------------
 " turn terminal to normal mode with escape
+set splitright splitbelow
 tnoremap <C-[> <C-\><C-n>
 hi FloatermBorder guifg=none guibg=none
 hi Floaterm guibg=none
@@ -202,16 +222,18 @@ let g:floaterm_title="Zsh($1/$2)"
 let g:floaterm_position="topright"
 let g:floaterm_opener="edit"
 let g:floaterm_autoinsert="false"
-let g:floaterm_keymap_new="<Leader>f"
-let g:floaterm_keymap_toggle="<Leader>t"
+let g:floaterm_keymap_new="\\f"
+let g:floaterm_keymap_toggle="\\t"
 let g:floaterm_width=0.5
 let g:floaterm_height=0.9
-map <Leader>s :FloatermSend<CR>
+noremap <Leader>s :FloatermSend<CR>
 "------------------------StartScreen-------------------------------------------
 let g:startify_padding_left = 10
 let g:startify_session_persistence = 1
 let g:startify_enable_special = 0
 let g:startify_change_to_vcs_root = 1
+" Disable indent lines to render startscreen graphic properly.
+autocmd FileType startify IndentLinesDisable
 let g:startify_lists = [
             \ { 'type': 'dir'       },
             \ { 'type': 'files'     },
@@ -237,18 +259,18 @@ let g:startify_commands = [
 
 " custom banner
 let g:startify_custom_header = [
-            \ '',
-            \ '                                                    ▟▙            ',
-            \ '                                                    ▝▘            ',
-            \ '            ██▃▅▇█▆▖  ▗▟████▙▖   ▄████▄   ██▄  ▄██  ██  ▗▟█▆▄▄▆█▙▖',
-            \ '            ██▛▔ ▝██  ██▄▄▄▄██  ██▛▔▔▜██  ▝██  ██▘  ██  ██▛▜██▛▜██',
-            \ '            ██    ██  ██▀▀▀▀▀▘  ██▖  ▗██   ▜█▙▟█▛   ██  ██  ██  ██',
-            \ '            ██    ██  ▜█▙▄▄▄▟▊  ▀██▙▟██▀   ▝████▘   ██  ██  ██  ██',
-            \ '            ▀▀    ▀▀   ▝▀▀▀▀▀     ▀▀▀▀       ▀▀     ▀▀  ▀▀  ▀▀  ▀▀',
-            \ '',
-            \ '',
-            \ '',
-            \]
+\ '',
+\ '                                                                ▟▙            ',
+\ '                                                                ▝▘            ',
+\ '                        ██▃▅▇█▆▖  ▗▟████▙▖   ▄████▄   ██▄  ▄██  ██  ▗▟█▆▄▄▆█▙▖',
+\ '                        ██▛▔ ▝██  ██▄▄▄▄██  ██▛▔▔▜██  ▝██  ██▘  ██  ██▛▜██▛▜██',
+\ '                        ██    ██  ██▀▀▀▀▀▘  ██▖  ▗██   ▜█▙▟█▛   ██  ██  ██  ██',
+\ '                        ██    ██  ▜█▙▄▄▄▟▊  ▀██▙▟██▀   ▝████▘   ██  ██  ██  ██',
+\ '                        ▀▀    ▀▀   ▝▀▀▀▀▀     ▀▀▀▀       ▀▀     ▀▀  ▀▀  ▀▀  ▀▀',
+\ '',
+\ '',
+\ '',
+\]
 "-----------------------FireNvim-----------------------------------------------
 let g:firenvim_config = { 
     \ 'globalSettings': {
@@ -265,12 +287,19 @@ let g:firenvim_config = {
     \ }
 \ }
 if exists('g:started_by_firenvim')
+    set colorcolumn=
+    set nocursorline
     let g:gruvbox_italic=1
     let g:gruvbox_improved_strings=1
     let g:gruvbox_improved_warnings=1
     let g:gruvbox_contrast_dark="hard"
-    colorscheme gruvbox
-    set bg=light
+    colorscheme everforest
+    set bg=dark
     set laststatus=0
     nnoremap <C-s> :wq<CR>
+    au BufEnter 202.12.103.189_*.txt set filetype=sql
 endif
+"---------------------IndentLine-----------------------------------------------
+set list lcs=tab:\|\ 
+let g:indentLine_defaultGroup = 'TermCursorNC'
+let g:indentLine_char_list = ['|']

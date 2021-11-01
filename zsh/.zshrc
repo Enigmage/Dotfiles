@@ -29,6 +29,12 @@ alias ga='git add'
 alias gco='git commit'
 alias gb='git branch'
 alias gm='git merge'
+alias api-ssh='ssh root@68.183.88.45'
+alias api2-ssh='ssh ubuntu@35.154.71.34'
+alias url-ssh='ssh ubuntu@13.232.88.118'
+alias static-ssh='ssh ubuntu@15.206.70.213'
+alias xmonaconf='nv ~/.config/xmonad/xmonad.hs'
+alias xmobaconf='nv ~/.config/xmobar/xmobarrc'
 
 # Share history in all sessions
 setopt histignorealldups sharehistory

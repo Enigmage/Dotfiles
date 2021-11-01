@@ -5,6 +5,7 @@ export ZPLUG_HOME=~/.zplug
 export FZF_DEFAULT_COMMAND="fdfind . $HOME"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="fdfind -t d . $HOME"
+export TERMINAL="st"
 
 
 # Custom Search paths.

@@ -102,12 +102,18 @@ font:
     # family: Hack
     # family: mononoki Nerd Font Mono
     # family: Inconsolata for Powerline
-    family: Source Code Pro for Powerline
+    # family: Source Code Pro for Powerline
     # family: SauceCodePro Nerd Font
     # family: Monaco
     # family: Noto Mono for Powerline
+    # family: Monoid
+    #family: Monoid Nerd Font
+    # family: Hasklig
+    # family: FiraCode Nerd Font
+    # family: JetBrains Mono
+    family: Fira Code
     # The `style` can be specified to pick a specific face.
-    style: Medium
+    style: Regular
     # Bold font face
     # bold:
     # Font family
@@ -161,7 +167,7 @@ font:
     #style: Bold Italic
 
   # Point size
-  size: 17
+  size: 18
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -197,30 +203,40 @@ draw_bold_text_with_bright_colors: true
 colors:
   # Default colors
   primary:
-    background: '#2E3440'
-    foreground: '#D8DEE9'
+    background: '#161616'
+    foreground: '#e4e4e4'
+
+  # Cursor volors
+  cursor:
+    text: '#feffff'
+    cursor: '#ffb472'
 
   # Normal colors
   normal:
-    black: '#3B4252'
-    red: '#BF616A'
-    green: '#A3BE8C'
-    yellow: '#EBCB8B'
-    blue: '#81A1C1'
-    magenta: '#B48EAD'
-    cyan: '#88C0D0'
-    white: '#E5E9F0'
+    black: '#a3a3a3'
+    red: '#e98885'
+    green: '#a3c38b'
+    yellow: '#ffc68d'
+    blue: '#a6cae2'
+    magenta: '#e7cdfb'
+    cyan: '#00a69f'
+    white: '#e4e4e4'
 
   # Bright colors
   bright:
-    black: '#4C566A'
-    red: '#BF616A'
-    green: '#A3BE8C'
-    yellow: '#EBCB8B'
-    blue: '#81A1C1'
-    magenta: '#B48EAD'
-    cyan: '#8FBCBB'
-    white: '#ECEFF4'
+    black: '#c8c8c8'
+    red: '#ffb2b0'
+    green: '#c8e2b9'
+    yellow: '#ffe1af'
+    blue: '#bddff7'
+    magenta: '#fce2ff'
+    cyan: '#0bbdb6'
+    white: '#feffff'
+
+  # Selection colors
+  selection:
+    text: '#5963a2'
+    background: '#f6f6f6'
 # Visual Bell
 #
 # Any time the BEL code is received, Alacritty "rings" the visual bell. Once
@@ -250,7 +266,7 @@ colors:
 #
 # Window opacity as a floating point number from `0.0` to `1.0`.
 # The value `0.0` is completely transparent and `1.0` is opaque.
-background_opacity: 0.82
+background_opacity: 1.0
 
 #selection:
 #semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
