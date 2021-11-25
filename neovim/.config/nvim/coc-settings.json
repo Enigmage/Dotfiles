@@ -1,12 +1,21 @@
 {
-    "prettier.tabWidth": 2,
-    "prettier.jsxBracketSameLine":true, 
-    "prettier.arrowParens":"avoid",
-    "languageserver": {
+  "prettier.tabWidth": 2,
+  "prettier.jsxBracketSameLine": true,
+  "diagnostic.virtualText": true,
+  "diagnostic.virtualTextPrefix": "⏺ ",
+  "diagnostic.virtualTextCurrentLineOnly": false,
+  "prettier.arrowParens": "avoid",
+  "languageserver": {
     "haskell": {
       "command": "haskell-language-server-wrapper",
       "args": ["--lsp"],
-      "rootPatterns": ["*.cabal", "stack.yaml", "cabal.project", "package.yaml", "hie.yaml"],
+      "rootPatterns": [
+        "*.cabal",
+        "stack.yaml",
+        "cabal.project",
+        "package.yaml",
+        "hie.yaml"
+      ],
       "filetypes": ["haskell", "lhaskell"]
     }
   }

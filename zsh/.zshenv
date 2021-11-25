@@ -13,4 +13,5 @@ export PATH=$PATH:~/scripts
 export PATH=$PATH:~/.local/bin/
 export PATH=$PATH:~/.config/coc/extensions/coc-clangd-data/install/11.0.0/clangd_11.0.0/bin/
 export PATH=$PATH:~/.config/coc/haskell/
-
+export PATH=$PATH:~/backups/nix/
+if [ -e /home/alizaidi/.nix-profile/etc/profile.d/nix.sh ]; then . /home/alizaidi/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer

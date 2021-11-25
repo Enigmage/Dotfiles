@@ -35,6 +35,7 @@ alias url-ssh='ssh ubuntu@13.232.88.118'
 alias static-ssh='ssh ubuntu@15.206.70.213'
 alias xmonaconf='nv ~/.config/xmonad/xmonad.hs'
 alias xmobaconf='nv ~/.config/xmobar/xmobarrc'
+alias addbacklinks="sed -i '1s/^/Back to [index](index.md)\n\n /' *.md"
 
 # Share history in all sessions
 setopt histignorealldups sharehistory
