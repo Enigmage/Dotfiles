@@ -37,6 +37,7 @@ set incsearch hlsearch ignorecase smartcase
 set nobackup noswapfile nowritebackup            " disable backup/swap files
 
 " Custom keymaps
+let mapleader=" "
 map <leader>r :source %<CR>
 map <leader>t :term<CR>
 set splitbelow
@@ -49,7 +50,7 @@ let g:netrw_localrmdir='rm -r'
 
 map <left> :bp<CR>
 map <right> :bn<CR>
-inoremap jj <ESC>
+inoremap jk <ESC>
 
 xnoremap K :move '<-2<CR>gv-gv 
 xnoremap J :move '>+1<CR>gv-gv

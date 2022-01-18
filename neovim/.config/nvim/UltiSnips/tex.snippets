@@ -1,0 +1,113 @@
+snippet mkt "maketitle" b
+\maketitle
+\pagebreak
+endsnippet
+
+snippet embed "embed link" i
+\href{$1}{\underline{$2}}.
+endsnippet
+
+snippet beg "begin{} / end{}" b
+\begin{$1}
+	$0
+\end{$1}
+endsnippet
+
+
+snippet ** "bold" i
+\textbf{$1}$0
+endsnippet
+
+
+
+snippet doctex "boilerplate latex" b
+\documentclass[a4paper,12pt]{article}
+% packages
+\usepackage{graphicx} % use for images
+\usepackage[utf8]{inputenc} % use for encoding
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{fancyhdr}
+%\usepackage{microtype}
+\usepackage{caption}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage[export]{adjustbox}
+%\usepackage{times}
+\usepackage{tcolorbox}
+\usepackage{framed}
+\usepackage{float}
+\usepackage{listings}
+\usepackage{hyperref}
+
+\definecolor{mGreen}{rgb}{0,0.6,0}
+\definecolor{mGray}{rgb}{0.5,0.5,0.5}
+\definecolor{mPurple}{rgb}{0.58,0,0.82}
+\definecolor{backgroundColour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{CStyle}{
+    backgroundcolor=\color{backgroundColour},   
+    commentstyle=\color{mGreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{mGray},
+    stringstyle=\color{mPurple},
+    basicstyle=\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2,
+    language=C
+}
+
+% config
+\graphicspath {  
+	{/home/alizaidi/Desktop/} 
+	{/home/alizaidi/Languages/C/c_List_of_exp/Screenshots/} 
+	{./images/} 
+	{/home/alizaidi/Pictures/Screenshots}
+}
+
+\title{$1}
+\author{Ali Zaidi}
+
+\begin{document}
+$0
+\end{document}
+endsnippet
+
+snippet fig "figure" b
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=$1\textwidth]{$2}
+	\caption*{$3}
+\end{figure}
+endsnippet 
+
+snippet cent "center" b
+\begin{center}
+$0
+\end{center}
+$1
+endsnippet
+
+
+snippet br "pagebreak" b
+\pagebreak
+endsnippet
+
+snippet codeblock "temp cpp assignment" b
+\subsubsection*{$1}
+\subsubsection*{Code}
+\lstinputlisting[style=CStyle]{$2}
+\subsubsection*{Output}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=.5\textwidth]{$3}
+\end{figure}
+endsnippet

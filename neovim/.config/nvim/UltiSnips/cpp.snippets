@@ -1,0 +1,87 @@
+snippet cp "cp template" b
+#include<bits/stdc++.h> 
+#include<stdint.h> 
+
+#define SPEEDUP ios_base::sync_with_stdio(false);cin.tie(NULL);
+#define LP(i,x,n) for(int i = x; i < n; i++ )
+#define RLP(i, x, n) for(int i = x; i >= n; i--)
+#define PI 3.1415926535
+const int MOD = 1e9 + 7;
+using namespace std;
+typedef long long ll;
+typedef unsigned long long ull;
+
+// Binary exponentiation
+template <typename T, typename R>
+T binpow(T a, T b) {
+    R res = 1;
+    while (b > 0) {
+        if (b & 1)
+            res = res * a;
+        a = a * a;
+        b >>= 1;
+    }
+    return res;
+}
+
+// Number to string.
+template <typename T>
+string str(T inp) {
+    stringstream convert;
+    convert << inp;
+    return convert.str();
+}
+
+void solve() {
+	$0	
+}
+
+int main() {
+    SPEEDUP
+    int t;
+    cin>>t;
+    while(t--) {
+		solve();
+    }
+    return 0;
+}
+endsnippet
+
+snippet pbs "General problem solving" b
+#include<bits/stdc++.h> 
+using namespace std;
+
+#define LOG(x) cout << x << endl;
+typedef vector<int> vi;
+typedef vector<bool> vb;
+typedef vector<string> vs;
+endsnippet
+
+snippet cpout "CP print statement" i
+cout<<$0<<"\n";
+endsnippet
+	
+snippet vi "int vector" i
+vector<int> $0;
+endsnippet
+
+snippet vs "string vector" i
+vector<string> $0;
+endsnippet
+
+snippet vll "long long vector" i
+vector<ll> $0;
+endsnippet
+
+snippet vull "uns long long vector" i
+vector<ull> $0;
+endsnippet
+
+snippet iter "begin to end" i
+$1.begin(),$1.end()$0
+endsnippet
+
+snippet ain "array input" b
+for(auto& it: $1) cin>>it;
+endsnippet
+

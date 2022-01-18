@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =7
+let g:netrw_dirhist_7='/home/alizaidi/problem_solving/Data-Structures/graphs'
+let g:netrw_dirhist_6='/home/alizaidi/vimwiki/fleeting'
+let g:netrw_dirhist_5='/nix/store/a3bag555257hpkn4dvzbmvjvv76lsl5x-user-environment/home-manager/home-manager'
+let g:netrw_dirhist_4='/nix/store/a3bag555257hpkn4dvzbmvjvv76lsl5x-user-environment/home-manager'
+let g:netrw_dirhist_3='/home/alizaidi/.nix-defexpr/channels/home-manager'
+let g:netrw_dirhist_2='/home/alizaidi/.nix-defexpr/channels'
+let g:netrw_dirhist_1='/home/alizaidi/.nix-defexpr/channels/home-manager'
+let g:netrw_dirhist_0='/home/alizaidi/.nix-defexpr/channels'
+let g:netrw_dirhist_9='/nix/store/a3bag555257hpkn4dvzbmvjvv76lsl5x-user-environment/nixpkgs'
+let g:netrw_dirhist_8='/home/alizaidi/.local/lib/python3.8/site-packages/grip'
