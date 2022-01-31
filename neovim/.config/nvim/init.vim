@@ -34,18 +34,18 @@ set undofile
 set undodir=~/.config/nvim/undodir/
 set noswapfile
 set colorcolumn=80
+set conceallevel=2
 " set foldmethod=indent
 ""highlight ColorColumn ctermbg=0 guibg=lightgrey
 setlocal omnifunc=syntaxcomplete#Complete
 autocmd CompleteDone * pclose " Close preview when done
 " --------------------------------General Keybinds-----------------------------
 " Toggle folds
-nnoremap <Space>f :setlocal foldmethod=indent<CR>
+nnoremap <Space>if :setlocal foldmethod=indent<CR>
 " Move selected lines up and down a file.
 xnoremap K :move '<-2<CR>gv-gv 
 xnoremap J :move '>+1<CR>gv-gv
 
-nnoremap <F5> :UndotreeToggle<CR>
 nnoremap <down> :bw<CR>
 
 inoremap ( ()<Esc>i
@@ -87,9 +87,9 @@ inoremap <A-k> <C-\><C-N><C-w>k
 inoremap <A-l> <C-\><C-N><C-w>l
 
 " Program execution keybinds
-noremap <Leader>g :FloatermNew cppc %<CR>
-noremap <Leader>c :FloatermNew cgcc %<CR>
-noremap <Leader>p :FloatermNew python3 %<CR>
+noremap \g :FloatermNew cppc %<CR>
+noremap \c :FloatermNew cgcc %<CR>
+noremap \p :FloatermNew python3 %<CR>
 "------------------Snippets/Completion-----------------------------------------
 
 "" Use tab for autocomplete.
@@ -183,13 +183,22 @@ endif
 if (has("termguicolors"))
     set termguicolors
 endif
+lua require'colorizer'.setup()
 "---------------------------Markup/Prose---------------------------------------
 let g:tex_flavor = 'latex'
-autocmd Filetype tex,md,txt,vimwiki :setlocal spell
-let g:vimwiki_list = [{'path': '~/vimwiki/'
-                    \ , 'name': 'My knowledge base and diary'
-                    \ ,'path_html':'~/vimwiki/html/'
-                    \ ,'diary_rel_path':'.diary/', }]
+" " autocmd Filetype tex,md,txt,vimwiki :setlocal spell
+" let g:vimwiki_list = [{'path': '~/vimwiki/'
+"                     \ , 'name': 'My knowledge base and diary'
+"                     \ ,'path_html':'~/vimwiki/html/'
+"                     \ ,'diary_rel_path':'.diary/', }]
+
+let g:vim_markdown_folding_disabled = 1
+let g:tex_conceal = ""
+let g:vim_markdown_math = 1
+let g:vim_markdown_strikethrough = 1
+let g:vim_markdown_frontmatter = 1
+let g:vim_markdown_json_frontmatter = 1
+let g:vim_markdown_toml_frontmatter = 1
 "---------------------------Files/Explorer-------------------------------------
 set grepprg=rg\ --vimgrep\ --smart-case\ --follow
 noremap <silent> <C-n> :Vexplore<CR>
@@ -199,11 +208,11 @@ let g:netrw_browse_split = 4
 let g:netrw_altv = 1
 let g:netrw_winsize = 20
 
-nnoremap <A-f> :Files<CR>
-nnoremap <A-r> :Rg<CR>
-nnoremap <A-b> :Buffers<CR>
-nnoremap <A-;> :History:<CR>
-nnoremap <A-m> :Marks<CR>
+nnoremap <Leader>f :Files<CR>
+nnoremap <Leader>gr :Rg<CR>
+nnoremap <Leader>b :Buffers<CR>
+" nnoremap <A-;> :History:<CR>
+" nnoremap <A-m> :Marks<CR>
 let g:fzf_action = {
             \ 'ctrl-t': 'tab split',
             \ 'ctrl-s': 'split',
@@ -218,22 +227,20 @@ set splitright splitbelow
 tnoremap <C-[> <C-\><C-n>
 hi FloatermBorder guifg=none guibg=none
 hi Floaterm guibg=none
-let g:floaterm_title="Zsh($1/$2)"
-let g:floaterm_position="topright"
+let g:floaterm_title="zsh($1/$2)"
+let g:floaterm_position="center"
 let g:floaterm_opener="edit"
 let g:floaterm_autoinsert="false"
 let g:floaterm_keymap_new="\\f"
 let g:floaterm_keymap_toggle="\\t"
 let g:floaterm_width=0.5
 let g:floaterm_height=0.9
-noremap <Leader>s :FloatermSend<CR>
+noremap \s :FloatermSend<CR>
 "------------------------StartScreen-------------------------------------------
 let g:startify_padding_left = 10
 let g:startify_session_persistence = 1
 let g:startify_enable_special = 0
 let g:startify_change_to_vcs_root = 1
-" Disable indent lines to render startscreen graphic properly.
-autocmd FileType startify IndentLinesDisable
 let g:startify_lists = [
             \ { 'type': 'dir'       },
             \ { 'type': 'files'     },
@@ -299,7 +306,3 @@ if exists('g:started_by_firenvim')
     nnoremap <C-s> :wq<CR>
     au BufEnter 202.12.103.189_*.txt set filetype=sql
 endif
-"---------------------IndentLine-----------------------------------------------
-set list lcs=tab:\|\ 
-let g:indentLine_defaultGroup = 'TermCursorNC'
-let g:indentLine_char_list = ['|']

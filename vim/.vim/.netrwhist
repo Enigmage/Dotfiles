@@ -1,5 +1,7 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =8
+let g:netrw_dirhistcnt =0
+let g:netrw_dirhist_0='/sys/dev/block'
+let g:netrw_dirhist_9='/sys/dev'
 let g:netrw_dirhist_8='/etc/systemd/network'
 let g:netrw_dirhist_7='/home/alizaidi'
 let g:netrw_dirhist_6='scp://ubuntu@35.154.71.34//home/ubuntu/.ssh/'
@@ -8,5 +10,3 @@ let g:netrw_dirhist_4='/home/alizaidi/dev/internship/listiee-front-end-server'
 let g:netrw_dirhist_3='/home/alizaidi/dev/internship/listiee-front-end-server/service'
 let g:netrw_dirhist_2='/home/alizaidi/dev/internship/listiee-front-end-server/utility'
 let g:netrw_dirhist_1='/home/alizaidi/dev/internship/listiee-front-end-server'
-let g:netrw_dirhist_0='/home/alizaidi/dev/internship/listiee-front-end-server/node_modules'
-let g:netrw_dirhist_9='/home/alizaidi/dev/internship/listiee-front-end-server'
