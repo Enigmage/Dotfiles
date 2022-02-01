@@ -1,5 +1,43 @@
-"--------------------------------Components-----------------------------------
-so ~/.config/nvim/plugins.vim
+"--------------------------------Plugins-----------------------------------
+call plug#begin('~/.config/nvim/plugged')
+"--------Extras------------------
+Plug 'morhetz/gruvbox'
+Plug 'rakr/vim-one'
+Plug 'ayu-theme/ayu-vim'
+Plug 'arcticicestudio/nord-vim'
+Plug 'mhinz/vim-startify'
+" Plug 'sainnhe/gruvbox-material'
+Plug 'sainnhe/everforest'
+Plug 'norcalli/nvim-colorizer.lua'
+"---------Utility----------------
+Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
+Plug 'chrisbra/unicode.vim'
+Plug 'tpope/vim-commentary'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'tpope/vim-surround'
+Plug 'SirVer/ultisnips'
+Plug 'mattn/emmet-vim'
+Plug 'voldikss/vim-floaterm'
+Plug 'tpope/vim-fugitive'
+Plug 'honza/vim-snippets'
+Plug 'junegunn/goyo.vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'lervag/vimtex', { 'for': 'tex' }
+" Plug 'godlygeek/tabular', {'for': 'markdown'}
+Plug 'preservim/vim-markdown', {'for':'markdown'}
+Plug 'neovimhaskell/haskell-vim', {'for': 'haskell'}
+Plug 'octol/vim-cpp-enhanced-highlight', {'for': ['c', 'cpp']}
+Plug 'LnL7/vim-nix', {'for': 'nix'}
+Plug 'pangloss/vim-javascript', {'for': ['javascript', 'javascriptreact']}
+Plug 'leafgarland/typescript-vim',{'for': ['typescript', 'typescriptreact']}
+Plug 'maxmellon/vim-jsx-pretty', {'for': ['typescriptreact', 'javascriptreact']}  
+" Plug 'mbbill/undotree'
+" Plug 'aserebryakov/vim-todo-lists'
+" Plug 'sheerun/vim-polyglot'
+" Plug 'Yggdroot/indentLine'
+" Plug 'vimwiki/vimwiki'
+call plug#end()
 so ~/.config/nvim/statusline.vim
 "--------------------------------Base---------------------------------------
 let mapleader=" "
@@ -175,7 +213,7 @@ let g:everforest_transparent_background = 0
 let g:one_allow_italics=1
 "-------------------------------
 set bg=dark
-colorscheme gruvbox-material
+colorscheme nord
 " highlight Normal guibg=none
 if (has("nvim"))
     let $NVIM_TUI_ENABLE_TRUE_COLOR=1
@@ -193,12 +231,12 @@ let g:tex_flavor = 'latex'
 "                     \ ,'diary_rel_path':'.diary/', }]
 
 let g:vim_markdown_folding_disabled = 1
-let g:tex_conceal = ""
+" let g:tex_conceal = ""
 let g:vim_markdown_math = 1
-let g:vim_markdown_strikethrough = 1
 let g:vim_markdown_frontmatter = 1
-let g:vim_markdown_json_frontmatter = 1
-let g:vim_markdown_toml_frontmatter = 1
+" let g:vim_markdown_strikethrough = 1
+" let g:vim_markdown_json_frontmatter = 1
+" let g:vim_markdown_toml_frontmatter = 1
 "---------------------------Files/Explorer-------------------------------------
 set grepprg=rg\ --vimgrep\ --smart-case\ --follow
 noremap <silent> <C-n> :Vexplore<CR>

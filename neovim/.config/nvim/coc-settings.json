@@ -2,6 +2,9 @@
     "prettier.tabWidth": 2,
     "prettier.jsxBracketSameLine":true, 
     "prettier.arrowParens":"avoid",
+    "diagnostic.virtualText": true,
+    "diagnostic.virtualTextCurrentLineOnly": false,
+    "diagnostic.virtualTextPrefix": "⏺ ",
     "languageserver": {
     "haskell": {
       "command": "haskell-language-server-wrapper",

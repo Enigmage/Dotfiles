@@ -1,12 +1,12 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =0
+let g:netrw_dirhistcnt =4
+let g:netrw_dirhist_4='/home/alizaidi/dev/conceptual/uiuxclone'
+let g:netrw_dirhist_3='/home/alizaidi/dev/react_typescript_todo/src'
+let g:netrw_dirhist_2='/home/alizaidi/dev/conceptual/solana-dapp/.vscode'
+let g:netrw_dirhist_1='/home/alizaidi/vimwiki/presentations'
 let g:netrw_dirhist_0='/home/alizaidi/dev/conceptual/solana-dapp/src'
 let g:netrw_dirhist_9='/home/alizaidi/dev/listiee/listiee-front-end/src'
 let g:netrw_dirhist_8='/home/alizaidi/dev/listiee/listiee-front-end'
 let g:netrw_dirhist_7='/home/alizaidi/problem_solving/Data-Structures/graphs'
 let g:netrw_dirhist_6='/home/alizaidi/vimwiki/fleeting'
 let g:netrw_dirhist_5='/nix/store/a3bag555257hpkn4dvzbmvjvv76lsl5x-user-environment/home-manager/home-manager'
-let g:netrw_dirhist_4='/nix/store/a3bag555257hpkn4dvzbmvjvv76lsl5x-user-environment/home-manager'
-let g:netrw_dirhist_3='/home/alizaidi/.nix-defexpr/channels/home-manager'
-let g:netrw_dirhist_2='/home/alizaidi/.nix-defexpr/channels'
-let g:netrw_dirhist_1='/home/alizaidi/.nix-defexpr/channels/home-manager'
