@@ -25,13 +25,13 @@ Plug 'junegunn/goyo.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'lervag/vimtex', { 'for': 'tex' }
 " Plug 'godlygeek/tabular', {'for': 'markdown'}
-Plug 'preservim/vim-markdown', {'for':'markdown'}
-Plug 'neovimhaskell/haskell-vim', {'for': 'haskell'}
-Plug 'octol/vim-cpp-enhanced-highlight', {'for': ['c', 'cpp']}
-Plug 'LnL7/vim-nix', {'for': 'nix'}
-Plug 'pangloss/vim-javascript', {'for': ['javascript', 'javascriptreact']}
-Plug 'leafgarland/typescript-vim',{'for': ['typescript', 'typescriptreact']}
-Plug 'maxmellon/vim-jsx-pretty', {'for': ['typescriptreact', 'javascriptreact']}  
+Plug 'preservim/vim-markdown', { 'for' : 'markdown' }
+Plug 'neovimhaskell/haskell-vim', { 'for' : 'haskell'}
+Plug 'octol/vim-cpp-enhanced-highlight', { 'for' : ['c', 'cpp']}
+Plug 'pangloss/vim-javascript', {'for' : ['javascript', 'javascriptreact']}
+Plug 'leafgarland/typescript-vim',{'for' : ['typescript', 'typescriptreact']}
+Plug 'maxmellon/vim-jsx-pretty', {'for' : ['typescriptreact', 'javascriptreact']}  
+Plug 'LnL7/vim-nix', { 'for' : 'nix' }
 " Plug 'mbbill/undotree'
 " Plug 'aserebryakov/vim-todo-lists'
 " Plug 'sheerun/vim-polyglot'
@@ -213,7 +213,7 @@ let g:everforest_transparent_background = 0
 let g:one_allow_italics=1
 "-------------------------------
 set bg=dark
-colorscheme nord
+colorscheme one
 " highlight Normal guibg=none
 if (has("nvim"))
     let $NVIM_TUI_ENABLE_TRUE_COLOR=1
