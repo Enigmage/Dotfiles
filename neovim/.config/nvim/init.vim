@@ -57,7 +57,6 @@ set textwidth=79
 set expandtab
 set autoindent
 set fileformat=unix
-set expandtab
 filetype plugin indent on
 set incsearch hlsearch
 set inccommand=split
