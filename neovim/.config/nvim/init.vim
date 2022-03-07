@@ -32,6 +32,7 @@ Plug 'pangloss/vim-javascript', {'for' : ['javascript', 'javascriptreact']}
 Plug 'leafgarland/typescript-vim',{'for' : ['typescript', 'typescriptreact']}
 Plug 'maxmellon/vim-jsx-pretty', {'for' : ['typescriptreact', 'javascriptreact']}  
 Plug 'LnL7/vim-nix', { 'for' : 'nix' }
+" Plug 'github/copilot.vim'
 " Plug 'mbbill/undotree'
 " Plug 'aserebryakov/vim-todo-lists'
 " Plug 'sheerun/vim-polyglot'

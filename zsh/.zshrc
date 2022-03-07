@@ -1,9 +1,9 @@
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  # source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+# fi
 
 # Aliases
 alias nv='nvim'
@@ -72,8 +72,8 @@ HISTFILE=~/.zsh_history
 #----Theme--------
 # source ~/zsh-plugins/denysdovhan/spaceship-prompt/spaceship.zsh 2> /dev/null
 # SPACESHIP_VI_MODE_SHOW=false
-# source ~/zsh-plugins/minimal/minimal.zsh 2> /dev/null
-source ~/zsh-plugins/powerlevel10k/powerlevel10k.zsh-theme 
+source ~/zsh-plugins/minimal/minimal.zsh 2> /dev/null
+# source ~/zsh-plugins/powerlevel10k/powerlevel10k.zsh-theme 
 #-----------------
 # fzf
 source ~/.fzf.zsh 2> /dev/null
@@ -90,4 +90,4 @@ source ~/zsh-plugins/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
 source ~/zsh-plugins/k/k.plugin.zsh 2> /dev/null
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
