@@ -41,7 +41,7 @@ myStartupHook = do
     spawnOnce "nm-applet"
     spawnOnce "volumeicon"
     spawnOnce "trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 7 --transparent false --tint 0x5f5f5f --height 26 &"
-    -- setWMName "LG3D" -- For some GUI apps.
+    setWMName "LG3D" -- For some GUI apps.
 
 -- Configuration constants.
 

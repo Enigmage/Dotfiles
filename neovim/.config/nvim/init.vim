@@ -268,13 +268,13 @@ tnoremap <C-[> <C-\><C-n>
 hi FloatermBorder guifg=none guibg=none
 hi Floaterm guibg=none
 let g:floaterm_title="zsh($1/$2)"
-let g:floaterm_position="center"
+let g:floaterm_position="right"
 let g:floaterm_opener="edit"
 let g:floaterm_autoinsert="false"
 let g:floaterm_keymap_new="\\f"
 let g:floaterm_keymap_toggle="\\t"
-let g:floaterm_width=0.5
-let g:floaterm_height=0.9
+let g:floaterm_width=0.45
+let g:floaterm_height=1.0
 noremap \s :FloatermSend<CR>
 "------------------------StartScreen-------------------------------------------
 let g:startify_padding_left = 10
