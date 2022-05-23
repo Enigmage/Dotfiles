@@ -34,6 +34,10 @@ import XMonad.Hooks.SetWMName
 -- Actions
 import XMonad.Actions.GridSelect
 
+-- Prompts
+import XMonad.Prompt
+import XMonad.Prompt.Ssh
+
 
 -- These applications will be opened on startup of xmonad.
 myStartupHook :: X()
@@ -81,6 +85,16 @@ myScratchpads = [
                     w = 2/3
                     h = 2/3
                     
+
+myXPConfig :: XPConfig 
+myXPConfig = def 
+    { font = "xft:JetBrains Mono:pixelsize=18"
+    , position = CenteredAt 0.5 0.3
+    , bgColor = "#000000"
+    , fgColor = "#00ff00"
+    , borderColor = "#00ff00"
+    , height = 50
+    }
 
     
 -- All event handlers.
@@ -164,13 +178,14 @@ myKeys =
     -- Media keys.
     ,("<XF86MonBrightnessUp>", spawn "lux -a 10%")
     ,("<XF86MonBrightnessDown>", spawn "lux -s 10%")
+    ,("C-M1-/", sshPrompt myXPConfig)
     ]
 
 myXmobarPP :: PP
 myXmobarPP = xmobarPP {
       ppHidden          = xmobarColor "#666666" "#222222" . pad
     , ppVisible         = xmobarColor "#ffffff" "#222222" . pad
-    , ppCurrent         = xmobarColor "#ffffff" "#b04fff" . pad
+    , ppCurrent         = xmobarColor "#ffffff" "#E66752" . pad
     , ppHiddenNoWindows = const []
     , ppUrgent          = xmobarColor "red"     "yellow"
     , ppLayout          = xmobarColor "#5f5f5f" "#222222"
@@ -187,6 +202,7 @@ myConfig = def
     , manageHook = myManageHook
     , terminal = myTerminal3
     , focusFollowsMouse = False
+    , focusedBorderColor = "#00ff00"
     } `additionalKeysP` myKeys
 
 main :: IO()
