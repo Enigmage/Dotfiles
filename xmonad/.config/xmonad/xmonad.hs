@@ -33,18 +33,24 @@ import XMonad.Hooks.SetWMName
 
 -- Actions
 import XMonad.Actions.GridSelect
+import XMonad.Actions.Search
 
 -- Prompts
 import XMonad.Prompt
-import XMonad.Prompt.Ssh
+-- import XMonad.Prompt.Ssh
+import XMonad.Prompt.Man
+import XMonad.Prompt.Window as Win
 
 
 -- These applications will be opened on startup of xmonad.
 myStartupHook :: X()
 myStartupHook = do
+    spawnOnce "xfce4-power-manager"
+    spawnOnce "xsetroot -cursor_name left_ptr"
+    spawnOnce "setxkbmap -option caps:ctrl_modifier"
     spawnOnce "nm-applet"
     spawnOnce "volumeicon"
-    spawnOnce "trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 7 --transparent false --tint 0x5f5f5f --height 26 &"
+    spawnOnce "trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 7 --transparent true --tint 0x5f5f5f --height 24 &"
     setWMName "LG3D" -- For some GUI apps.
 
 -- Configuration constants.
@@ -66,7 +72,12 @@ myModKey = mod4Mask
 mySpacing :: Integer -> l a -> XMonad.Layout.LayoutModifier.ModifiedLayout Spacing l a
 mySpacing x = spacingRaw False (Border x x x x) True (Border x x x x) True
 
+-- search engines
+braveSearch :: SearchEngine
+braveSearch = searchEngine "brave search" "https://search.brave.com/search?q="
 
+googleSearch :: SearchEngine 
+googleSearch = searchEngine "google" "https://google.com/search?q="
 
 -- Scratchpads.
 myScratchpads :: [NamedScratchpad]
@@ -76,6 +87,7 @@ myScratchpads = [
     , NS "generalTerm" "st -c generalTerm" (className=? "generalTerm") generalLayout
     , NS "pavucontrol" "pavucontrol" (className=? "Pavucontrol") generalLayout
     , NS "cmus" "st -c mymusic -e cmus" (className=? "mymusic") generalLayout
+    , NS "python-repl" "st -e python3" (title=? "python3") generalLayout
     ]
         where
             generalLayout = customFloating $ W.RationalRect l t w h
@@ -88,11 +100,11 @@ myScratchpads = [
 
 myXPConfig :: XPConfig 
 myXPConfig = def 
-    { font = "xft:JetBrains Mono:pixelsize=18"
-    , position = CenteredAt 0.5 0.3
-    , bgColor = "#000000"
-    , fgColor = "#00ff00"
-    , borderColor = "#00ff00"
+    { font = "xft:Fira Sans Medium:pixelsize=18"
+    , position = CenteredAt 0.5 0.5
+    , bgColor = "#1d2021"
+    , fgColor = "#d79921"
+    , borderColor = "red"
     , height = 50
     }
 
@@ -152,39 +164,41 @@ myManageHook = namedScratchpadManageHook myScratchpads
 myKeys :: [(String, X())]
 myKeys = 
     [
-    -- Rofi 
+    -- Launchers/Prompts
      ("M-/", spawn "rofi -show combi")
+    ,("C-M1-m", manPrompt myXPConfig)
+    ,("C-M1-b", promptSearch myXPConfig braveSearch)
+    ,("C-M1-w", Win.windowPrompt myXPConfig { autoComplete = Just 500000 } Goto Win.allWindows)
+    ,("C-M1-q", selectSearch googleSearch)
     -- Show all running applications and navigate to them.
     ,("M1-<Tab>", goToSelected def)
-    -- Alternate terminal.
-    ,("M1-t", spawn "alacritty")
-    -- Ctrl-Alt group.
-    ,("C-M1-w", spawn "brave-browser")
+    --  Applications
+    ,("C-M1-t", spawn "alacritty")
     ,("C-M1-s", spawn "deepin-screenshot")
-    ,("C-M1-f", spawn "pcmanfm")
-    -- Window spacing.
-    ,("C-M1-j", decWindowSpacing 4) -- Decrease window spacing
-    ,("C-M1-k", incWindowSpacing 4) -- Increase window spacing
-    ,("C-M1-h", decScreenSpacing 4) -- Decrease screen spacing
-    ,("C-M1-l", incScreenSpacing 4) -- Increase screen spacing
-    ,("C-M1-;", withFocused (sendMessage . maximizeRestore))
-    -- Scratchpads keybinding group -> Mod-s
+    -- Layout
+    ,("C-M-j", decWindowSpacing 4) -- Decrease window spacing
+    ,("C-M-k", incWindowSpacing 4) -- Increase window spacing
+    ,("C-M-h", decScreenSpacing 4) -- Decrease screen spacing
+    ,("C-M-l", incScreenSpacing 4) -- Increase screen spacing
+    ,("C-M-;", withFocused (sendMessage . maximizeRestore))
     -- Keeping this one differnt for convenience.
     ,("C-<Return>", namedScratchpadAction myScratchpads "generalTerm")
+    -- Scratchpads keybinding group -> Mod-s
     ,("M-s h", namedScratchpadAction myScratchpads "htop")
     ,("M-s c", namedScratchpadAction myScratchpads "calculator")
     ,("M-s p", namedScratchpadAction myScratchpads "pavucontrol")
     ,("M-s m", namedScratchpadAction myScratchpads "cmus")
-    -- Media keys.
+    ,("M-s r", namedScratchpadAction myScratchpads "python-repl")
+    -- Fn keys.
     ,("<XF86MonBrightnessUp>", spawn "lux -a 10%")
     ,("<XF86MonBrightnessDown>", spawn "lux -s 10%")
-    ,("C-M1-/", sshPrompt myXPConfig)
+    ,("<XF86ScreenSaver>", spawn "slock")
     ]
 
 myXmobarPP :: PP
 myXmobarPP = xmobarPP {
       ppHidden          = xmobarColor "#666666" "#222222" . pad
-    , ppVisible         = xmobarColor "#ffffff" "#222222" . pad
+    , ppVisible         = xmobarColor "#ffffff" "#666666" . pad
     , ppCurrent         = xmobarColor "#ffffff" "#E66752" . pad
     , ppHiddenNoWindows = const []
     , ppUrgent          = xmobarColor "red"     "yellow"
