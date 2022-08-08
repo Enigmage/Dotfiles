@@ -1,15 +1,14 @@
 
 - [ ] Polybar
-- [ ] Prompts
-- [ ] Update to latest version using cabal
-- [ ] tree select
+- [X] Prompts
+- [ ] Update to latest version using stack
 - [ ] dynamic monitor configuration
 - [ ] screen lock
 - [ ] power management
 - [ ] volume management
 - [ ] switch to picom
 - [ ] optimize rofi
-- [ ] Some apps starting up slowly.
-- [ ] Dunst - system notifications.
+- [X] Some apps starting up slowly.
+- [X] Dunst - system notifications.
 - [X] Grid select
 - [X] Spaces

@@ -4,11 +4,11 @@
 # if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   # source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 # fi
-
 # Aliases
 alias nv='nvim'
 alias v='vim'
-alias ls='ls --color=auto' alias vconf='vim ~/.vimrc'
+alias ls='ls --color=auto' 
+alias vconf='vim ~/.vimrc'
 alias nvconf='nvim ~/.config/nvim/init.vim'
 alias alaconf='nvim ~/.config/alacritty/alacritty.yml'
 alias zconf='nvim ~/.zshrc'
@@ -36,6 +36,8 @@ alias static-ssh='ssh ubuntu@15.206.70.213'
 alias xmonaconf='nv ~/.config/xmonad/xmonad.hs'
 alias xmobaconf='nv ~/.config/xmobar/xmobarrc'
 alias addbacklinks="sed -i '1s/^/Back to [index](index.md)\n\n /' *.md"
+alias home-rsync="rsync -av --include-from=/home/alizaidi/rsync-backup-config/rsync-backup.txt /home/alizaidi/ /home/alizaidi/Backups/home"
+alias home-rsync-restore="rsync -av /home/alizaidi/Backups/home/ /home/alizaidi/test-backup"
 
 # Share history in all sessions
 setopt histignorealldups sharehistory
@@ -86,8 +88,8 @@ fi
 source ~/zsh-plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
 # # Autosuggestions
 source ~/zsh-plugins/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
-# # Git directory listing
-source ~/zsh-plugins/k/k.plugin.zsh 2> /dev/null
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 # [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

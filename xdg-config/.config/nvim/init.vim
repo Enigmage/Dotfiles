@@ -11,7 +11,7 @@ Plug 'sainnhe/everforest'
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'andweeb/presence.nvim'
 "---------Utility----------------
-Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
+" Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 Plug 'chrisbra/unicode.vim'
 Plug 'tpope/vim-commentary'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -34,6 +34,7 @@ Plug 'leafgarland/typescript-vim',{'for' : ['typescript', 'typescriptreact']}
 Plug 'maxmellon/vim-jsx-pretty', {'for' : ['typescriptreact', 'javascriptreact']}  
 Plug 'LnL7/vim-nix', { 'for' : 'nix' }
 Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins', 'for': 'python' }
+Plug 'tomlion/vim-solidity', { 'for' : 'solidity' }
 " Plug 'github/copilot.vim'
 " Plug 'mbbill/undotree'
 " Plug 'aserebryakov/vim-todo-lists'
@@ -129,10 +130,10 @@ inoremap <A-l> <C-\><C-N><C-w>l
 " Program execution keybinds
 noremap \g :FloatermNew cppc %<CR>
 noremap \c :FloatermNew cgcc %<CR>
-noremap \p :FloatermNew pyrun %<CR>
+noremap \p :FloatermNew python3 %<CR>
 "------------------Snippets/Completion-----------------------------------------
 
-"" Use tab for autocomplete.
+""" Use tab for autocomplete.
 inoremap <silent><expr> <TAB>
             \ pumvisible() ? "\<C-n>" :
             \ <SID>check_back_space() ? "\<TAB>" :
@@ -215,7 +216,7 @@ let g:everforest_transparent_background = 0
 let g:one_allow_italics=1
 "-------------------------------
 set bg=dark
-colorscheme nord
+colorscheme gruvbox-material
 " highlight Normal guibg=none
 if (has("nvim"))
     let $NVIM_TUI_ENABLE_TRUE_COLOR=1
