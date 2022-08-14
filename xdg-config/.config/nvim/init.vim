@@ -216,7 +216,7 @@ let g:everforest_transparent_background = 0
 let g:one_allow_italics=1
 "-------------------------------
 set bg=dark
-colorscheme gruvbox-material
+colorscheme one
 " highlight Normal guibg=none
 if (has("nvim"))
     let $NVIM_TUI_ENABLE_TRUE_COLOR=1
