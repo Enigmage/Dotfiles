@@ -1,3 +1,4 @@
+source ~/.vim/statusline.vim
 " Minimal and easily reproducible vimrc
 " Basic settings
 set nocompatible
@@ -38,18 +39,18 @@ set nobackup noswapfile nowritebackup            " disable backup/swap files
 
 " Custom keymaps
 let mapleader=" "
-map <leader>r :source %<CR>
-map <leader>t :term<CR>
+nnoremap <leader>r :source %<CR>
+nnoremap <leader>t :term<CR>
 set splitbelow
 
-map <C-n> :Lexplore<CR>
+nnoremap <C-n> :Lexplore<CR>
 let g:netrw_banner=0
 let g:netrw_winsize=20
 let g:netrw_liststyle=3
 let g:netrw_localrmdir='rm -r'
 
-map <left> :bp<CR>
-map <right> :bn<CR>
+noremap <left> :bp<CR>
+noremap <right> :bn<CR>
 inoremap jk <ESC>
 
 xnoremap K :move '<-2<CR>gv-gv 
@@ -67,13 +68,8 @@ map <up> <nop>
 imap <down> <nop>
 imap <up> <nop>
 
-" Status line
-so ~/.vim/statusline.vim
-
 " look and feel
 " To make colors work in st.
-let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 colorscheme nord
 set bg=dark
 

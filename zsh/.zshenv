@@ -6,11 +6,14 @@ export FZF_DEFAULT_COMMAND="fdfind . $HOME"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="fdfind -t d . $HOME"
 export TERMINAL="st"
-
+export DENO_PATH="/home/alizaidi/.deno"
 
 # Custom Search paths.
 export PATH=$PATH:~/scripts
 export PATH=$PATH:~/.local/bin/
+export PATH=$PATH:$DENO_PATH/bin
+export PATH=$PATH:/usr/local/go/bin/
+export PATH=$PATH:~/go/bin/
 
 export NVM_DIR="$HOME/.nvm"
 # export PATH=$PATH:~/.config/nvim/plugged/fzf/bin/
