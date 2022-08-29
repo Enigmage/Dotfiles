@@ -1,13 +1,17 @@
+" Run before anything for filetype.nvim
+let g:did_load_filetypes=1
 "--------------------------------Plugins-----------------------------------
 call plug#begin('~/.config/nvim/plugged')
+"--------Perf--------------------
+Plug 'nathom/filetype.nvim'
 "--------Extras------------------
-Plug 'morhetz/gruvbox'
-Plug 'rakr/vim-one'
-Plug 'ayu-theme/ayu-vim'
+" Plug 'morhetz/gruvbox'
+" Plug 'rakr/vim-one'
+" Plug 'ayu-theme/ayu-vim'
 Plug 'arcticicestudio/nord-vim'
 Plug 'mhinz/vim-startify'
-Plug 'sainnhe/gruvbox-material'
-Plug 'sainnhe/everforest'
+" Plug 'sainnhe/gruvbox-material'
+" Plug 'sainnhe/everforest'
 Plug 'norcalli/nvim-colorizer.lua'
 " Plug 'andweeb/presence.nvim'
 "---------Utility----------------
@@ -20,7 +24,7 @@ Plug 'tpope/vim-surround'
 Plug 'SirVer/ultisnips'
 Plug 'mattn/emmet-vim'
 Plug 'voldikss/vim-floaterm'
-Plug 'tpope/vim-fugitive'
+" Plug 'tpope/vim-fugitive'
 Plug 'honza/vim-snippets'
 Plug 'junegunn/goyo.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -65,11 +69,11 @@ filetype plugin indent on
 set incsearch hlsearch
 set inccommand=split
 set cursorline
-set hidden
+" set hidden
 set updatetime=300
 set shortmess+=c
-set signcolumn=auto
-set nobackup
+" set signcolumn=auto
+" set nobackup
 set nowritebackup
 set undofile
 set undodir=~/.config/nvim/undodir/
@@ -212,26 +216,26 @@ autocmd FileType *html*,*css,*javascript*,*typescript* call WebOptions()
 
 "------------------------------ColorScheme Settings----------------------------
 "---Gruvbox--------------------
-let g:gruvbox_italic=1
-let g:gruvbox_improved_strings=1
-let g:gruvbox_improved_warnings=1
-let g:gruvbox_contrast_dark='hard'
+" let g:gruvbox_italic=1
+" let g:gruvbox_improved_strings=1
+" let g:gruvbox_improved_warnings=1
+" let g:gruvbox_contrast_dark='hard'
 
 "---Gruvbox-material-----------
-let g:gruvbox_material_background = 'hard'
-let g:gruvbox_material_better_performance = 1
+" let g:gruvbox_material_background = 'hard'
+" let g:gruvbox_material_better_performance = 1
 
 "-----Everforest---------------
-let g:everforest_background='hard'
-let g:everforest_enable_italic = 1
-let g:everforest_disable_italic_comment = 0
-let g:everforest_transparent_background = 0
+" let g:everforest_background='hard'
+" let g:everforest_enable_italic = 1
+" let g:everforest_disable_italic_comment = 0
+" let g:everforest_transparent_background = 0
 
 "----One Dark-------------------
-let g:one_allow_italics=1
+" let g:one_allow_italics=1
 "-------------------------------
 set bg=dark
-colorscheme gruvbox-material
+colorscheme nord
 " highlight Normal guibg=none
 if (has("nvim"))
     let $NVIM_TUI_ENABLE_TRUE_COLOR=1

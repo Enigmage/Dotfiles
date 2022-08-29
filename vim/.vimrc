@@ -24,8 +24,8 @@ set hidden
 set updatetime=300
 set shortmess+=c
 set signcolumn=auto
-set undofile
-set undodir='~/.vim/undodir'
+"set undofile
+"set undodir='~/.vim/undodir'
 set colorcolumn=80
 setlocal omnifunc=syntaxcomplete#Complete 						 
 autocmd CompleteDone * pclose " Close preview when done
