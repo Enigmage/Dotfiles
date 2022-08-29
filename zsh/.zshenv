@@ -14,6 +14,7 @@ export PATH=$PATH:~/.local/bin/
 export PATH=$PATH:$DENO_PATH/bin
 export PATH=$PATH:/usr/local/go/bin/
 export PATH=$PATH:~/go/bin/
+# export PATH=$PATH:/usr/lib/x86_64-linux-gnu/pkgconfig
 
 export NVM_DIR="$HOME/.nvm"
 # export PATH=$PATH:~/.config/nvim/plugged/fzf/bin/

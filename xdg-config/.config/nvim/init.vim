@@ -5,15 +5,16 @@ call plug#begin('~/.config/nvim/plugged')
 "--------Perf--------------------
 Plug 'nathom/filetype.nvim'
 "--------Extras------------------
+Plug 'arcticicestudio/nord-vim'
+Plug 'mhinz/vim-startify'
+Plug 'nvim-lualine/lualine.nvim'
+Plug 'norcalli/nvim-colorizer.lua'
+" Plug 'andweeb/presence.nvim'
+" Plug 'sainnhe/gruvbox-material'
+" Plug 'sainnhe/everforest'
 " Plug 'morhetz/gruvbox'
 " Plug 'rakr/vim-one'
 " Plug 'ayu-theme/ayu-vim'
-Plug 'arcticicestudio/nord-vim'
-Plug 'mhinz/vim-startify'
-" Plug 'sainnhe/gruvbox-material'
-" Plug 'sainnhe/everforest'
-Plug 'norcalli/nvim-colorizer.lua'
-" Plug 'andweeb/presence.nvim'
 "---------Utility----------------
 " Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 Plug 'chrisbra/unicode.vim'
@@ -40,13 +41,9 @@ Plug 'LnL7/vim-nix', { 'for' : 'nix' }
 Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins', 'for': 'python' }
 Plug 'tomlion/vim-solidity', { 'for' : 'solidity' }
 " Plug 'github/copilot.vim'
-" Plug 'mbbill/undotree'
-" Plug 'aserebryakov/vim-todo-lists'
-" Plug 'sheerun/vim-polyglot'
-" Plug 'Yggdroot/indentLine'
 " Plug 'vimwiki/vimwiki'
 call plug#end()
-so ~/.config/nvim/statusline.vim
+" so ~/.config/nvim/statusline.vim
 "--------------------------------Base---------------------------------------
 let mapleader=" "
 set nowrap
@@ -189,7 +186,7 @@ endfunction
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Symbol renaming.
-nmap <leader>rn <Plug>(coc-rename)
+nnoremap <leader>rn <Plug>(coc-rename)
 
 let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsJumpForwardTrigger = '<c-j>'
@@ -201,7 +198,7 @@ let g:python3_host_prog="/usr/bin/python3"
 let g:user_emmet_install_global=0 
 let g:user_emmet_leader_key=','
 " command! -nargs=0 Prettier :CocCommand prettier.formatFile
-function WebOptions()
+function WebDevOptions()
     setlocal tabstop=2
     setlocal softtabstop=2
     setlocal shiftwidth=2
@@ -212,7 +209,7 @@ function WebOptions()
     noremap <F6> :CocCommand prettier.formatFile<CR>
 endfunction
 
-autocmd FileType *html*,*css,*javascript*,*typescript* call WebOptions()
+autocmd FileType *html*,*css,*javascript*,*typescript* call WebDevOptions()
 
 "------------------------------ColorScheme Settings----------------------------
 "---Gruvbox--------------------
@@ -246,6 +243,7 @@ endif
 lua require'colorizer'.setup()
 "---------------------------Markup/Prose---------------------------------------
 let g:tex_flavor = 'latex'
+" let g:tex_conceal = ""
 " " autocmd Filetype tex,md,txt,vimwiki :setlocal spell
 " let g:vimwiki_list = [{'path': '~/vimwiki/'
 "                     \ , 'name': 'My knowledge base and diary'
@@ -253,7 +251,6 @@ let g:tex_flavor = 'latex'
 "                     \ ,'diary_rel_path':'.diary/', }]
 
 let g:vim_markdown_folding_disabled = 1
-" let g:tex_conceal = ""
 let g:vim_markdown_math = 1
 let g:vim_markdown_frontmatter = 1
 " let g:vim_markdown_strikethrough = 1
@@ -301,28 +298,28 @@ let g:startify_padding_left = 10
 let g:startify_session_persistence = 1
 let g:startify_enable_special = 0
 let g:startify_change_to_vcs_root = 1
-let g:startify_lists = [
-            \ { 'type': 'dir'       },
-            \ { 'type': 'files'     },
-            \ { 'type': 'sessions'  },
-            \ { 'type': 'bookmarks' },
-            \ { 'type': 'commands' },
-            \ ]
+" let g:startify_lists = [
+"             \ { 'type': 'dir'       },
+"             \ { 'type': 'files'     },
+"             \ { 'type': 'sessions'  },
+"             \ { 'type': 'bookmarks' },
+"             \ { 'type': 'commands' },
+"             \ ]
 
-" bookmark examples
-let  g:startify_bookmarks =  [
-            \ {'v': '~/.config/nvim'},
-            \ {'d': '~/.dotfiles' }
-            \ ]
+" " bookmark examples
+" let  g:startify_bookmarks =  [
+"             \ {'v': '~/.config/nvim'},
+"             \ {'d': '~/.dotfiles' }
+"             \ ]
 
-" custom commands
-let g:startify_commands = [
-            \ {'ch':  ['Health Check', ':checkhealth']},
-            \ {'ps': ['Plugins status', ':PlugStatus']},
-            \ {'pu': ['Update vim plugins',':PlugUpdate | PlugUpgrade']},
-            \ {'uc': ['Update coc Plugins', ':CocUpdate']},
-            \ {'h':  ['Help', ':help']},
-            \ ]
+" " custom commands
+" let g:startify_commands = [
+"             \ {'ch':  ['Health Check', ':checkhealth']},
+"             \ {'ps': ['Plugins status', ':PlugStatus']},
+"             \ {'pu': ['Update vim plugins',':PlugUpdate | PlugUpgrade']},
+"             \ {'uc': ['Update coc Plugins', ':CocUpdate']},
+"             \ {'h':  ['Help', ':help']},
+"             \ ]
 
 " custom banner
 let g:startify_custom_header = [
@@ -386,3 +383,230 @@ let g:startify_custom_header = [
 "let g:presence_reading_text        = "Reading %s"
 "let g:presence_workspace_text      = "Working on %s"
 "let g:presence_line_number_text    = "Line %s out of %s"
+
+"----------------------LuaLine-------------------------------------------------
+lua << END
+local lualine = require('lualine')
+-- Color table for highlights
+-- stylua: ignore
+local colors = {
+  bg       = '#202328',
+  fg       = '#bbc2cf',
+  yellow   = '#ECBE7B',
+  cyan     = '#008080',
+  darkblue = '#081633',
+  green    = '#98be65',
+  orange   = '#FF8800',
+  violet   = '#a9a1e1',
+  magenta  = '#c678dd',
+  blue     = '#51afef',
+  red      = '#ec5f67',
+}
+
+local conditions = {
+  buffer_not_empty = function()
+    return vim.fn.empty(vim.fn.expand('%:t')) ~= 1
+  end,
+  hide_in_width = function()
+    return vim.fn.winwidth(0) > 80
+  end,
+  check_git_workspace = function()
+    local filepath = vim.fn.expand('%:p:h')
+    local gitdir = vim.fn.finddir('.git', filepath .. ';')
+    return gitdir and #gitdir > 0 and #gitdir < #filepath
+  end,
+}
+
+-- Config
+local config = {
+  options = {
+    -- Disable sections and component separators
+    component_separators = '',
+    section_separators = '',
+    theme = {
+      -- We are going to use lualine_c an lualine_x as left and
+      -- right section. Both are highlighted by c theme .  So we
+      -- are just setting default looks o statusline
+      normal = { c = { fg = colors.fg, bg = colors.bg } },
+      inactive = { c = { fg = colors.fg, bg = colors.bg } },
+    },
+  },
+  sections = {
+    -- these are to remove the defaults
+    lualine_a = {},
+    lualine_b = {},
+    lualine_y = {},
+    lualine_z = {},
+    -- These will be filled later
+    lualine_c = {},
+    lualine_x = {},
+  },
+  inactive_sections = {
+    -- these are to remove the defaults
+    lualine_a = {},
+    lualine_b = {},
+    lualine_y = {},
+    lualine_z = {},
+    lualine_c = {},
+    lualine_x = {},
+  },
+}
+
+-- Inserts a component in lualine_c at left section
+local function ins_left(component)
+  table.insert(config.sections.lualine_c, component)
+end
+
+-- Inserts a component in lualine_x ot right section
+local function ins_right(component)
+  table.insert(config.sections.lualine_x, component)
+end
+
+ins_left {
+  function()
+    return '▊'
+  end,
+  color = { fg = colors.blue }, -- Sets highlighting of component
+  padding = { left = 0, right = 1 }, -- We don't need space before this
+}
+
+ins_left {
+  -- mode component
+  function()
+    return 'λ'
+  end,
+  color = function()
+    -- auto change color according to neovims mode
+    local mode_color = {
+      n = colors.red,
+      i = colors.green,
+      v = colors.blue,
+      [''] = colors.blue,
+      V = colors.blue,
+      c = colors.magenta,
+      no = colors.red,
+      s = colors.orange,
+      S = colors.orange,
+      [''] = colors.orange,
+      ic = colors.yellow,
+      R = colors.violet,
+      Rv = colors.violet,
+      cv = colors.red,
+      ce = colors.red,
+      r = colors.cyan,
+      rm = colors.cyan,
+      ['r?'] = colors.cyan,
+      ['!'] = colors.red,
+      t = colors.red,
+    }
+    return { fg = mode_color[vim.fn.mode()] }
+  end,
+  padding = { right = 1 },
+}
+
+ins_left {
+  -- filesize component
+  'filesize',
+  cond = conditions.buffer_not_empty,
+}
+
+ins_left {
+  'filename',
+  cond = conditions.buffer_not_empty,
+  color = { fg = colors.magenta, gui = 'bold' },
+}
+
+ins_left { 'location' }
+
+ins_left { 'progress', color = { fg = colors.fg, gui = 'bold' } }
+
+--ins_left {
+--  'diagnostics',
+--  sources = { 'nvim_diagnostic' },
+--  symbols = { error = ' ', warn = ' ', info = ' ' },
+--  diagnostics_color = {
+--    color_error = { fg = colors.red },
+--    color_warn = { fg = colors.yellow },
+--    color_info = { fg = colors.cyan },
+--  },
+--}
+
+-- Insert mid section. You can make any number of sections in neovim :)
+-- for lualine it's any number greater then 2
+ins_left {
+  function()
+    return '%='
+  end,
+}
+
+-- ins_left {
+--   -- Lsp server name .
+--   function()
+--     local msg = 'No Active Lsp'
+--     local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
+--     local clients = vim.lsp.get_active_clients()
+--     if next(clients) == nil then
+--       return msg
+--     end
+--     for _, client in ipairs(clients) do
+--       local filetypes = client.config.filetypes
+--       if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
+--         return client.name
+--       end
+--     end
+--     return msg
+--   end,
+--   icon = 'LSP:',
+--   color = { fg = '#ffffff', gui = 'bold' },
+-- }
+
+-- Add components to right sections
+ins_right {
+  'filetype',
+  cond = conditions.hide_in_width,
+  color = { fg = colors.violet, gui = 'bold' },
+}
+
+ins_right {
+  'o:encoding', -- option component same as &encoding in viml
+  fmt = string.upper, -- I'm not sure why it's upper case either ;)
+  cond = conditions.hide_in_width,
+  color = { fg = colors.green, gui = 'bold' },
+}
+
+ins_right {
+  'fileformat',
+  fmt = string.upper,
+  icons_enabled = false, -- I think icons are cool but Eviline doesn't have them. sigh
+  color = { fg = colors.green, gui = 'bold' },
+}
+
+ins_right {
+  'branch',
+  icon = '',
+  color = { fg = colors.violet, gui = 'bold' },
+}
+
+-- ins_right {
+--   'diff',
+--   -- Is it me or the symbol for modified us really weird
+--   symbols = { added = ' ', modified = '柳 ', removed = ' ' },
+--   diff_color = {
+--     added = { fg = colors.green },
+--     modified = { fg = colors.orange },
+--     removed = { fg = colors.red },
+--   },
+--   cond = conditions.hide_in_width,
+-- }
+
+ins_right {
+  function()
+    return '▊'
+  end,
+  color = { fg = colors.blue },
+  padding = { left = 1 },
+}
+
+-- Now don't forget to initialize lualine
+lualine.setup(config)
+END
