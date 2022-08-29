@@ -1,4 +1,4 @@
-source ~/.vim/statusline.vim
+"source ~/.vim/statusline.vim
 " Minimal and easily reproducible vimrc
 " Basic settings
 set nocompatible
@@ -19,11 +19,8 @@ set autoindent
 set fileformat=unix
 set expandtab
 filetype plugin indent on
-set incsearch hlsearch ignorecase smartcase
 set cursorline
 set hidden
-set nobackup
-set nowritebackup
 set updatetime=300
 set shortmess+=c
 set signcolumn=auto
@@ -63,8 +60,8 @@ vnoremap > >gv
 
 
 " Arroy keys bad
-map <down> <nop>
-map <up> <nop>
+imap <down> <nop>
+imap <up> <nop>
 imap <down> <nop>
 imap <up> <nop>
 

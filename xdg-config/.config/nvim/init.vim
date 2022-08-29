@@ -9,7 +9,7 @@ Plug 'mhinz/vim-startify'
 Plug 'sainnhe/gruvbox-material'
 Plug 'sainnhe/everforest'
 Plug 'norcalli/nvim-colorizer.lua'
-Plug 'andweeb/presence.nvim'
+" Plug 'andweeb/presence.nvim'
 "---------Utility----------------
 " Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 Plug 'chrisbra/unicode.vim'
@@ -57,10 +57,10 @@ syntax on
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
-set textwidth=79
+set textwidth=80
 set expandtab
-set autoindent
-set fileformat=unix
+" set autoindent
+" set fileformat=unix
 filetype plugin indent on
 set incsearch hlsearch
 set inccommand=split
@@ -76,27 +76,30 @@ set undodir=~/.config/nvim/undodir/
 set noswapfile
 set colorcolumn=80
 set conceallevel=2
+
 " set foldmethod=indent
 ""highlight ColorColumn ctermbg=0 guibg=lightgrey
-setlocal omnifunc=syntaxcomplete#Complete
-autocmd CompleteDone * pclose " Close preview when done
+" setlocal omnifunc=syntaxcomplete#Complete
+" autocmd CompleteDone * pclose " Close preview when done
+
 " --------------------------------General Keybinds-----------------------------
 " Toggle folds
-nnoremap <Space>if :setlocal foldmethod=indent<CR>
+" nnoremap <Leader>if :setlocal foldmethod=indent<CR>
 " Move selected lines up and down a file.
+
 xnoremap K :move '<-2<CR>gv-gv 
 xnoremap J :move '>+1<CR>gv-gv
 
 nnoremap <down> :bw<CR>
 
-inoremap ( ()<Esc>i
-inoremap { {}<Esc>i
-inoremap [ []<Esc>i
-inoremap ' ''<Esc>i
-inoremap " ""<Esc>i
-inoremap ` ``<Esc>i
+" inoremap ( ()<Esc>i
+" inoremap { {}<Esc>i
+" inoremap [ []<Esc>i
+" inoremap ' ''<Esc>i
+" inoremap " ""<Esc>i
+" inoremap ` ``<Esc>i
 
-inoremap <c-x><c-k> <c-x><c-k>
+" inoremap <c-x><c-k> <c-x><c-k>
 inoremap jk <ESC>
 " keep stuff hightlighted after indent
 vnoremap < <gv
@@ -128,29 +131,31 @@ inoremap <A-k> <C-\><C-N><C-w>k
 inoremap <A-l> <C-\><C-N><C-w>l
 
 " Program execution keybinds
-noremap \g :FloatermNew cppc %<CR>
-noremap \c :FloatermNew cgcc %<CR>
-noremap \p :FloatermNew python3 %<CR>
+" noremap \g :FloatermNew cppc %<CR>
+" noremap \c :FloatermNew cgcc %<CR>
+" noremap \p :FloatermNew python3 %<CR>
+
 "------------------Snippets/Completion-----------------------------------------
 
-""" Use tab for autocomplete.
-inoremap <silent><expr> <TAB>
-            \ pumvisible() ? "\<C-n>" :
-            \ <SID>check_back_space() ? "\<TAB>" :
-            \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+inoremap <silent><expr> <C-n> coc#pum#visible() ? coc#pum#next(1) : "\<C-n>"
+inoremap <silent><expr> <C-p> coc#pum#visible() ? coc#pum#prev(1) : "\<C-p>"
+inoremap <silent><expr> <down> coc#pum#visible() ? coc#pum#next(0) : "\<down>"
+inoremap <silent><expr> <up> coc#pum#visible() ? coc#pum#prev(0) : "\<up>"
 
-function! s:check_back_space() abort
-    let col = col('.') - 1
-    return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
+inoremap <silent><expr> <PageDown> coc#pum#visible() ? coc#pum#scroll(1) : "\<PageDown>"
+inoremap <silent><expr> <PageUp> coc#pum#visible() ? coc#pum#scroll(0) : "\<PageUp>"
 
-" Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
+inoremap <silent><expr> <C-e> coc#pum#visible() ? coc#pum#cancel() : "\<C-e>"
+inoremap <silent><expr> <C-y> coc#pum#visible() ? coc#pum#confirm() : "\<C-y>"
 
-" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
-" Coc only does snippet and additional edit on confirm.
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+" function! s:check_back_space() abort
+"     let col = col('.') - 1
+"     return !col || getline('.')[col - 1]  =~# '\s'
+" endfunction
+
+" " Use <c-space> to trigger completion.
+" inoremap <silent><expr> <c-space> coc#refresh()
 
 " Use `[c` and `]c` to navigate diagnostics
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
@@ -190,17 +195,27 @@ let g:python3_host_prog="/usr/bin/python3"
 "emmet config
 "Disable for all except html,css
 let g:user_emmet_install_global=0 
-autocmd FileType *html*,css,*javascript*,*typescript* EmmetInstall
 let g:user_emmet_leader_key=','
-command! -nargs=0 Prettier :CocCommand prettier.formatFile
-noremap <F6> :Prettier<CR>
+" command! -nargs=0 Prettier :CocCommand prettier.formatFile
+function WebOptions()
+    setlocal tabstop=2
+    setlocal softtabstop=2
+    setlocal shiftwidth=2
+    setlocal textwidth=120
+    setlocal expandtab
+    setlocal colorcolumn=120
+    EmmetInstall
+    noremap <F6> :CocCommand prettier.formatFile<CR>
+endfunction
+
+autocmd FileType *html*,*css,*javascript*,*typescript* call WebOptions()
 
 "------------------------------ColorScheme Settings----------------------------
 "---Gruvbox--------------------
 let g:gruvbox_italic=1
 let g:gruvbox_improved_strings=1
 let g:gruvbox_improved_warnings=1
-let g:gruvbox_contrast_dark='soft'
+let g:gruvbox_contrast_dark='hard'
 
 "---Gruvbox-material-----------
 let g:gruvbox_material_background = 'hard'
@@ -259,8 +274,8 @@ let g:fzf_action = {
             \ 'ctrl-s': 'split',
             \ 'ctrl-v': 'vsplit'
             \}
-let g:fzf_layout = { 'down': '40%' }
-" let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
+" let g:fzf_layout = { 'down': '40%' }
+let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
 
 "-------------------------Terminal---------------------------------------------
 " turn terminal to normal mode with escape
@@ -320,50 +335,50 @@ let g:startify_custom_header = [
 \ '',
 \]
 "-----------------------FireNvim-----------------------------------------------
-let g:firenvim_config = { 
-    \ 'globalSettings': {
-        \ 'alt': 'all',
-    \  },
-    \ 'localSettings': {
-        \ '.*': {
-            \ 'cmdline': 'neovim',
-            \ 'content': 'text',
-            \ 'priority': 0,
-            \ 'selector': 'textarea',
-            \ 'takeover': 'never',
-        \ },
-    \ }
-\ }
-if exists('g:started_by_firenvim')
-    set colorcolumn=
-    set nocursorline
-    let g:gruvbox_italic=1
-    let g:gruvbox_improved_strings=1
-    let g:gruvbox_improved_warnings=1
-    let g:gruvbox_contrast_dark="hard"
-    colorscheme everforest
-    set bg=dark
-    set laststatus=0
-    nnoremap <C-s> :wq<CR>
-    au BufEnter 202.12.103.189_*.txt set filetype=sql
-endif
+" let g:firenvim_config = { 
+"     \ 'globalSettings': {
+"         \ 'alt': 'all',
+"     \  },
+"     \ 'localSettings': {
+"         \ '.*': {
+"             \ 'cmdline': 'neovim',
+"             \ 'content': 'text',
+"             \ 'priority': 0,
+"             \ 'selector': 'textarea',
+"             \ 'takeover': 'never',
+"         \ },
+"     \ }
+" \ }
+" if exists('g:started_by_firenvim')
+"     set colorcolumn=
+"     set nocursorline
+"     let g:gruvbox_italic=1
+"     let g:gruvbox_improved_strings=1
+"     let g:gruvbox_improved_warnings=1
+"     let g:gruvbox_contrast_dark="hard"
+"     colorscheme everforest
+"     set bg=dark
+"     set laststatus=0
+"     nnoremap <C-s> :wq<CR>
+"     au BufEnter 202.12.103.189_*.txt set filetype=sql
+" endif
 "----------------------------Rich Presence-------------------------------------
-let g:presence_auto_update         = 1
-let g:presence_neovim_image_text   = "The One True Text Editor"
-let g:presence_main_image          = "neovim"
-let g:presence_client_id           = "793271441293967371"
-""let g:presence_log_level
-let g:presence_debounce_timeout    = 10
-let g:presence_enable_line_number  = 0
-let g:presence_blacklist           = []
-let g:presence_buttons             = 1
-let g:presence_file_assets         = {}
+"let g:presence_auto_update         = 1
+"let g:presence_neovim_image_text   = "The One True Text Editor"
+"let g:presence_main_image          = "neovim"
+"let g:presence_client_id           = "793271441293967371"
+"""let g:presence_log_level
+"let g:presence_debounce_timeout    = 10
+"let g:presence_enable_line_number  = 0
+"let g:presence_blacklist           = []
+"let g:presence_buttons             = 1
+"let g:presence_file_assets         = {}
 
-" Rich Presence text options
-let g:presence_editing_text        = "Editing %s"
-let g:presence_file_explorer_text  = "Browsing %s"
-let g:presence_git_commit_text     = "Committing changes"
-let g:presence_plugin_manager_text = "Managing plugins"
-let g:presence_reading_text        = "Reading %s"
-let g:presence_workspace_text      = "Working on %s"
-let g:presence_line_number_text    = "Line %s out of %s"
+"" Rich Presence text options
+"let g:presence_editing_text        = "Editing %s"
+"let g:presence_file_explorer_text  = "Browsing %s"
+"let g:presence_git_commit_text     = "Committing changes"
+"let g:presence_plugin_manager_text = "Managing plugins"
+"let g:presence_reading_text        = "Reading %s"
+"let g:presence_workspace_text      = "Working on %s"
+"let g:presence_line_number_text    = "Line %s out of %s"
