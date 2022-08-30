@@ -8,12 +8,12 @@ Plug 'nathom/filetype.nvim'
 Plug 'mhinz/vim-startify'
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'norcalli/nvim-colorizer.lua'
-" Plug 'arcticicestudio/nord-vim'
+Plug 'arcticicestudio/nord-vim'
 " Plug 'andweeb/presence.nvim'
 " Plug 'sainnhe/gruvbox-material'
 " Plug 'sainnhe/everforest'
 " Plug 'morhetz/gruvbox'
-Plug 'rakr/vim-one'
+" Plug 'rakr/vim-one'
 " Plug 'ayu-theme/ayu-vim'
 "---------Utility----------------
 " Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
@@ -171,7 +171,7 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 ""nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
-nmap <leader> do <Plug>(coc-codeaction)
+nmap <Leader>do <Plug>(coc-codeaction)
 
 
 " Use K to show documentation in preview window.
@@ -191,7 +191,7 @@ endfunction
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Symbol renaming.
-nnoremap <leader>rn <Plug>(coc-rename)
+nmap <Leader>rn <Plug>(coc-rename)
 
 let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsJumpForwardTrigger = '<c-j>'
@@ -237,7 +237,7 @@ autocmd FileType *html*,*css,*javascript*,*typescript* call WebDevOptions()
 let g:one_allow_italics=1
 "-------------------------------
 set bg=dark
-colorscheme one
+colorscheme nord
 " highlight Normal guibg=none
 if (has("nvim"))
     let $NVIM_TUI_ENABLE_TRUE_COLOR=1
@@ -245,7 +245,7 @@ endif
 if (has("termguicolors"))
     set termguicolors
 endif
-lua require'colorizer'.setup()
+lua require("colorizer").setup()
 "---------------------------Markup/Prose---------------------------------------
 let g:tex_flavor = 'latex'
 " let g:tex_conceal = ""
