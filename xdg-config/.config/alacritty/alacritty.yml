@@ -31,7 +31,7 @@ window:
   #
   # Blank space added around the window in pixels. This padding is scaled
   # by DPI and the specified value is always added at both opposing sides.
-  opacity: 1.0
+  opacity: 0.92
   padding:
     x: 6
     y: 6
@@ -203,32 +203,32 @@ draw_bold_text_with_bright_colors: true
 
 # Colors (Tomorrow Night Bright)
 colors:
-  # Default colors
+  name: jmbi
+  author: jmbi
   primary:
-    background: '#2E3440'
-    foreground: '#D8DEE9'
-
-  # Normal colors
+    background: "#1e1e1e"
+    foreground: "#ffffff"
+  cursor:
+    text: "#1e1e1e"
+    cursor: "#ffffff"
   normal:
-    black: '#3B4252'
-    red: '#BF616A'
-    green: '#A3BE8C'
-    yellow: '#EBCB8B'
-    blue: '#81A1C1'
-    magenta: '#B48EAD'
-    cyan: '#88C0D0'
-    white: '#E5E9F0'
-
-  # Bright colors
+    black: "#5A7260"
+    red: "#8F423C"
+    green: "#BBBB88"
+    yellow: "#F9D25B"
+    blue: "#E0BA69"
+    magenta: "#709289"
+    cyan: "#D13516"
+    white: "#EFE2E0"
   bright:
-    black: '#4C566A'
-    red: '#BF616A'
-    green: '#A3BE8C'
-    yellow: '#EBCB8B'
-    blue: '#81A1C1'
-    magenta: '#B48EAD'
-    cyan: '#8FBCBB'
-    white: '#ECEFF4'
+    black: "#8DA691"
+    red: "#EEAA88"
+    green: "#CCC68D"
+    yellow: "#EEDD99"
+    blue: "#C9B957"
+    magenta: "#FFCBAB"
+    cyan: "#C25431"
+    white: "#F9F1ED"
 # Visual Bell
 #
 # Any time the BEL code is received, Alacritty "rings" the visual bell. Once
@@ -517,4 +517,4 @@ key_bindings:
       action: ScrollToBottom,
       mode: ~Alt
     }
-theme: Nord
+theme: Jmbi
