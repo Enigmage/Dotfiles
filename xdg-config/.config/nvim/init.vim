@@ -64,7 +64,6 @@ set softtabstop=4
 set shiftwidth=4
 set textwidth=80
 set expandtab
-set incsearch hlsearch
 set inccommand=split
 set cursorline
 set updatetime=300
@@ -86,7 +85,7 @@ set conceallevel=2
 " setlocal omnifunc=syntaxcomplete#Complete
 " autocmd CompleteDone * pclose " Close preview when done
 
-" --------------------------------General Keybinds-----------------------------
+" --------------------------------Keymaps--------------------------------------
 " Toggle folds
 " nnoremap <Leader>if :setlocal foldmethod=indent<CR>
 " Move selected lines up and down a file.
@@ -141,7 +140,7 @@ inoremap <A-l> <C-\><C-N><C-w>l
 " noremap \c :FloatermNew cgcc %<CR>
 " noremap \p :FloatermNew python3 %<CR>
 
-"------------------Snippets/Completion-----------------------------------------
+"-----------------------------Commands-----------------------------------------
 augroup GeneralCommands
     autocmd!
 augroup END
