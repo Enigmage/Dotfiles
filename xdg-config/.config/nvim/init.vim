@@ -1,11 +1,11 @@
 " Run before anything for filetype.nvim
-let g:did_load_filetypes=1
+" let g:did_load_filetypes=1
 "--------------------------------Plugins-----------------------------------
 call plug#begin('~/.config/nvim/plugged')
 "--------Perf--------------------
-Plug 'nathom/filetype.nvim'
+" Plug 'nathom/filetype.nvim'
 "--------Extras------------------
-Plug 'mhinz/vim-startify'
+" Plug 'mhinz/vim-startify'
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'arcticicestudio/nord-vim'
@@ -64,23 +64,23 @@ set softtabstop=4
 set shiftwidth=4
 set textwidth=80
 set expandtab
-" set autoindent
-" set fileformat=unix
-filetype plugin indent on
 set incsearch hlsearch
 set inccommand=split
 set cursorline
-" set hidden
 set updatetime=300
 set shortmess+=c
-" set signcolumn=auto
-" set nobackup
 set nowritebackup
 set undofile
 set undodir=~/.config/nvim/undodir/
 set noswapfile
 set colorcolumn=80
 set conceallevel=2
+" set hidden
+" set signcolumn=auto
+" set nobackup
+" set autoindent
+" set fileformat=unix
+" filetype plugin indent on
 " set foldmethod=indent
 ""highlight ColorColumn ctermbg=0 guibg=lightgrey
 " setlocal omnifunc=syntaxcomplete#Complete
@@ -142,6 +142,9 @@ inoremap <A-l> <C-\><C-N><C-w>l
 " noremap \p :FloatermNew python3 %<CR>
 
 "------------------Snippets/Completion-----------------------------------------
+augroup GeneralCommands
+    autocmd!
+augroup END
 
 inoremap <silent><expr> <C-n> coc#pum#visible() ? coc#pum#next(1) : "\<C-n>"
 inoremap <silent><expr> <C-p> coc#pum#visible() ? coc#pum#prev(1) : "\<C-p>"
@@ -188,7 +191,7 @@ function! s:show_documentation()
 endfunction
 
 " Highlight the symbol and its references when holding the cursor.
-autocmd CursorHold * silent call CocActionAsync('highlight')
+autocmd GeneralCommands CursorHold * silent call CocActionAsync('highlight')
 
 " Symbol renaming.
 nmap <Leader>rn <Plug>(coc-rename)
@@ -214,7 +217,7 @@ function WebDevOptions()
     noremap <F6> :CocCommand prettier.formatFile<CR>
 endfunction
 
-autocmd FileType *html*,*css,*javascript*,*typescript* call WebDevOptions()
+autocmd GeneralCommands FileType *html*,*css,*javascript*,*typescript* call WebDevOptions()
 
 "------------------------------ColorScheme Settings----------------------------
 "---Gruvbox--------------------
@@ -299,10 +302,10 @@ let g:floaterm_width=0.45
 let g:floaterm_height=1.0
 " noremap \s :FloatermSend<CR>
 "------------------------StartScreen-------------------------------------------
-let g:startify_padding_left = 10
-let g:startify_session_persistence = 1
-let g:startify_enable_special = 0
-let g:startify_change_to_vcs_root = 1
+" let g:startify_padding_left = 10
+" let g:startify_session_persistence = 1
+" let g:startify_enable_special = 0
+" let g:startify_change_to_vcs_root = 1
 " let g:startify_lists = [
 "             \ { 'type': 'dir'       },
 "             \ { 'type': 'files'     },
