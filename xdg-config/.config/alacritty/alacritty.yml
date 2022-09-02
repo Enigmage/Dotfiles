@@ -31,7 +31,7 @@ window:
   #
   # Blank space added around the window in pixels. This padding is scaled
   # by DPI and the specified value is always added at both opposing sides.
-  opacity: 0.92
+  opacity: 0.87
   padding:
     x: 6
     y: 6
@@ -203,32 +203,34 @@ draw_bold_text_with_bright_colors: true
 
 # Colors (Tomorrow Night Bright)
 colors:
-  name: jmbi
-  author: jmbi
+  # Default colors
   primary:
-    background: "#1e1e1e"
-    foreground: "#ffffff"
-  cursor:
-    text: "#1e1e1e"
-    cursor: "#ffffff"
+    # hard contrast: background = '#1d2021'
+    background: '#282828'
+    # soft contrast: background = '#32302f'
+    foreground: '#ebdbb2'
+
+  # Normal colors
   normal:
-    black: "#5A7260"
-    red: "#8F423C"
-    green: "#BBBB88"
-    yellow: "#F9D25B"
-    blue: "#E0BA69"
-    magenta: "#709289"
-    cyan: "#D13516"
-    white: "#EFE2E0"
+    black: '#282828'
+    red: '#cc241d'
+    green: '#98971a'
+    yellow: '#d79921'
+    blue: '#458588'
+    magenta: '#b16286'
+    cyan: '#689d6a'
+    white: '#a89984'
+
+  # Bright colors
   bright:
-    black: "#8DA691"
-    red: "#EEAA88"
-    green: "#CCC68D"
-    yellow: "#EEDD99"
-    blue: "#C9B957"
-    magenta: "#FFCBAB"
-    cyan: "#C25431"
-    white: "#F9F1ED"
+    black: '#928374'
+    red: '#fb4934'
+    green: '#b8bb26'
+    yellow: '#fabd2f'
+    blue: '#83a598'
+    magenta: '#d3869b'
+    cyan: '#8ec07c'
+    white: '#ebdbb2'
 # Visual Bell
 #
 # Any time the BEL code is received, Alacritty "rings" the visual bell. Once
@@ -517,4 +519,4 @@ key_bindings:
       action: ScrollToBottom,
       mode: ~Alt
     }
-theme: Jmbi
+theme: Gruvbox-Dark
