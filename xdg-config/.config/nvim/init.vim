@@ -2,21 +2,18 @@
 " let g:did_load_filetypes=1
 "--------------------------------Plugins-----------------------------------
 call plug#begin('~/.config/nvim/plugged')
-"--------Perf--------------------
-" Plug 'nathom/filetype.nvim'
-"--------Extras------------------
-" Plug 'mhinz/vim-startify'
+"--------Rice------------------
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'arcticicestudio/nord-vim'
 " Plug 'andweeb/presence.nvim'
 " Plug 'sainnhe/gruvbox-material'
-" Plug 'sainnhe/everforest'
 " Plug 'morhetz/gruvbox'
 " Plug 'rakr/vim-one'
-" Plug 'ayu-theme/ayu-vim'
 "---------Utility----------------
 " Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
+Plug 'RishabhRD/popfix'
+Plug 'RishabhRD/nvim-cheat.sh'
 Plug 'chrisbra/unicode.vim'
 Plug 'tpope/vim-commentary'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -24,7 +21,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-surround'
 Plug 'SirVer/ultisnips'
 Plug 'mattn/emmet-vim'
-Plug 'voldikss/vim-floaterm'
 " Plug 'tpope/vim-fugitive'
 Plug 'honza/vim-snippets'
 Plug 'junegunn/goyo.vim'
@@ -62,7 +58,8 @@ syntax on
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
-set textwidth=80
+set smartindent
+set textwidth=85
 set expandtab
 set inccommand=split
 set cursorline
@@ -86,39 +83,27 @@ set conceallevel=2
 " autocmd CompleteDone * pclose " Close preview when done
 
 " --------------------------------Keymaps--------------------------------------
-" Toggle folds
-" nnoremap <Leader>if :setlocal foldmethod=indent<CR>
-" Move selected lines up and down a file.
-
 let mapleader=" "
 
 xnoremap K :move '<-2<CR>gv-gv 
 xnoremap J :move '>+1<CR>gv-gv
 
-nnoremap <down> :bw<CR>
 
-" inoremap ( ()<Esc>i
-" inoremap { {}<Esc>i
-" inoremap [ []<Esc>i
-" inoremap ' ''<Esc>i
-" inoremap " ""<Esc>i
-" inoremap ` ``<Esc>i
-
-" inoremap <c-x><c-k> <c-x><c-k>
 inoremap jk <ESC>
+
 " keep stuff hightlighted after indent
 vnoremap < <gv
 vnoremap > >gv
 
 " Arroy keys bad
-noremap <up> <nop>
-nnoremap <right> gt
-nnoremap <left> gT
-
-imap <down> <nop>
-imap <up> <nop>
-imap <left> <nop>
-imap <right> <nop>
+nnoremap <up> <nop>
+nnoremap <right> <nop>
+nnoremap <left> <nop>
+nnoremap <down> <nop>
+inoremap <down> <nop>
+inoremap <up> <nop>
+inoremap <left> <nop>
+inoremap <right> <nop>
 
 " Easier split navigation
 " Navigate splits and buffers in any mode.
@@ -134,12 +119,6 @@ inoremap <A-h> <C-\><C-N><C-w>h
 inoremap <A-j> <C-\><C-N><C-w>j
 inoremap <A-k> <C-\><C-N><C-w>k
 inoremap <A-l> <C-\><C-N><C-w>l
-
-" Program execution keybinds
-" noremap \g :FloatermNew cppc %<CR>
-" noremap \c :FloatermNew cgcc %<CR>
-" noremap \p :FloatermNew python3 %<CR>
-
 "-----------------------------Commands-----------------------------------------
 augroup GeneralCommands
     autocmd!
@@ -236,7 +215,7 @@ autocmd GeneralCommands FileType *html*,*css,*javascript*,*typescript* call WebD
 " let g:everforest_transparent_background = 0
 
 "----One Dark-------------------
-let g:one_allow_italics=1
+" let g:one_allow_italics=1
 "-------------------------------
 set bg=dark
 colorscheme nord
@@ -270,13 +249,15 @@ let g:netrw_liststyle = 3
 let g:netrw_banner = 0
 let g:netrw_browse_split = 4
 let g:netrw_altv = 1
-let g:netrw_winsize = 20
+let g:netrw_alto = 0
+let g:netrw_winsize = 45
 
 nnoremap <Leader>f :Files<CR>
 nnoremap <Leader>gr :Rg<CR>
 nnoremap <Leader>b :Buffers<CR>
 " nnoremap <A-;> :History:<CR>
 " nnoremap <A-m> :Marks<CR>
+"
 let g:fzf_action = {
             \ 'ctrl-t': 'tab split',
             \ 'ctrl-s': 'split',
@@ -289,59 +270,10 @@ let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
 " turn terminal to normal mode with escape
 set splitright splitbelow
 tnoremap <C-[> <C-\><C-n>
-hi FloatermBorder guifg=none guibg=none
-hi Floaterm guibg=none
-let g:floaterm_title="zsh($1/$2)"
-let g:floaterm_position="right"
-let g:floaterm_opener="edit"
-let g:floaterm_autoinsert="false"
-let g:floaterm_keymap_new="\\f"
-let g:floaterm_keymap_toggle="\\t"
-let g:floaterm_width=0.45
-let g:floaterm_height=1.0
-" noremap \s :FloatermSend<CR>
-"------------------------StartScreen-------------------------------------------
-" let g:startify_padding_left = 10
-" let g:startify_session_persistence = 1
-" let g:startify_enable_special = 0
-" let g:startify_change_to_vcs_root = 1
-" let g:startify_lists = [
-"             \ { 'type': 'dir'       },
-"             \ { 'type': 'files'     },
-"             \ { 'type': 'sessions'  },
-"             \ { 'type': 'bookmarks' },
-"             \ { 'type': 'commands' },
-"             \ ]
-
-" " bookmark examples
-" let  g:startify_bookmarks =  [
-"             \ {'v': '~/.config/nvim'},
-"             \ {'d': '~/.dotfiles' }
-"             \ ]
-
-" " custom commands
-" let g:startify_commands = [
-"             \ {'ch':  ['Health Check', ':checkhealth']},
-"             \ {'ps': ['Plugins status', ':PlugStatus']},
-"             \ {'pu': ['Update vim plugins',':PlugUpdate | PlugUpgrade']},
-"             \ {'uc': ['Update coc Plugins', ':CocUpdate']},
-"             \ {'h':  ['Help', ':help']},
-"             \ ]
-
-" custom banner
-" let g:startify_custom_header = [
-" \ '',
-" \ '                                                                ▟▙            ',
-" \ '                                                                ▝▘            ',
-" \ '                        ██▃▅▇█▆▖  ▗▟████▙▖   ▄████▄   ██▄  ▄██  ██  ▗▟█▆▄▄▆█▙▖',
-" \ '                        ██▛▔ ▝██  ██▄▄▄▄██  ██▛▔▔▜██  ▝██  ██▘  ██  ██▛▜██▛▜██',
-" \ '                        ██    ██  ██▀▀▀▀▀▘  ██▖  ▗██   ▜█▙▟█▛   ██  ██  ██  ██',
-" \ '                        ██    ██  ▜█▙▄▄▄▟▊  ▀██▙▟██▀   ▝████▘   ██  ██  ██  ██',
-" \ '                        ▀▀    ▀▀   ▝▀▀▀▀▀     ▀▀▀▀       ▀▀     ▀▀  ▀▀  ▀▀  ▀▀',
-" \ '',
-" \ '',
-" \ '',
-" \]
+" Program execution keybinds
+nnoremap \c :vsplit term://cppc %<CR>
+nnoremap \p :vsplit term://python3 %<CR>
+nnoremap \t :vsplit term://zsh<CR>
 "-----------------------FireNvim-----------------------------------------------
 " let g:firenvim_config = { 
 "     \ 'globalSettings': {
