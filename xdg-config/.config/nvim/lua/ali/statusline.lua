@@ -27,11 +27,12 @@ local conditions = {
 }
 
 -- Config
-config = {
+Config = {
   options = {
     -- Disable sections and component separators
     component_separators = '',
     section_separators = '',
+    globalstatus = true,
     theme = {
       -- We are going to use lualine_c an lualine_x as left and
       -- right section. Both are highlighted by c theme .  So we
@@ -63,19 +64,19 @@ config = {
 
 -- Inserts a component in lualine_c at left section
 local function ins_left(component)
-  table.insert(config.sections.lualine_c, component)
+  table.insert(Config.sections.lualine_c, component)
 end
 
 -- Inserts a component in lualine_x ot right section
 local function ins_right(component)
-  table.insert(config.sections.lualine_x, component)
+  table.insert(Config.sections.lualine_x, component)
 end
 
 ins_left {
   function()
     return '▊'
   end,
-  color = { fg = colors.blue }, -- Sets highlighting of component
+  color = { fg = colors.red }, -- Sets highlighting of component
   padding = { left = 0, right = 1 }, -- We don't need space before this
 }
 
@@ -113,24 +114,24 @@ ins_left {
   padding = { right = 1 },
 }
 
+-- ins_left {
+--   -- filesize component
+--   'filesize',
+--   cond = conditions.buffer_not_empty,
+-- }
+
 ins_left {
-  -- filesize component
-  'filesize',
+  '%f',
   cond = conditions.buffer_not_empty,
+  color = { fg = colors.yellow, gui = 'bold' },
 }
 
 ins_left {
-  'filename',
-  cond = conditions.buffer_not_empty,
-  color = { fg = colors.magenta, gui = 'bold' },
-}
-
-ins_left { 
-  '%l/%L:%c', 
+  '%l/%L:%c',
   color = { fg = colors.red, gui = 'bold' },
 }
 
-ins_left { 'progress', color = { fg = colors.fg, gui = 'bold' } }
+-- ins_left { 'progress', color = { fg = colors.fg, gui = 'bold' } }
 
 --ins_left {
 --  'diagnostics',
@@ -176,7 +177,7 @@ ins_left {
 ins_right {
   'filetype',
   cond = conditions.hide_in_width,
-  color = { fg = colors.violet, gui = 'bold' },
+  color = { fg = colors.red, gui = 'bold' },
 }
 
 ins_right {
@@ -190,13 +191,14 @@ ins_right {
   'fileformat',
   fmt = string.upper,
   icons_enabled = false, -- I think icons are cool but Eviline doesn't have them. sigh
+  cond = conditions.hide_in_width,
   color = { fg = colors.green, gui = 'bold' },
 }
 
 ins_right {
   'branch',
   icon = '',
-  color = { fg = colors.violet, gui = 'bold' },
+  color = { fg = colors.red, gui = 'bold' },
 }
 
 -- ins_right {
@@ -215,6 +217,8 @@ ins_right {
   function()
     return '▊'
   end,
-  color = { fg = colors.blue },
+  color = { fg = colors.red },
   padding = { left = 1 },
 }
+
+return Config

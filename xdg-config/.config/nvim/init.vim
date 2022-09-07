@@ -1,16 +1,13 @@
-" Run before anything for filetype.nvim
+" Disables all filetype plugins
 " let g:did_load_filetypes=1
-"--------------------------------Plugins-----------------------------------
+"--------------------------------Plugins---------------------------------------
 call plug#begin('~/.config/nvim/plugged')
-"--------Rice------------------
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'arcticicestudio/nord-vim'
+Plug 'rakr/vim-one'
 " Plug 'andweeb/presence.nvim'
-" Plug 'sainnhe/gruvbox-material'
-" Plug 'morhetz/gruvbox'
-" Plug 'rakr/vim-one'
-"---------Utility----------------
+"------------------------------------------------------------------------------
 " Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 Plug 'RishabhRD/popfix'
 Plug 'RishabhRD/nvim-cheat.sh'
@@ -20,10 +17,9 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-surround'
 Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 Plug 'mattn/emmet-vim'
 " Plug 'tpope/vim-fugitive'
-Plug 'honza/vim-snippets'
-Plug 'junegunn/goyo.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'lervag/vimtex', { 'for': 'tex' }
 " Plug 'godlygeek/tabular', {'for': 'markdown'}
@@ -36,51 +32,43 @@ Plug 'maxmellon/vim-jsx-pretty', {'for' : ['typescriptreact', 'javascriptreact']
 Plug 'LnL7/vim-nix', { 'for' : 'nix' }
 Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins', 'for': 'python' }
 Plug 'tomlion/vim-solidity', { 'for' : 'solidity' }
-" Plug 'github/copilot.vim'
 " Plug 'vimwiki/vimwiki'
 call plug#end()
 "----------------------Statusline----------------------------------------------
 " so ~/.config/nvim/statusline.vim
 lua << END
-require("ali.statusline")
+local config = require("ali.statusline")
 require("lualine").setup(config)
 END
-"--------------------------------Options---------------------------------------
+"----------------------Options-------------------------------------------------
 set nowrap
 set mouse=a
-set scrolloff=3
+set scrolloff=5
 set lazyredraw
-set encoding=utf-8
 set title
 set confirm
 set number relativenumber
-syntax on
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set smartindent
-set textwidth=85
 set expandtab
+set textwidth=85
 set inccommand=split
 set cursorline
-set updatetime=300
+set updatetime=1000
 set shortmess+=c
 set nowritebackup
 set undofile
 set undodir=~/.config/nvim/undodir/
 set noswapfile
 set colorcolumn=80
-set conceallevel=2
-" set hidden
-" set signcolumn=auto
-" set nobackup
-" set autoindent
-" set fileformat=unix
-" filetype plugin indent on
-" set foldmethod=indent
-""highlight ColorColumn ctermbg=0 guibg=lightgrey
-" setlocal omnifunc=syntaxcomplete#Complete
-" autocmd CompleteDone * pclose " Close preview when done
+set conceallevel=0
+set splitright splitbelow
+set list lcs=tab:\|\ ,trail:-,nbsp:+,eol:↵
+set winbar=%t%M%=Unicode:%b
+set termguicolors
+"setlocal omnifunc=syntaxcomplete#Complete
 
 " --------------------------------Keymaps--------------------------------------
 let mapleader=" "
@@ -198,47 +186,24 @@ endfunction
 autocmd GeneralCommands FileType *html*,*css,*javascript*,*typescript* call WebDevOptions()
 
 "------------------------------ColorScheme Settings----------------------------
-"---Gruvbox--------------------
-" let g:gruvbox_italic=1
-" let g:gruvbox_improved_strings=1
-" let g:gruvbox_improved_warnings=1
-" let g:gruvbox_contrast_dark='hard'
-
-"---Gruvbox-material-----------
-" let g:gruvbox_material_background = 'hard'
-" let g:gruvbox_material_better_performance = 1
-
-"-----Everforest---------------
-" let g:everforest_background='hard'
-" let g:everforest_enable_italic = 1
-" let g:everforest_disable_italic_comment = 0
-" let g:everforest_transparent_background = 0
-
 "----One Dark-------------------
-" let g:one_allow_italics=1
+let g:one_allow_italics=1
 "-------------------------------
 set bg=dark
-colorscheme nord
-" highlight Normal guibg=none
-if (has("nvim"))
-    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-endif
-if (has("termguicolors"))
-    set termguicolors
-endif
+colorscheme one
+hi Normal guibg=none
+hi WinSeparator guibg=none
 lua require("colorizer").setup()
 "---------------------------Markup/Prose---------------------------------------
 let g:tex_flavor = 'latex'
 " let g:tex_conceal = ""
-" " autocmd Filetype tex,md,txt,vimwiki :setlocal spell
+let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_math = 1
+let g:vim_markdown_frontmatter = 1
 " let g:vimwiki_list = [{'path': '~/vimwiki/'
 "                     \ , 'name': 'My knowledge base and diary'
 "                     \ ,'path_html':'~/vimwiki/html/'
 "                     \ ,'diary_rel_path':'.diary/', }]
-
-let g:vim_markdown_folding_disabled = 1
-let g:vim_markdown_math = 1
-let g:vim_markdown_frontmatter = 1
 " let g:vim_markdown_strikethrough = 1
 " let g:vim_markdown_json_frontmatter = 1
 " let g:vim_markdown_toml_frontmatter = 1
@@ -268,11 +233,11 @@ let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
 
 "-------------------------Terminal---------------------------------------------
 " turn terminal to normal mode with escape
-set splitright splitbelow
 tnoremap <C-[> <C-\><C-n>
 " Program execution keybinds
 nnoremap \c :vsplit term://cppc %<CR>
 nnoremap \p :vsplit term://python3 %<CR>
+nnoremap \rp :split term://python3<CR>
 nnoremap \t :vsplit term://zsh<CR>
 "-----------------------FireNvim-----------------------------------------------
 " let g:firenvim_config = { 

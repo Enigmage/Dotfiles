@@ -3,7 +3,7 @@
     "prettier.arrowParens":"avoid",
     "diagnostic.virtualText": true,
     "diagnostic.virtualTextCurrentLineOnly": false,
-    "diagnostic.virtualTextPrefix": "⏺ ",
+    "diagnostic.virtualTextPrefix": " ⏺ ",
     "languageserver": {
     "haskell": {
       "command": "haskell-language-server-wrapper",
@@ -12,6 +12,8 @@
       "filetypes": ["haskell", "lhaskell"]
     }
   },
-  "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/14.0.3/clangd_14.0.3/bin/clangd"
+  "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/14.0.3/clangd_14.0.3/bin/clangd",
+  "sumneko-lua.enableNvimLuaDev": true,
+  "Lua.telemetry.enable": true
 }
 
