@@ -1,4 +1,4 @@
-"source ~/.vim/statusline.vim
+source ~/.vim/statusline.vim
 " Minimal and easily reproducible vimrc
 " Basic settings
 set nocompatible
@@ -13,19 +13,16 @@ syntax on
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
-set textwidth=79
+set textwidth=85
 set expandtab
+set smartindent
 set autoindent
-set fileformat=unix
 set expandtab
 filetype plugin indent on
 set cursorline
 set hidden
-set updatetime=300
+set updatetime=1000
 set shortmess+=c
-set signcolumn=auto
-"set undofile
-"set undodir='~/.vim/undodir'
 set colorcolumn=80
 setlocal omnifunc=syntaxcomplete#Complete 						 
 autocmd CompleteDone * pclose " Close preview when done
@@ -38,16 +35,17 @@ set nobackup noswapfile nowritebackup            " disable backup/swap files
 let mapleader=" "
 nnoremap <leader>r :source %<CR>
 nnoremap <leader>t :term<CR>
-set splitbelow
+set splitbelow splitright
 
 nnoremap <C-n> :Lexplore<CR>
 let g:netrw_banner=0
-let g:netrw_winsize=20
+let g:netrw_winsize=45
 let g:netrw_liststyle=3
 let g:netrw_localrmdir='rm -r'
 
-noremap <left> :bp<CR>
-noremap <right> :bn<CR>
+nnoremap <left> :bp<CR>
+nnoremap <right> :bn<CR>
+
 inoremap jk <ESC>
 
 xnoremap K :move '<-2<CR>gv-gv 
@@ -60,19 +58,12 @@ vnoremap > >gv
 
 
 " Arroy keys bad
-imap <down> <nop>
-imap <up> <nop>
-imap <down> <nop>
-imap <up> <nop>
+inoremap <down> <nop>
+inoremap <up> <nop>
+inoremap <down> <nop>
+inoremap <up> <nop>
 
 " look and feel
 " To make colors work in st.
-colorscheme nord
 set bg=dark
-
-if (has("nvim"))
-    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-endif
-if (has("termguicolors"))
-    set termguicolors
-endif
+colorscheme nord
