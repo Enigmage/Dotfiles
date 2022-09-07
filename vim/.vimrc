@@ -23,7 +23,8 @@ set hidden
 set updatetime=1000
 set shortmess+=c
 set colorcolumn=80
-setlocal omnifunc=syntaxcomplete#Complete 						 
+set list lcs=tab:\|\ ,trail:-,nbsp:+,eol:↵
+setlocal omnifunc=syntaxcomplete#Complete
 autocmd CompleteDone * pclose " Close preview when done
 
 set incsearch hlsearch ignorecase smartcase

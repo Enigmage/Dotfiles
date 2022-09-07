@@ -1,0 +1,37 @@
+require'nvim-treesitter.configs'.setup {
+    ensure_installed = {
+        "cpp",
+        "c",
+        "lua",
+        "python",
+        "typescript",
+        "tsx",
+        "javascript",
+        "go",
+        "vim",
+        "help",
+        "markdown",
+        "html",
+        "css",
+        "regex",
+        "bash",
+        "haskell",
+        "yaml",
+    },
+    auto_install = false,
+    ignore_install = {},
+    highlight = {
+        enable = true,
+        disable = {},
+        additional_vim_regex_highlighting = false,
+    },
+    indent = {
+        enable = true,
+        disable = {"python"},
+    },
+    rainbow = {
+        enable = true,
+        extended_mode = true,
+        max_file_lines = nil,
+    },
+}

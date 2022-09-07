@@ -1,14 +1,9 @@
-" Disables all filetype plugins
-" let g:did_load_filetypes=1
 "--------------------------------Plugins---------------------------------------
 call plug#begin('~/.config/nvim/plugged')
+Plug 'lewis6991/impatient.nvim'
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'norcalli/nvim-colorizer.lua'
-Plug 'arcticicestudio/nord-vim'
-Plug 'rakr/vim-one'
-" Plug 'andweeb/presence.nvim'
-"------------------------------------------------------------------------------
-" Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
+Plug 'RRethy/nvim-base16'
 Plug 'RishabhRD/popfix'
 Plug 'RishabhRD/nvim-cheat.sh'
 Plug 'chrisbra/unicode.vim'
@@ -19,28 +14,19 @@ Plug 'tpope/vim-surround'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'mattn/emmet-vim'
-" Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'lervag/vimtex', { 'for': 'tex' }
-" Plug 'godlygeek/tabular', {'for': 'markdown'}
 Plug 'preservim/vim-markdown', { 'for' : 'markdown' }
-Plug 'neovimhaskell/haskell-vim', { 'for' : 'haskell'}
-Plug 'octol/vim-cpp-enhanced-highlight', { 'for' : ['c', 'cpp']}
-Plug 'pangloss/vim-javascript', {'for' : ['javascript', 'javascriptreact']}
-Plug 'leafgarland/typescript-vim',{'for' : ['typescript', 'typescriptreact']}
-Plug 'maxmellon/vim-jsx-pretty', {'for' : ['typescriptreact', 'javascriptreact']}  
-Plug 'LnL7/vim-nix', { 'for' : 'nix' }
-Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins', 'for': 'python' }
-Plug 'tomlion/vim-solidity', { 'for' : 'solidity' }
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'p00f/nvim-ts-rainbow'
+Plug 'nvim-treesitter/nvim-treesitter-context'
 " Plug 'vimwiki/vimwiki'
+" Plug 'andweeb/presence.nvim'
+" Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 call plug#end()
-"----------------------Statusline----------------------------------------------
-" so ~/.config/nvim/statusline.vim
-lua << END
-local config = require("ali.statusline")
-require("lualine").setup(config)
-END
 "----------------------Options-------------------------------------------------
+syntax off
 set nowrap
 set mouse=a
 set scrolloff=5
@@ -69,16 +55,21 @@ set list lcs=tab:\|\ ,trail:-,nbsp:+,eol:↵
 set winbar=%t%M%=Unicode:%b
 set termguicolors
 "setlocal omnifunc=syntaxcomplete#Complete
-
+"----------------------Lua modules--------------------------------------------
+lua << END
+require("impatient")
+local config = require("ali.statusline")
+require("lualine").setup(config)
+require("colorizer").setup()
+require("ali.treesitter")
+END
 " --------------------------------Keymaps--------------------------------------
 let mapleader=" "
 
 xnoremap K :move '<-2<CR>gv-gv 
 xnoremap J :move '>+1<CR>gv-gv
 
-
 inoremap jk <ESC>
-
 " keep stuff hightlighted after indent
 vnoremap < <gv
 vnoremap > >gv
@@ -183,17 +174,12 @@ function WebDevOptions()
     noremap <F6> :CocCommand prettier.formatFile<CR>
 endfunction
 
-autocmd GeneralCommands FileType *html*,*css,*javascript*,*typescript* call WebDevOptions()
+autocmd GeneralCommands FileType *html*,*css*,*javascript*,*typescript* call WebDevOptions()
 
 "------------------------------ColorScheme Settings----------------------------
-"----One Dark-------------------
-let g:one_allow_italics=1
-"-------------------------------
-set bg=dark
-colorscheme one
-hi Normal guibg=none
+colorscheme base16-gruvbox-material-dark-hard
+" hi Normal guibg=none
 hi WinSeparator guibg=none
-lua require("colorizer").setup()
 "---------------------------Markup/Prose---------------------------------------
 let g:tex_flavor = 'latex'
 " let g:tex_conceal = ""

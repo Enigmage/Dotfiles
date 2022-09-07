@@ -121,7 +121,7 @@ ins_left {
 -- }
 
 ins_left {
-  '%f',
+  '%f%m',
   cond = conditions.buffer_not_empty,
   color = { fg = colors.yellow, gui = 'bold' },
 }
