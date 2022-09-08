@@ -1,0 +1,5 @@
+require("impatient")
+require("ali.treesitter")
+require("ali.statusline")
+require("lualine").setup(MyStatuslineConfig)
+require("colorizer").setup()

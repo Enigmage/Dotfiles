@@ -26,8 +26,7 @@ local conditions = {
   end,
 }
 
--- Config
-Config = {
+MyStatuslineConfig = {
   options = {
     -- Disable sections and component separators
     component_separators = '',
@@ -64,12 +63,12 @@ Config = {
 
 -- Inserts a component in lualine_c at left section
 local function ins_left(component)
-  table.insert(Config.sections.lualine_c, component)
+  table.insert(MyStatuslineConfig.sections.lualine_c, component)
 end
 
 -- Inserts a component in lualine_x ot right section
 local function ins_right(component)
-  table.insert(Config.sections.lualine_x, component)
+  table.insert(MyStatuslineConfig.sections.lualine_x, component)
 end
 
 ins_left {
@@ -220,5 +219,3 @@ ins_right {
   color = { fg = colors.red },
   padding = { left = 1 },
 }
-
-return Config

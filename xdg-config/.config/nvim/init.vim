@@ -1,9 +1,10 @@
-"--------------------------------Plugins---------------------------------------
+" Plugins
 call plug#begin('~/.config/nvim/plugged')
 Plug 'lewis6991/impatient.nvim'
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'norcalli/nvim-colorizer.lua'
-Plug 'RRethy/nvim-base16'
+Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+Plug 'luisiacc/gruvbox-baby', { 'branch': 'main'}
 Plug 'RishabhRD/popfix'
 Plug 'RishabhRD/nvim-cheat.sh'
 Plug 'chrisbra/unicode.vim'
@@ -21,11 +22,13 @@ Plug 'preservim/vim-markdown', { 'for' : 'markdown' }
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'p00f/nvim-ts-rainbow'
 Plug 'nvim-treesitter/nvim-treesitter-context'
+Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 " Plug 'vimwiki/vimwiki'
 " Plug 'andweeb/presence.nvim'
 " Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 call plug#end()
-"----------------------Options-------------------------------------------------
+
+" Options
 syntax off
 set nowrap
 set mouse=a
@@ -55,15 +58,11 @@ set list lcs=tab:\|\ ,trail:-,nbsp:+,eol:↵
 set winbar=%t%M%=Unicode:%b
 set termguicolors
 "setlocal omnifunc=syntaxcomplete#Complete
-"----------------------Lua modules--------------------------------------------
-lua << END
-require("impatient")
-local config = require("ali.statusline")
-require("lualine").setup(config)
-require("colorizer").setup()
-require("ali.treesitter")
-END
-" --------------------------------Keymaps--------------------------------------
+
+" Lua packages
+lua require("ali")
+
+" Keymaps
 let mapleader=" "
 
 xnoremap K :move '<-2<CR>gv-gv 
@@ -98,7 +97,8 @@ inoremap <A-h> <C-\><C-N><C-w>h
 inoremap <A-j> <C-\><C-N><C-w>j
 inoremap <A-k> <C-\><C-N><C-w>k
 inoremap <A-l> <C-\><C-N><C-w>l
-"-----------------------------Commands-----------------------------------------
+
+" Commands
 augroup GeneralCommands
     autocmd!
 augroup END
@@ -176,11 +176,13 @@ endfunction
 
 autocmd GeneralCommands FileType *html*,*css*,*javascript*,*typescript* call WebDevOptions()
 
-"------------------------------ColorScheme Settings----------------------------
-colorscheme base16-gruvbox-material-dark-hard
+" Colorscheme
+let g:gruvbox_baby_background_color="dark"
+colorscheme gruvbox-baby
 " hi Normal guibg=none
 hi WinSeparator guibg=none
-"---------------------------Markup/Prose---------------------------------------
+
+" Markup
 let g:tex_flavor = 'latex'
 " let g:tex_conceal = ""
 let g:vim_markdown_folding_disabled = 1
@@ -193,7 +195,8 @@ let g:vim_markdown_frontmatter = 1
 " let g:vim_markdown_strikethrough = 1
 " let g:vim_markdown_json_frontmatter = 1
 " let g:vim_markdown_toml_frontmatter = 1
-"---------------------------Files/Explorer-------------------------------------
+
+" Files
 set grepprg=rg\ --vimgrep\ --smart-case\ --follow
 noremap <silent> <C-n> :Vexplore<CR>
 let g:netrw_liststyle = 3
@@ -217,7 +220,7 @@ let g:fzf_action = {
 " let g:fzf_layout = { 'down': '40%' }
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
 
-"-------------------------Terminal---------------------------------------------
+" Terminal
 " turn terminal to normal mode with escape
 tnoremap <C-[> <C-\><C-n>
 " Program execution keybinds
@@ -225,7 +228,8 @@ nnoremap \c :vsplit term://cppc %<CR>
 nnoremap \p :vsplit term://python3 %<CR>
 nnoremap \rp :split term://python3<CR>
 nnoremap \t :vsplit term://zsh<CR>
-"-----------------------FireNvim-----------------------------------------------
+
+" Firenvim
 " let g:firenvim_config = { 
 "     \ 'globalSettings': {
 "         \ 'alt': 'all',
@@ -253,23 +257,3 @@ nnoremap \t :vsplit term://zsh<CR>
 "     nnoremap <C-s> :wq<CR>
 "     au BufEnter 202.12.103.189_*.txt set filetype=sql
 " endif
-"----------------------------Rich Presence-------------------------------------
-"let g:presence_auto_update         = 1
-"let g:presence_neovim_image_text   = "The One True Text Editor"
-"let g:presence_main_image          = "neovim"
-"let g:presence_client_id           = "793271441293967371"
-"""let g:presence_log_level
-"let g:presence_debounce_timeout    = 10
-"let g:presence_enable_line_number  = 0
-"let g:presence_blacklist           = []
-"let g:presence_buttons             = 1
-"let g:presence_file_assets         = {}
-
-"" Rich Presence text options
-"let g:presence_editing_text        = "Editing %s"
-"let g:presence_file_explorer_text  = "Browsing %s"
-"let g:presence_git_commit_text     = "Committing changes"
-"let g:presence_plugin_manager_text = "Managing plugins"
-"let g:presence_reading_text        = "Reading %s"
-"let g:presence_workspace_text      = "Working on %s"
-"let g:presence_line_number_text    = "Line %s out of %s"
