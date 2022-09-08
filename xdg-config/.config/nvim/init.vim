@@ -29,7 +29,6 @@ Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 call plug#end()
 
 " Options
-syntax off
 set nowrap
 set mouse=a
 set scrolloff=5
@@ -114,15 +113,6 @@ inoremap <silent><expr> <PageUp> coc#pum#visible() ? coc#pum#scroll(0) : "\<Page
 inoremap <silent><expr> <C-e> coc#pum#visible() ? coc#pum#cancel() : "\<C-e>"
 inoremap <silent><expr> <C-y> coc#pum#visible() ? coc#pum#confirm() : "\<C-y>"
 
-
-" function! s:check_back_space() abort
-"     let col = col('.') - 1
-"     return !col || getline('.')[col - 1]  =~# '\s'
-" endfunction
-
-" " Use <c-space> to trigger completion.
-" inoremap <silent><expr> <c-space> coc#refresh()
-
 " Use `[c` and `]c` to navigate diagnostics
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
@@ -132,7 +122,6 @@ nmap <silent> gy <Plug>(coc-type-definition)
 ""nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 nmap <Leader>do <Plug>(coc-codeaction)
-
 
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -188,10 +177,6 @@ let g:tex_flavor = 'latex'
 let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_math = 1
 let g:vim_markdown_frontmatter = 1
-" let g:vimwiki_list = [{'path': '~/vimwiki/'
-"                     \ , 'name': 'My knowledge base and diary'
-"                     \ ,'path_html':'~/vimwiki/html/'
-"                     \ ,'diary_rel_path':'.diary/', }]
 " let g:vim_markdown_strikethrough = 1
 " let g:vim_markdown_json_frontmatter = 1
 " let g:vim_markdown_toml_frontmatter = 1
