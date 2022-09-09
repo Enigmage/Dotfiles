@@ -7,8 +7,8 @@ Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'luisiacc/gruvbox-baby', { 'branch': 'main'}
 Plug 'RishabhRD/popfix'
 Plug 'RishabhRD/nvim-cheat.sh'
+Plug 'numToStr/Comment.nvim'
 Plug 'chrisbra/unicode.vim'
-Plug 'tpope/vim-commentary'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-surround'
@@ -167,7 +167,8 @@ autocmd GeneralCommands FileType *html*,*css*,*javascript*,*typescript* call Web
 
 " Colorscheme
 let g:gruvbox_baby_background_color="dark"
-colorscheme gruvbox-baby
+let g:gruvbox_baby_transparent_mode="true"
+colorscheme tokyonight-night
 " hi Normal guibg=none
 hi WinSeparator guibg=none
 

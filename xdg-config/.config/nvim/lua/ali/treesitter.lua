@@ -8,7 +8,6 @@ require'nvim-treesitter.configs'.setup {
         "tsx",
         "javascript",
         "go",
-        "vim",
         "html",
         "css",
         "regex",

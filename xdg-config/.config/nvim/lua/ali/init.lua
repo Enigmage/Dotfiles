@@ -1,5 +1,6 @@
 require("impatient")
 require("ali.treesitter")
 require("ali.statusline")
+require("Comment").setup()
 require("lualine").setup(MyStatuslineConfig)
 require("colorizer").setup()

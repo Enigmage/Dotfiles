@@ -75,7 +75,7 @@ ins_left {
   function()
     return '▊'
   end,
-  color = { fg = colors.red }, -- Sets highlighting of component
+  color = { fg = colors.blue }, -- Sets highlighting of component
   padding = { left = 0, right = 1 }, -- We don't need space before this
 }
 
@@ -122,12 +122,12 @@ ins_left {
 ins_left {
   '%f%m',
   cond = conditions.buffer_not_empty,
-  color = { fg = colors.yellow, gui = 'bold' },
+  color = { fg = colors.green, gui = 'bold' },
 }
 
 ins_left {
   '%l/%L:%c',
-  color = { fg = colors.red, gui = 'bold' },
+  color = { fg = colors.blue, gui = 'bold' },
 }
 
 -- ins_left { 'progress', color = { fg = colors.fg, gui = 'bold' } }
@@ -176,7 +176,7 @@ ins_left {
 ins_right {
   'filetype',
   cond = conditions.hide_in_width,
-  color = { fg = colors.red, gui = 'bold' },
+  color = { fg = colors.blue, gui = 'bold' },
 }
 
 ins_right {
@@ -197,7 +197,7 @@ ins_right {
 ins_right {
   'branch',
   icon = '',
-  color = { fg = colors.red, gui = 'bold' },
+  color = { fg = colors.blue, gui = 'bold' },
 }
 
 -- ins_right {
@@ -216,6 +216,6 @@ ins_right {
   function()
     return '▊'
   end,
-  color = { fg = colors.red },
+  color = { fg = colors.blue },
   padding = { left = 1 },
 }
