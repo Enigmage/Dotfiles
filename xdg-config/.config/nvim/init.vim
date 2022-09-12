@@ -138,7 +138,7 @@ autocmd GeneralCommands FileType *html*,*css*,*javascript*,*typescript* call Web
 
 " Colorscheme
 let g:gruvbox_baby_background_color="dark"
-" let g:gruvbox_baby_transparent_mode="true"
+let g:gruvbox_baby_transparent_mode="true"
 colorscheme gruvbox-baby
 " hi Normal guibg=none
 hi WinSeparator guibg=none

@@ -6,10 +6,8 @@ null_ls.setup({
 	debug = false,
 	sources = {
 		formatting.black.with({ extra_args = { "--fast" } }),
+		formatting.clang_format.with({ extra_args = { "--style=file" } }),
 		formatting.prettier,
 		formatting.stylua,
-		formatting.clang_format.with({ extra_args = { "--style=file" } }),
 	},
 })
-
-vim.keymap.set("n", "<F6>", ":lua vim.lsp.buf.format()<CR>")
