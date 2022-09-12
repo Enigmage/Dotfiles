@@ -71,7 +71,6 @@ set termguicolors
 
 " Lua packages
 lua require("ali")
-
 " Keymaps
 let mapleader=" "
 
@@ -114,45 +113,6 @@ augroup GeneralCommands
     " autocmd CompleteDone * pclose " Close preview when done
 augroup END
 
-" inoremap <silent><expr> <C-n> coc#pum#visible() ? coc#pum#next(1) : "\<C-n>"
-" inoremap <silent><expr> <C-p> coc#pum#visible() ? coc#pum#prev(1) : "\<C-p>"
-" inoremap <silent><expr> <down> coc#pum#visible() ? coc#pum#next(0) : "\<down>"
-" inoremap <silent><expr> <up> coc#pum#visible() ? coc#pum#prev(0) : "\<up>"
-"
-" inoremap <silent><expr> <PageDown> coc#pum#visible() ? coc#pum#scroll(1) : "\<PageDown>"
-" inoremap <silent><expr> <PageUp> coc#pum#visible() ? coc#pum#scroll(0) : "\<PageUp>"
-"
-" inoremap <silent><expr> <C-e> coc#pum#visible() ? coc#pum#cancel() : "\<C-e>"
-" inoremap <silent><expr> <C-y> coc#pum#visible() ? coc#pum#confirm() : "\<C-y>"
-"
-" " Use `[c` and `]c` to navigate diagnostics
-" nmap <silent> [g <Plug>(coc-diagnostic-prev)
-" nmap <silent> ]g <Plug>(coc-diagnostic-next)
-"
-" nmap <silent> gd <Plug>(coc-definition)
-" nmap <silent> gy <Plug>(coc-type-definition)
-" ""nmap <silent> gi <Plug>(coc-implementation)
-" nmap <silent> gr <Plug>(coc-references)
-" nmap <Leader>do <Plug>(coc-codeaction)
-"
-" " Use K to show documentation in preview window.
-" nnoremap <silent> K :call <SID>show_documentation()<CR>
-"
-" function! s:show_documentation()
-"     if (index(['vim','help'], &filetype) >= 0)
-"         execute 'h '.expand('<cword>')
-"     elseif (coc#rpc#ready())
-"         call CocActionAsync('doHover')
-"     else
-"         execute '!' . &keywordprg . " " . expand('<cword>')
-"     endif
-" endfunction
-"
-" " Highlight the symbol and its references when holding the cursor.
-" autocmd GeneralCommands CursorHold * silent call CocActionAsync('highlight')
-"
-" " Symbol renaming.
-" nmap <Leader>rn <Plug>(coc-rename)
 
 let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsJumpForwardTrigger = '<c-j>'
@@ -226,7 +186,7 @@ nnoremap \p :vsplit term://python3 %<CR>
 nnoremap \rp :split term://python3<CR>
 nnoremap \t :vsplit term://zsh<CR>
 
-" Firenvim
+" Old configs for reference
 " let g:firenvim_config = { 
 "     \ 'globalSettings': {
 "         \ 'alt': 'all',
@@ -254,3 +214,42 @@ nnoremap \t :vsplit term://zsh<CR>
 "     nnoremap <C-s> :wq<CR>
 "     au BufEnter 202.12.103.189_*.txt set filetype=sql
 " endif
+" inoremap <silent><expr> <C-n> coc#pum#visible() ? coc#pum#next(1) : "\<C-n>"
+" inoremap <silent><expr> <C-p> coc#pum#visible() ? coc#pum#prev(1) : "\<C-p>"
+" inoremap <silent><expr> <down> coc#pum#visible() ? coc#pum#next(0) : "\<down>"
+" inoremap <silent><expr> <up> coc#pum#visible() ? coc#pum#prev(0) : "\<up>"
+"
+" inoremap <silent><expr> <PageDown> coc#pum#visible() ? coc#pum#scroll(1) : "\<PageDown>"
+" inoremap <silent><expr> <PageUp> coc#pum#visible() ? coc#pum#scroll(0) : "\<PageUp>"
+"
+" inoremap <silent><expr> <C-e> coc#pum#visible() ? coc#pum#cancel() : "\<C-e>"
+" inoremap <silent><expr> <C-y> coc#pum#visible() ? coc#pum#confirm() : "\<C-y>"
+"
+" " Use `[c` and `]c` to navigate diagnostics
+" nmap <silent> [g <Plug>(coc-diagnostic-prev)
+" nmap <silent> ]g <Plug>(coc-diagnostic-next)
+"
+" nmap <silent> gd <Plug>(coc-definition)
+" nmap <silent> gy <Plug>(coc-type-definition)
+" ""nmap <silent> gi <Plug>(coc-implementation)
+" nmap <silent> gr <Plug>(coc-references)
+" nmap <Leader>do <Plug>(coc-codeaction)
+"
+" " Use K to show documentation in preview window.
+" nnoremap <silent> K :call <SID>show_documentation()<CR>
+"
+" function! s:show_documentation()
+"     if (index(['vim','help'], &filetype) >= 0)
+"         execute 'h '.expand('<cword>')
+"     elseif (coc#rpc#ready())
+"         call CocActionAsync('doHover')
+"     else
+"         execute '!' . &keywordprg . " " . expand('<cword>')
+"     endif
+" endfunction
+"
+" " Highlight the symbol and its references when holding the cursor.
+" autocmd GeneralCommands CursorHold * silent call CocActionAsync('highlight')
+"
+" " Symbol renaming.
+" nmap <Leader>rn <Plug>(coc-rename)

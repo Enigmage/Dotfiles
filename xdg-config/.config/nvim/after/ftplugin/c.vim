@@ -1,1 +1,1 @@
-noremap <F6> :%!astyle<CR>
+" noremap <F6> :%!astyle<CR>
