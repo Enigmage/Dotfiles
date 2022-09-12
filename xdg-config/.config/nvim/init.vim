@@ -31,6 +31,8 @@ Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'quangnguyen30192/cmp-nvim-ultisnips'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'jose-elias-alvarez/null-ls.nvim'
 " Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Plug 'vimwiki/vimwiki'
 " Plug 'andweeb/presence.nvim'
@@ -170,7 +172,6 @@ function WebDevOptions()
     setlocal expandtab
     setlocal colorcolumn=120
     EmmetInstall
-    noremap <F6> :CocCommand prettier.formatFile<CR>
 endfunction
 
 autocmd GeneralCommands FileType *html*,*css*,*javascript*,*typescript* call WebDevOptions()
