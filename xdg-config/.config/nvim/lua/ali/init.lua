@@ -1,4 +1,7 @@
 require("impatient")
+require("mason").setup()
+require("ali.cmp")
+require("ali.lsp")
 require("ali.treesitter")
 require("ali.statusline")
 require("Comment").setup()

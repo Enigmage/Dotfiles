@@ -16,13 +16,22 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'mattn/emmet-vim'
 Plug 'tpope/vim-fugitive'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'lervag/vimtex', { 'for': 'tex' }
 Plug 'preservim/vim-markdown', { 'for' : 'markdown' }
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'p00f/nvim-ts-rainbow'
 Plug 'nvim-treesitter/nvim-treesitter-context'
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+Plug 'williamboman/mason.nvim'
+Plug 'williamboman/mason-lspconfig.nvim'
+Plug 'neovim/nvim-lspconfig'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-cmdline'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'quangnguyen30192/cmp-nvim-ultisnips'
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Plug 'vimwiki/vimwiki'
 " Plug 'andweeb/presence.nvim'
 " Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
@@ -56,7 +65,7 @@ set splitright splitbelow
 set list lcs=tab:\|\ ,trail:-,nbsp:+,eol:↵
 set winbar=%t%M%=Unicode:%b
 set termguicolors
-"setlocal omnifunc=syntaxcomplete#Complete
+" set omnifunc=v:lua.vim.lsp.omnifunc
 
 " Lua packages
 lua require("ali")
@@ -100,47 +109,48 @@ inoremap <A-l> <C-\><C-N><C-w>l
 " Commands
 augroup GeneralCommands
     autocmd!
+    " autocmd CompleteDone * pclose " Close preview when done
 augroup END
 
-inoremap <silent><expr> <C-n> coc#pum#visible() ? coc#pum#next(1) : "\<C-n>"
-inoremap <silent><expr> <C-p> coc#pum#visible() ? coc#pum#prev(1) : "\<C-p>"
-inoremap <silent><expr> <down> coc#pum#visible() ? coc#pum#next(0) : "\<down>"
-inoremap <silent><expr> <up> coc#pum#visible() ? coc#pum#prev(0) : "\<up>"
-
-inoremap <silent><expr> <PageDown> coc#pum#visible() ? coc#pum#scroll(1) : "\<PageDown>"
-inoremap <silent><expr> <PageUp> coc#pum#visible() ? coc#pum#scroll(0) : "\<PageUp>"
-
-inoremap <silent><expr> <C-e> coc#pum#visible() ? coc#pum#cancel() : "\<C-e>"
-inoremap <silent><expr> <C-y> coc#pum#visible() ? coc#pum#confirm() : "\<C-y>"
-
-" Use `[c` and `]c` to navigate diagnostics
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
-
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-""nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-nmap <Leader>do <Plug>(coc-codeaction)
-
-" Use K to show documentation in preview window.
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-    if (index(['vim','help'], &filetype) >= 0)
-        execute 'h '.expand('<cword>')
-    elseif (coc#rpc#ready())
-        call CocActionAsync('doHover')
-    else
-        execute '!' . &keywordprg . " " . expand('<cword>')
-    endif
-endfunction
-
-" Highlight the symbol and its references when holding the cursor.
-autocmd GeneralCommands CursorHold * silent call CocActionAsync('highlight')
-
-" Symbol renaming.
-nmap <Leader>rn <Plug>(coc-rename)
+" inoremap <silent><expr> <C-n> coc#pum#visible() ? coc#pum#next(1) : "\<C-n>"
+" inoremap <silent><expr> <C-p> coc#pum#visible() ? coc#pum#prev(1) : "\<C-p>"
+" inoremap <silent><expr> <down> coc#pum#visible() ? coc#pum#next(0) : "\<down>"
+" inoremap <silent><expr> <up> coc#pum#visible() ? coc#pum#prev(0) : "\<up>"
+"
+" inoremap <silent><expr> <PageDown> coc#pum#visible() ? coc#pum#scroll(1) : "\<PageDown>"
+" inoremap <silent><expr> <PageUp> coc#pum#visible() ? coc#pum#scroll(0) : "\<PageUp>"
+"
+" inoremap <silent><expr> <C-e> coc#pum#visible() ? coc#pum#cancel() : "\<C-e>"
+" inoremap <silent><expr> <C-y> coc#pum#visible() ? coc#pum#confirm() : "\<C-y>"
+"
+" " Use `[c` and `]c` to navigate diagnostics
+" nmap <silent> [g <Plug>(coc-diagnostic-prev)
+" nmap <silent> ]g <Plug>(coc-diagnostic-next)
+"
+" nmap <silent> gd <Plug>(coc-definition)
+" nmap <silent> gy <Plug>(coc-type-definition)
+" ""nmap <silent> gi <Plug>(coc-implementation)
+" nmap <silent> gr <Plug>(coc-references)
+" nmap <Leader>do <Plug>(coc-codeaction)
+"
+" " Use K to show documentation in preview window.
+" nnoremap <silent> K :call <SID>show_documentation()<CR>
+"
+" function! s:show_documentation()
+"     if (index(['vim','help'], &filetype) >= 0)
+"         execute 'h '.expand('<cword>')
+"     elseif (coc#rpc#ready())
+"         call CocActionAsync('doHover')
+"     else
+"         execute '!' . &keywordprg . " " . expand('<cword>')
+"     endif
+" endfunction
+"
+" " Highlight the symbol and its references when holding the cursor.
+" autocmd GeneralCommands CursorHold * silent call CocActionAsync('highlight')
+"
+" " Symbol renaming.
+" nmap <Leader>rn <Plug>(coc-rename)
 
 let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsJumpForwardTrigger = '<c-j>'
@@ -167,8 +177,8 @@ autocmd GeneralCommands FileType *html*,*css*,*javascript*,*typescript* call Web
 
 " Colorscheme
 let g:gruvbox_baby_background_color="dark"
-let g:gruvbox_baby_transparent_mode="true"
-colorscheme tokyonight-night
+" let g:gruvbox_baby_transparent_mode="true"
+colorscheme gruvbox-baby
 " hi Normal guibg=none
 hi WinSeparator guibg=none
 
