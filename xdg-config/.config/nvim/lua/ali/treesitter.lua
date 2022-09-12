@@ -15,6 +15,7 @@ require("nvim-treesitter.configs").setup({
 		"yaml",
 		"java",
 		"json",
+		"nix",
 	},
 	auto_install = false,
 	ignore_install = {},
