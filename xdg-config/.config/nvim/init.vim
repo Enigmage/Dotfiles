@@ -33,44 +33,16 @@ Plug 'hrsh7th/nvim-cmp'
 Plug 'quangnguyen30192/cmp-nvim-ultisnips'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'jose-elias-alvarez/null-ls.nvim'
+Plug 'windwp/nvim-autopairs'
 " Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Plug 'vimwiki/vimwiki'
 " Plug 'andweeb/presence.nvim'
 " Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 call plug#end()
 
-" Options
-set nowrap
-set mouse=a
-set scrolloff=5
-set lazyredraw
-set title
-set confirm
-set number relativenumber
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-set smartindent
-set expandtab
-set textwidth=85
-set inccommand=split
-set cursorline
-set updatetime=1000
-set shortmess+=c
-set nowritebackup
-set undofile
-set undodir=~/.config/nvim/undodir/
-set noswapfile
-set colorcolumn=80
-set conceallevel=0
-set splitright splitbelow
-set list lcs=tab:\|\ ,trail:-,nbsp:+,eol:↵
-set winbar=%t%M%=Unicode:%b
-set termguicolors
-" set omnifunc=v:lua.vim.lsp.omnifunc
-
 " Lua packages
 lua require("ali")
+
 " Keymaps
 let mapleader=" "
 
@@ -81,6 +53,12 @@ inoremap jk <ESC>
 " keep stuff hightlighted after indent
 vnoremap < <gv
 vnoremap > >gv
+
+" inoremap ( ()<Esc>i
+" inoremap { {}<Esc>i
+" inoremap [ []<Esc>i
+" inoremap " ""<Esc>i
+" inoremap ' ''<Esc>i
 
 " Arroy keys bad
 nnoremap <up> <nop>
@@ -108,22 +86,7 @@ inoremap <A-k> <C-\><C-N><C-w>k
 inoremap <A-l> <C-\><C-N><C-w>l
 
 " Commands
-augroup GeneralCommands
-    autocmd!
-    " autocmd CompleteDone * pclose " Close preview when done
-augroup END
 
-
-let g:UltiSnipsExpandTrigger="<c-j>"
-let g:UltiSnipsJumpForwardTrigger = '<c-j>'
-let g:UltiSnipsJumpBackwardTrigger = '<c-k>'
-
-let g:python3_host_prog="/usr/bin/python3"
-"emmet config
-"Disable for all except html,css
-let g:user_emmet_install_global=0 
-let g:user_emmet_leader_key=','
-" command! -nargs=0 Prettier :CocCommand prettier.formatFile
 function WebDevOptions()
     setlocal tabstop=2
     setlocal softtabstop=2
@@ -134,7 +97,11 @@ function WebDevOptions()
     EmmetInstall
 endfunction
 
-autocmd GeneralCommands FileType *html*,*css*,*javascript*,*typescript* call WebDevOptions()
+augroup GeneralCommands
+    autocmd!
+    " autocmd CompleteDone * pclose " Close preview when done
+    autocmd FileType *html*,*css*,*javascript*,*typescript* call WebDevOptions()
+augroup END
 
 " Colorscheme
 let g:gruvbox_baby_background_color="dark"
@@ -144,25 +111,17 @@ colorscheme tokyonight-night
 hi WinSeparator guibg=none
 
 " Markup
-let g:tex_flavor = 'latex'
+" let g:tex_flavor = 'latex'
 " let g:tex_conceal = ""
-let g:vim_markdown_folding_disabled = 1
-let g:vim_markdown_math = 1
-let g:vim_markdown_frontmatter = 1
+" let g:vim_markdown_folding_disabled = 1
+" let g:vim_markdown_math = 1
+" let g:vim_markdown_frontmatter = 1
 " let g:vim_markdown_strikethrough = 1
 " let g:vim_markdown_json_frontmatter = 1
 " let g:vim_markdown_toml_frontmatter = 1
 
 " Files
-set grepprg=rg\ --vimgrep\ --smart-case\ --follow
 noremap <silent> <C-n> :Vexplore<CR>
-let g:netrw_liststyle = 3
-let g:netrw_banner = 0
-let g:netrw_browse_split = 4
-let g:netrw_altv = 1
-let g:netrw_alto = 0
-let g:netrw_winsize = 45
-
 nnoremap <Leader>f :Files<CR>
 nnoremap <Leader>gr :Rg<CR>
 nnoremap <Leader>b :Buffers<CR>
