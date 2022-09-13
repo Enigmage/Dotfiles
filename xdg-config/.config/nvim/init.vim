@@ -43,50 +43,7 @@ call plug#end()
 " Lua packages
 lua require("ali")
 
-" Keymaps
-let mapleader=" "
-
-xnoremap K :move '<-2<CR>gv-gv 
-xnoremap J :move '>+1<CR>gv-gv
-
-inoremap jk <ESC>
-" keep stuff hightlighted after indent
-vnoremap < <gv
-vnoremap > >gv
-
-" inoremap ( ()<Esc>i
-" inoremap { {}<Esc>i
-" inoremap [ []<Esc>i
-" inoremap " ""<Esc>i
-" inoremap ' ''<Esc>i
-
-" Arroy keys bad
-nnoremap <up> <nop>
-nnoremap <right> <nop>
-nnoremap <left> <nop>
-nnoremap <down> <nop>
-inoremap <down> <nop>
-inoremap <up> <nop>
-inoremap <left> <nop>
-inoremap <right> <nop>
-
-" Easier split navigation
-" Navigate splits and buffers in any mode.
-nnoremap <A-h> <C-w>h
-nnoremap <A-j> <C-w>j
-nnoremap <A-k> <C-w>k
-nnoremap <A-l> <C-w>l
-tnoremap <A-h> <C-\><C-N><C-w>h
-tnoremap <A-j> <C-\><C-N><C-w>j
-tnoremap <A-k> <C-\><C-N><C-w>k
-tnoremap <A-l> <C-\><C-N><C-w>l
-inoremap <A-h> <C-\><C-N><C-w>h
-inoremap <A-j> <C-\><C-N><C-w>j
-inoremap <A-k> <C-\><C-N><C-w>k
-inoremap <A-l> <C-\><C-N><C-w>l
-
 " Commands
-
 function WebDevOptions()
     setlocal tabstop=2
     setlocal softtabstop=2
@@ -110,18 +67,7 @@ colorscheme tokyonight-night
 " hi Normal guibg=none
 hi WinSeparator guibg=none
 
-" Markup
-" let g:tex_flavor = 'latex'
-" let g:tex_conceal = ""
-" let g:vim_markdown_folding_disabled = 1
-" let g:vim_markdown_math = 1
-" let g:vim_markdown_frontmatter = 1
-" let g:vim_markdown_strikethrough = 1
-" let g:vim_markdown_json_frontmatter = 1
-" let g:vim_markdown_toml_frontmatter = 1
-
 " Files
-noremap <silent> <C-n> :Vexplore<CR>
 nnoremap <Leader>f :Files<CR>
 nnoremap <Leader>gr :Rg<CR>
 nnoremap <Leader>b :Buffers<CR>
@@ -135,15 +81,6 @@ let g:fzf_action = {
             \}
 " let g:fzf_layout = { 'down': '40%' }
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
-
-" Terminal
-" turn terminal to normal mode with escape
-tnoremap <C-[> <C-\><C-n>
-" Program execution keybinds
-nnoremap \c :vsplit term://cppc %<CR>
-nnoremap \p :vsplit term://python3 %<CR>
-nnoremap \rp :split term://python3<CR>
-nnoremap \t :vsplit term://zsh<CR>
 
 " Old configs for reference
 " let g:firenvim_config = { 

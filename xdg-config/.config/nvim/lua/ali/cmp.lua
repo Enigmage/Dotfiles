@@ -1,5 +1,9 @@
 local cmp = require("cmp")
 
+vim.g.UltiSnipsExpandTrigger = "<c-j>"
+vim.g.UltiSnipsJumpForwardTrigger = "<c-j>"
+vim.g.UltiSnipsJumpBackwardTrigger = "<c-k>"
+
 cmp.setup({
 	snippet = {
 		expand = function(args)
