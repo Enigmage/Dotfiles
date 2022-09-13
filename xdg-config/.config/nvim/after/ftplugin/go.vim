@@ -1,1 +1,1 @@
-noremap <F6> :!go fmt %<CR>
+" noremap <F6> :!go fmt %<CR>
