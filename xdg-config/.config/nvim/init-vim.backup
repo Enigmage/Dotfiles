@@ -31,8 +31,7 @@ Plug 'tpope/vim-surround'
 " Plug 'honza/vim-snippets'
 " Plug 'SirVer/ultisnips'
 " Plug 'hrsh7th/cmp-nvim-lsp'
-" Plug 'hrsh7th/cmp-buffer'
-" Plug 'hrsh7th/cmp-path'
+" Plug 'hrsh7th/cmp-buffer' Plug 'hrsh7th/cmp-path'
 " Plug 'hrsh7th/cmp-cmdline'
 " Plug 'quangnguyen30192/cmp-nvim-ultisnips'
 " Plug 'hrsh7th/nvim-cmp'
@@ -46,44 +45,44 @@ call plug#end()
 lua require("ali")
 
 " Commands
-function WebDevOptions()
-    setlocal tabstop=2
-    setlocal softtabstop=2
-    setlocal shiftwidth=2
-    setlocal textwidth=120
-    setlocal expandtab
-    setlocal colorcolumn=90
-    setlocal textwidth=89
-    EmmetInstall
-endfunction
-
-augroup GeneralCommands
-    autocmd!
-    " autocmd CompleteDone * pclose " Close preview when done
-    autocmd FileType *html*,*css*,*javascript*,*typescript* call WebDevOptions()
-augroup END
-
+" function WebDevOptions()
+"     setlocal tabstop=2
+"     setlocal softtabstop=2
+"     setlocal shiftwidth=2
+"     setlocal textwidth=120
+"     setlocal expandtab
+"     setlocal colorcolumn=90
+"     setlocal textwidth=89
+"     EmmetInstall
+" endfunction
+"
+" augroup GeneralCommands
+"     autocmd!
+"     " autocmd CompleteDone * pclose " Close preview when done
+"     autocmd FileType *html*,*css*,*javascript*,*typescript* call WebDevOptions()
+" augroup END
+"
 " Colorscheme
-let g:gruvbox_baby_background_color="dark"
-" let g:gruvbox_baby_transparent_mode="true"
-colorscheme gruvbox-baby
-" hi Normal guibg=none
-hi WinSeparator guibg=none
+" let g:gruvbox_baby_background_color="dark"
+" " let g:gruvbox_baby_transparent_mode="true"
+" colorscheme gruvbox-baby
+" " hi Normal guibg=none
+" hi WinSeparator guibg=none
 
 " Files
-nnoremap <Leader>f :Files<CR>
-nnoremap <Leader>gr :Rg<CR>
-nnoremap <Leader>b :Buffers<CR>
-" nnoremap <A-;> :History:<CR>
-" nnoremap <A-m> :Marks<CR>
-"
-let g:fzf_action = {
-            \ 'ctrl-t': 'tab split',
-            \ 'ctrl-s': 'split',
-            \ 'ctrl-v': 'vsplit'
-            \}
-" let g:fzf_layout = { 'down': '40%' }
-let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
+" nnoremap <Leader>f :Files<CR>
+" nnoremap <Leader>gr :Rg<CR>
+" nnoremap <Leader>b :Buffers<CR>
+" " nnoremap <A-;> :History:<CR>
+" " nnoremap <A-m> :Marks<CR>
+" "
+" let g:fzf_action = {
+"             \ 'ctrl-t': 'tab split',
+"             \ 'ctrl-s': 'split',
+"             \ 'ctrl-v': 'vsplit'
+"             \}
+" " let g:fzf_layout = { 'down': '40%' }
+" let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
 
 " Old configs for reference
 " let g:firenvim_config = { 
