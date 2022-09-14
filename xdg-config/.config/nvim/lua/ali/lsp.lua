@@ -47,14 +47,6 @@ require("mason-lspconfig").setup({
 -- 	debounce_text_changes = 150,
 -- }
 
--- for _, server in ipairs(installedServers) do
--- 	lspconfig[server].setup({
--- 		on_attach = on_attach,
--- 		flags = lsp_flags,
--- 		capabilities = capabilities,
--- 	})
--- end
-
 lspconfig["tsserver"].setup(coq.lsp_ensure_capabilities({
 	on_attach = on_attach,
 }))

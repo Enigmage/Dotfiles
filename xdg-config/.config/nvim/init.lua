@@ -28,8 +28,6 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'jose-elias-alvarez/null-ls.nvim'
 Plug 'windwp/nvim-autopairs'
 Plug 'tpope/vim-surround'
-" Plug 'honza/vim-snippets'
-" Plug 'SirVer/ultisnips'
 " Plug 'hrsh7th/cmp-nvim-lsp'
 " Plug 'hrsh7th/cmp-buffer'
 " Plug 'hrsh7th/cmp-path'
@@ -44,21 +42,20 @@ call plug#end()
 ]])
 require("impatient")
 require("ali.options")
-require("ali.filetree")
 require("ali.autocmds")
 require("ali.keymaps")
 require("ali.colorscheme")
-require("ali.statusline")
-require("lualine").setup(MyStatuslineConfig)
+require("mason").setup()
+require("ali.lsp")
 
 local async = vim.loop.new_async(vim.schedule_wrap(function()
 	require("ali.treesitter")
+	local myConfig = require("ali.statusline")
+	require("lualine").setup(myConfig)
+	require("ali.null-ls")
 	require("Comment").setup()
 	require("colorizer").setup()
 	require("nvim-autopairs").setup()
-	require("mason").setup()
-	require("ali.lsp")
-	require("ali.null-ls")
 end))
 
 async:send()
