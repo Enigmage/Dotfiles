@@ -11,9 +11,6 @@ Plug 'numToStr/Comment.nvim'
 Plug 'chrisbra/unicode.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug 'tpope/vim-surround'
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
 Plug 'mattn/emmet-vim'
 Plug 'tpope/vim-fugitive'
 Plug 'lervag/vimtex', { 'for': 'tex' }
@@ -25,15 +22,20 @@ Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'williamboman/mason.nvim'
 Plug 'williamboman/mason-lspconfig.nvim'
 Plug 'neovim/nvim-lspconfig'
-Plug 'hrsh7th/cmp-nvim-lsp'
-Plug 'hrsh7th/cmp-buffer'
-Plug 'hrsh7th/cmp-path'
-Plug 'hrsh7th/cmp-cmdline'
-Plug 'quangnguyen30192/cmp-nvim-ultisnips'
-Plug 'hrsh7th/nvim-cmp'
+Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
+Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
 Plug 'nvim-lua/plenary.nvim'
 Plug 'jose-elias-alvarez/null-ls.nvim'
 Plug 'windwp/nvim-autopairs'
+Plug 'tpope/vim-surround'
+" Plug 'honza/vim-snippets'
+" Plug 'SirVer/ultisnips'
+" Plug 'hrsh7th/cmp-nvim-lsp'
+" Plug 'hrsh7th/cmp-buffer'
+" Plug 'hrsh7th/cmp-path'
+" Plug 'hrsh7th/cmp-cmdline'
+" Plug 'quangnguyen30192/cmp-nvim-ultisnips'
+" Plug 'hrsh7th/nvim-cmp'
 " Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Plug 'vimwiki/vimwiki'
 " Plug 'andweeb/presence.nvim'
@@ -50,7 +52,8 @@ function WebDevOptions()
     setlocal shiftwidth=2
     setlocal textwidth=120
     setlocal expandtab
-    setlocal colorcolumn=120
+    setlocal colorcolumn=90
+    setlocal textwidth=89
     EmmetInstall
 endfunction
 
@@ -62,8 +65,8 @@ augroup END
 
 " Colorscheme
 let g:gruvbox_baby_background_color="dark"
-let g:gruvbox_baby_transparent_mode="true"
-colorscheme tokyonight-night
+" let g:gruvbox_baby_transparent_mode="true"
+colorscheme gruvbox-baby
 " hi Normal guibg=none
 hi WinSeparator guibg=none
 

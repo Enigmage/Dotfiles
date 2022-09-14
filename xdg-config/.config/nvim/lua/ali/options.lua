@@ -45,6 +45,11 @@ local generalGlobalVars = {
 	vim_markdown_folding_disabled = 1,
 	vim_markdown_math = 1,
 	vim_markdown_frontmatter = 1,
+	coq_settings = {
+		["auto_start"] = "shut-up",
+		["display.icons.mode"] = "none",
+		["display.pum.source_context"] = { " <", ">" },
+	},
 }
 
 vim.opt.shortmess:append("c")

@@ -1,11 +1,3 @@
-local installedServers = {
-    "tsserver",
-    "pyright",
-    "gopls",
-    "clangd",
-    "sumneko_lua",
-    "denols",
-}
 -- Mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 local opts = { noremap = true, silent = true }
@@ -34,16 +26,69 @@ local on_attach = function(client, bufnr)
 end
 
 local lspconfig = require("lspconfig")
-local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local util = require("lspconfig.util")
+local coq = require("coq")
+-- local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
+
+local installedServers = {
+	"tsserver",
+	"pyright",
+	"gopls",
+	"clangd",
+	"denols",
+}
 
 require("mason-lspconfig").setup({
 	ensure_installed = installedServers,
 	automatic_installation = false,
 })
 
-for _, server in ipairs(installedServers) do
-	lspconfig[server].setup({
-		on_attach = on_attach,
-		capabilities = capabilities,
-	})
-end
+-- local lsp_flags = {
+-- 	debounce_text_changes = 150,
+-- }
+
+-- for _, server in ipairs(installedServers) do
+-- 	lspconfig[server].setup({
+-- 		on_attach = on_attach,
+-- 		flags = lsp_flags,
+-- 		capabilities = capabilities,
+-- 	})
+-- end
+
+lspconfig["tsserver"].setup(coq.lsp_ensure_capabilities({
+	on_attach = on_attach,
+}))
+
+lspconfig["pyright"].setup(coq.lsp_ensure_capabilities({
+	on_attach = on_attach,
+}))
+
+lspconfig["gopls"].setup(coq.lsp_ensure_capabilities({
+	on_attach = on_attach,
+}))
+
+lspconfig["clangd"].setup(coq.lsp_ensure_capabilities({
+	on_attach = on_attach,
+}))
+
+lspconfig["denols"].setup(coq.lsp_ensure_capabilities({
+	on_attach = on_attach,
+	init_options = {
+		enable = true,
+		unstable = true,
+	},
+	root_dir = util.root_pattern("deno.json", "deno.jsonc", ".git", "deps.ts", "dev_deps.ts"),
+}))
+
+-- lspconfig["sumneko_lua"].setup(coq.lsp_ensure_capabilities({
+-- 	on_attach = on_attach,
+-- 	flags = lsp_flags,
+-- 	settings = {
+-- 		diagnostics = {
+-- 			globals = { "vim" },
+-- 		},
+-- 		workspace = {
+-- 			library = vim.api.nvim_get_runtime_file("", true),
+-- 		},
+-- 	},
+-- }))
