@@ -1,4 +1,3 @@
--- Mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 local opts = { noremap = true, silent = true }
 local map = vim.keymap.set
@@ -11,7 +10,6 @@ map("n", "<F6>", vim.lsp.buf.format, opts)
 local on_attach = function(client, bufnr)
 	-- Enable completion triggered by <c-x><c-o>
 	-- vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-	-- Mappings.
 	-- See `:help vim.lsp.*` for documentation on any of the below functions
 	local bufopts = { noremap = true, silent = true, buffer = bufnr }
 	map("n", "gD", vim.lsp.buf.declaration, bufopts)
@@ -60,7 +58,7 @@ lspconfig["denols"].setup(coq.lsp_ensure_capabilities({
 		enable = true,
 		unstable = true,
 	},
-	root_dir = util.root_pattern("deno.json", "deno.jsonc", ".git", "deps.ts", "dev_deps.ts"),
+	root_dir = util.root_pattern("deno.json", "deno.jsonc", "deps.ts", "dev_deps.ts"),
 }))
 
 lspconfig["sumneko_lua"].setup(coq.lsp_ensure_capabilities({
@@ -69,8 +67,12 @@ lspconfig["sumneko_lua"].setup(coq.lsp_ensure_capabilities({
 		diagnostics = {
 			globals = { "vim" },
 		},
-		-- workspace = {
-		-- 	library = vim.api.nvim_get_runtime_file("", true),
-		-- },
+		workspace = {
+			library = vim.api.nvim_get_runtime_file("", true),
+		},
 	},
+}))
+
+lspconfig["tailwindcss"].setup(coq.lsp_ensure_capabilities({
+	on_attach = on_attach,
 }))
