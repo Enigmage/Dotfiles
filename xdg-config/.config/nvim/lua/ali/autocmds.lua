@@ -6,10 +6,9 @@ local WebDevOptions = function()
     vim.opt_local.tabstop = 2
     vim.opt_local.softtabstop = 2
     vim.opt_local.shiftwidth = 2
-    vim.opt_local.textwidth = 120
+    vim.opt_local.textwidth = 90
     vim.opt_local.expandtab = true
     vim.opt_local.colorcolumn = "90"
-    vim.opt_local.textwidth = 89
     vim.cmd[[EmmetInstall]]
 end
 

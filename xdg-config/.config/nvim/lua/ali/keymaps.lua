@@ -54,7 +54,8 @@ map({"n", "i"}, "<right>", "<nop>")
 -- Filetree
 map("n", "<C-n>", ":Vexplore<CR>", { silent = true })
 
--- Fzf
+-- Fzf <Leader>f
 map("n", "<Leader>ff", ":Files<CR>")
 map("n", "<Leader>fg", ":Rg<CR>")
 map("n", "<Leader>fb", ":Buffers<CR>")
+map("n", "<Leader>fl", ":BLines<CR>")
