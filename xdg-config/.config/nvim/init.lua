@@ -56,6 +56,17 @@ local async = vim.loop.new_async(vim.schedule_wrap(function()
 	require("Comment").setup()
 	require("colorizer").setup()
 	require("nvim-autopairs").setup()
+	require("mason-lspconfig").setup({
+		ensure_installed = {
+			"tsserver",
+			"pyright",
+			"gopls",
+			"clangd",
+			"denols",
+			"sumneko_lua",
+		},
+		automatic_installation = false,
+	})
 end))
 
 async:send()

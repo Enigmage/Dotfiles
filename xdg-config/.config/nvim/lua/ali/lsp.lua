@@ -30,19 +30,6 @@ local util = require("lspconfig.util")
 local coq = require("coq")
 -- local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
-local installedServers = {
-	"tsserver",
-	"pyright",
-	"gopls",
-	"clangd",
-	"denols",
-}
-
-require("mason-lspconfig").setup({
-	ensure_installed = installedServers,
-	automatic_installation = false,
-})
-
 -- local lsp_flags = {
 -- 	debounce_text_changes = 150,
 -- }
@@ -72,15 +59,14 @@ lspconfig["denols"].setup(coq.lsp_ensure_capabilities({
 	root_dir = util.root_pattern("deno.json", "deno.jsonc", ".git", "deps.ts", "dev_deps.ts"),
 }))
 
--- lspconfig["sumneko_lua"].setup(coq.lsp_ensure_capabilities({
--- 	on_attach = on_attach,
--- 	flags = lsp_flags,
--- 	settings = {
--- 		diagnostics = {
--- 			globals = { "vim" },
--- 		},
--- 		workspace = {
--- 			library = vim.api.nvim_get_runtime_file("", true),
--- 		},
--- 	},
--- }))
+lspconfig["sumneko_lua"].setup(coq.lsp_ensure_capabilities({
+	on_attach = on_attach,
+	settings = {
+		diagnostics = {
+			globals = { "vim" },
+		},
+		workspace = {
+			library = vim.api.nvim_get_runtime_file("", true),
+		},
+	},
+}))
