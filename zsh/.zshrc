@@ -92,3 +92,5 @@ source ~/zsh-plugins/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
 # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 # [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+[ -f "/home/alizaidi/.ghcup/env" ] && source "/home/alizaidi/.ghcup/env" # ghcup-env

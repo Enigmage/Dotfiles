@@ -63,6 +63,7 @@ local async = vim.loop.new_async(vim.schedule_wrap(function()
 			"gopls",
 			"clangd",
 			"denols",
+			"texlab",
 		},
 		automatic_installation = false,
 	})

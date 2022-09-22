@@ -5,6 +5,9 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 vim.g.user_emmet_leader_key = ","
 
+-- Silent and non-recursive
+local opts = { silent = true, noremap = true }
+
 --Modes
 --  normal_mode = "n",
 --  insert_mode = "i",
@@ -25,13 +28,13 @@ map("v", "<", "<gv")
 map("v", ">", ">gv")
 
 -- Terminal mappings
-map("t", "<C-[>", "<C-\\><C-N>")
-map("n", "\\t", ":split term://zsh<CR>")
-map("n", "\\p", ":split term://python3 %<CR>")
-map("n", "\\c", ":split term://cppc %<CR>")
-map("n", "\\j", ":split term://deno run %<CR>")
-map("n", "\\rj", ":split term://deno<CR>")
-map("n", "\\rp", ":split term://python3<CR>")
+map("t", "<C-[>", "<C-\\><C-N>", opts)
+map("n", "\\t", ":split term://zsh<CR>", opts)
+map("n", "\\p", ":split term://python3 %<CR>", opts)
+map("n", "\\c", ":split term://cppc %<CR>", opts)
+map("n", "\\j", ":split term://deno run %<CR>", opts)
+map("n", "\\rj", ":split term://deno<CR>", opts)
+map("n", "\\rp", ":split term://python3<CR>", opts)
 
 -- Better window navigation
 map("n", "<A-h>", "<C-w>h")
@@ -51,7 +54,7 @@ map({ "n", "i" }, "<left>", "<nop>")
 map({ "n", "i" }, "<right>", "<nop>")
 
 -- Filetree
-map("n", "<C-n>", ":Vexplore<CR>", { silent = true, noremap = true })
+map("n", "<C-n>", ":Vexplore<CR>", opts)
 
 -- Fzf <Leader>f
 map("n", "<Leader>ff", ":Files<CR>")

@@ -76,3 +76,12 @@ lspconfig["denols"].setup(coq.lsp_ensure_capabilities({
 lspconfig["tailwindcss"].setup(coq.lsp_ensure_capabilities({
 	on_attach = on_attach,
 }))
+
+lspconfig["texlab"].setup(coq.lsp_ensure_capabilities({
+	on_attach = on_attach,
+}))
+
+-- lspconfig["hls"].setup(coq.lsp_ensure_capabilities({
+-- 	cmd = { "haskell-language-server-wrapper-1.8.0.0", "--lsp" },
+-- 	on_attach = on_attach,
+-- }))
