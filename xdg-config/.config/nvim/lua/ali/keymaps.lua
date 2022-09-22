@@ -26,10 +26,9 @@ map("v", ">", ">gv")
 
 -- Terminal mappings
 map("t", "<C-[>", "<C-\\><C-N>")
-map("n", "\\t", ":vsplit term://zsh<CR>")
+map("n", "\\t", ":split term://zsh<CR>")
 map("n", "\\p", ":split term://python3 %<CR>")
 map("n", "\\c", ":split term://cppc %<CR>")
--- j for javascript/typescript
 map("n", "\\j", ":split term://deno run %<CR>")
 map("n", "\\rj", ":split term://deno<CR>")
 map("n", "\\rp", ":split term://python3<CR>")

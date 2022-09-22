@@ -34,7 +34,7 @@ local generalOptions = {
 	listchars = { tab = "| ", trail = "-", nbsp = "+", eol = "↵" },
 }
 
-local generalGlobalVars = {
+local globalVars = {
 	python3_host_prog = python_path,
 	loaded_ruby_provider = 0,
 	loaded_node_provider = 0,
@@ -63,7 +63,7 @@ for option, value in pairs(generalOptions) do
 	vim.opt[option] = value
 end
 
-for var, value in pairs(generalGlobalVars) do
+for var, value in pairs(globalVars) do
 	vim.g[var] = value
 end
 
