@@ -52,7 +52,7 @@ map({ "n", "i" }, "<left>", "<nop>")
 map({ "n", "i" }, "<right>", "<nop>")
 
 -- Filetree
-map("n", "<C-n>", ":Vexplore<CR>", { silent = true })
+map("n", "<C-n>", ":Vexplore<CR>", { silent = true, noremap = true })
 
 -- Fzf <Leader>f
 map("n", "<Leader>ff", ":Files<CR>")
@@ -65,7 +65,7 @@ local toggleWinbar = function()
 		vim.opt.winbar = ""
 		vim.g.my_winbar_active = false
 	else
-		vim.opt.winbar = "%t%M%=Unicode:%b"
+		vim.opt.winbar = "%t%M%=%b"
 		vim.g.my_winbar_active = true
 	end
 end
