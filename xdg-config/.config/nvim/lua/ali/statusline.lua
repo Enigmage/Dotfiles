@@ -76,42 +76,42 @@ ins_left({
 		return "▊"
 	end,
 	color = { fg = colors.red }, -- Sets highlighting of component
-	padding = { left = 0, right = 1 }, -- We don't need space before this
+	padding = { left = 0, right = 0.5 }, -- We don't need space before this
 })
 
-ins_left({
-	-- mode component
-	function()
-		return "λ"
-	end,
-	color = function()
-		-- auto change color according to neovims mode
-		local mode_color = {
-			n = colors.red,
-			i = colors.green,
-			v = colors.blue,
-			[""] = colors.blue,
-			V = colors.blue,
-			c = colors.magenta,
-			no = colors.red,
-			s = colors.orange,
-			S = colors.orange,
-			[""] = colors.orange,
-			ic = colors.yellow,
-			R = colors.violet,
-			Rv = colors.violet,
-			cv = colors.red,
-			ce = colors.red,
-			r = colors.cyan,
-			rm = colors.cyan,
-			["r?"] = colors.cyan,
-			["!"] = colors.red,
-			t = colors.red,
-		}
-		return { fg = mode_color[vim.fn.mode()] }
-	end,
-	padding = { right = 1 },
-})
+-- ins_left({
+-- 	-- mode component
+-- 	function()
+-- 		return "λ"
+-- 	end,
+-- 	color = function()
+-- 		-- auto change color according to neovims mode
+-- 		local mode_color = {
+-- 			n = colors.red,
+-- 			i = colors.green,
+-- 			v = colors.blue,
+-- 			[""] = colors.blue,
+-- 			V = colors.blue,
+-- 			c = colors.magenta,
+-- 			no = colors.red,
+-- 			s = colors.orange,
+-- 			S = colors.orange,
+-- 			[""] = colors.orange,
+-- 			ic = colors.yellow,
+-- 			R = colors.violet,
+-- 			Rv = colors.violet,
+-- 			cv = colors.red,
+-- 			ce = colors.red,
+-- 			r = colors.cyan,
+-- 			rm = colors.cyan,
+-- 			["r?"] = colors.cyan,
+-- 			["!"] = colors.red,
+-- 			t = colors.red,
+-- 		}
+-- 		return { fg = mode_color[vim.fn.mode()] }
+-- 	end,
+-- 	padding = { right = 1 },
+-- })
 
 -- ins_left {
 --   -- filesize component
@@ -178,20 +178,20 @@ ins_right({
 	color = { fg = colors.red, gui = "bold" },
 })
 
-ins_right({
-	"o:encoding", -- option component same as &encoding in viml
-	fmt = string.upper, -- I'm not sure why it's upper case either ;)
-	cond = conditions.hide_in_width,
-	color = { fg = colors.yellow, gui = "bold" },
-})
-
-ins_right({
-	"fileformat",
-	fmt = string.upper,
-	icons_enabled = false, -- I think icons are cool but Eviline doesn't have them. sigh
-	cond = conditions.hide_in_width,
-	color = { fg = colors.yellow, gui = "bold" },
-})
+-- ins_right({
+-- 	"o:encoding", -- option component same as &encoding in viml
+-- 	fmt = string.upper, -- I'm not sure why it's upper case either ;)
+-- 	cond = conditions.hide_in_width,
+-- 	color = { fg = colors.yellow, gui = "bold" },
+-- })
+--
+-- ins_right({
+-- 	"fileformat",
+-- 	fmt = string.upper,
+-- 	icons_enabled = false, -- I think icons are cool but Eviline doesn't have them. sigh
+-- 	cond = conditions.hide_in_width,
+-- 	color = { fg = colors.yellow, gui = "bold" },
+-- })
 
 ins_right({
 	"branch",
@@ -216,7 +216,7 @@ ins_right({
 		return "▊"
 	end,
 	color = { fg = colors.red },
-	padding = { left = 1 },
+	padding = { left = 0.5 },
 })
 
 return M

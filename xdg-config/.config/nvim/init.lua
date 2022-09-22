@@ -63,7 +63,6 @@ local async = vim.loop.new_async(vim.schedule_wrap(function()
 			"gopls",
 			"clangd",
 			"denols",
-			"sumneko_lua",
 		},
 		automatic_installation = false,
 	})

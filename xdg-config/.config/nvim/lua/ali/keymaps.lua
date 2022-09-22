@@ -28,11 +28,11 @@ map("v", ">", ">gv")
 map("t", "<C-[>", "<C-\\><C-N>")
 map("n", "\\t", ":vsplit term://zsh<CR>")
 map("n", "\\p", ":split term://python3 %<CR>")
-map("n", "\\rp", ":split term://python3<CR>")
+map("n", "\\c", ":split term://cppc %<CR>")
 -- j for javascript/typescript
 map("n", "\\j", ":split term://deno run %<CR>")
 map("n", "\\rj", ":split term://deno<CR>")
-map("n", "\\c", ":split term://cppc %<CR>")
+map("n", "\\rp", ":split term://python3<CR>")
 
 -- Better window navigation
 map("n", "<A-h>", "<C-w>h")
@@ -40,16 +40,16 @@ map("n", "<A-j>", "<C-w>j")
 map("n", "<A-k>", "<C-w>k")
 map("n", "<A-l>", "<C-w>l")
 
-map({"t", "i"}, "<A-h>", "<C-\\><C-N><C-w>h")
-map({"t", "i"}, "<A-j>", "<C-\\><C-N><C-w>j")
-map({"t", "i"}, "<A-k>", "<C-\\><C-N><C-w>k")
-map({"t", "i"}, "<A-l>", "<C-\\><C-N><C-w>l")
+map({ "t", "i" }, "<A-h>", "<C-\\><C-N><C-w>h")
+map({ "t", "i" }, "<A-j>", "<C-\\><C-N><C-w>j")
+map({ "t", "i" }, "<A-k>", "<C-\\><C-N><C-w>k")
+map({ "t", "i" }, "<A-l>", "<C-\\><C-N><C-w>l")
 
 -- Disable arrow keys
-map({"n", "i"}, "<up>", "<nop>")
-map({"n", "i"}, "<down>", "<nop>")
-map({"n", "i"}, "<left>", "<nop>")
-map({"n", "i"}, "<right>", "<nop>")
+map({ "n", "i" }, "<up>", "<nop>")
+map({ "n", "i" }, "<down>", "<nop>")
+map({ "n", "i" }, "<left>", "<nop>")
+map({ "n", "i" }, "<right>", "<nop>")
 
 -- Filetree
 map("n", "<C-n>", ":Vexplore<CR>", { silent = true })
@@ -59,3 +59,16 @@ map("n", "<Leader>ff", ":Files<CR>")
 map("n", "<Leader>fg", ":Rg<CR>")
 map("n", "<Leader>fb", ":Buffers<CR>")
 map("n", "<Leader>fl", ":BLines<CR>")
+
+local toggleWinbar = function()
+	if vim.g.my_winbar_active == true then
+		vim.opt.winbar = ""
+		vim.g.my_winbar_active = false
+	else
+		vim.opt.winbar = "%t%M%=Unicode:%b"
+		vim.g.my_winbar_active = true
+	end
+end
+
+-- Optional winbar
+map("n", "<Leader>w", toggleWinbar)

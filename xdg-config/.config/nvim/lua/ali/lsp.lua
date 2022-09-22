@@ -61,17 +61,17 @@ lspconfig["denols"].setup(coq.lsp_ensure_capabilities({
 	root_dir = util.root_pattern("deno.json", "deno.jsonc", "deps.ts", "dev_deps.ts"),
 }))
 
-lspconfig["sumneko_lua"].setup(coq.lsp_ensure_capabilities({
-	on_attach = on_attach,
-	settings = {
-		diagnostics = {
-			globals = { "vim" },
-		},
-		workspace = {
-			library = vim.api.nvim_get_runtime_file("", true),
-		},
-	},
-}))
+--lspconfig["sumneko_lua"].setup(coq.lsp_ensure_capabilities({
+--	on_attach = on_attach,
+--	settings = {
+--		diagnostics = {
+--			globals = { "vim" },
+--		},
+--		workspace = {
+--			library = vim.api.nvim_get_runtime_file("", true),
+--		},
+--	},
+--}))
 
 lspconfig["tailwindcss"].setup(coq.lsp_ensure_capabilities({
 	on_attach = on_attach,

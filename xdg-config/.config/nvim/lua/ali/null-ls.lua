@@ -6,8 +6,8 @@ null_ls.setup({
 	debug = false,
 	sources = {
 		formatting.black.with({ extra_args = { "--fast" } }),
-		formatting.gofumpt,
 		formatting.prettier.with({ extra_args = { "--arrow-parens=avoid" } }),
+		formatting.gofumpt,
 		formatting.stylua,
 	},
 })
