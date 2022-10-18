@@ -75,7 +75,7 @@ ins_left({
 	function()
 		return "▊"
 	end,
-	color = { fg = colors.cyan }, -- Sets highlighting of component
+	color = { fg = colors.red }, -- Sets highlighting of component
 	padding = { left = 0, right = 0.5 }, -- We don't need space before this
 })
 
@@ -122,7 +122,7 @@ ins_left({
 ins_left({
 	"%f%m",
 	cond = conditions.buffer_not_empty,
-	color = { fg = colors.blue, gui = "bold" },
+	color = { fg = colors.yellow, gui = "bold" },
 })
 
 ins_left({
@@ -171,7 +171,7 @@ ins_left({
 ins_right({
 	"filetype",
 	cond = conditions.hide_in_width,
-	color = { fg = colors.blue, gui = "bold" },
+	color = { fg = colors.yellow, gui = "bold" },
 })
 
 -- ins_right({
@@ -198,7 +198,7 @@ ins_right({
 
 ins_right({
 	"%l/%L:%c",
-	color = { fg = colors.red, gui = "bold" },
+	color = { fg = colors.fg, gui = "bold" },
 })
 
 -- ins_right {
@@ -217,7 +217,7 @@ ins_right({
 	function()
 		return "▊"
 	end,
-	color = { fg = colors.cyan },
+	color = { fg = colors.red },
 	padding = { left = 0.5 },
 })
 

@@ -25,3 +25,4 @@ export NVM_DIR="$HOME/.nvm"
 # NIX_LINK=/home/alizaidi/.nix-profile
 # export LD_LIBRARY_PATH="$NIX_LINK"/lib
 # if [ -e /home/alizaidi/.nix-profile/etc/profile.d/nix.sh ]; then . /home/alizaidi/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+. "$HOME/.cargo/env"

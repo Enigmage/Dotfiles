@@ -61,6 +61,31 @@ lspconfig["denols"].setup(coq.lsp_ensure_capabilities({
 	root_dir = util.root_pattern("deno.json", "deno.jsonc", "deps.ts", "dev_deps.ts"),
 }))
 
+lspconfig["texlab"].setup(coq.lsp_ensure_capabilities({
+	on_attach = on_attach,
+}))
+
+lspconfig["rust_analyzer"].setup(coq.lsp_ensure_capabilities({
+	on_attach = on_attach,
+}))
+
+lspconfig["cssmodules_ls"].setup(coq.lsp_ensure_capabilities({
+	on_attach = on_attach,
+}))
+
+-- Not working!!
+-- lspconfig["hls"].setup(coq.lsp_ensure_capabilities({
+-- 	on_attach = on_attach,
+-- }))
+
+-- lspconfig["tailwindcss"].setup(coq.lsp_ensure_capabilities({
+-- 	on_attach = on_attach,
+-- }))
+
+-- lspconfig["cssls"].setup(coq.lsp_ensure_capabilities({
+--     on_attach = on_attach,
+-- }))
+
 --lspconfig["sumneko_lua"].setup(coq.lsp_ensure_capabilities({
 --	on_attach = on_attach,
 --	settings = {
@@ -72,16 +97,3 @@ lspconfig["denols"].setup(coq.lsp_ensure_capabilities({
 --		},
 --	},
 --}))
-
-lspconfig["tailwindcss"].setup(coq.lsp_ensure_capabilities({
-	on_attach = on_attach,
-}))
-
-lspconfig["texlab"].setup(coq.lsp_ensure_capabilities({
-	on_attach = on_attach,
-}))
-
--- lspconfig["hls"].setup(coq.lsp_ensure_capabilities({
--- 	cmd = { "haskell-language-server-wrapper-1.8.0.0", "--lsp" },
--- 	on_attach = on_attach,
--- }))

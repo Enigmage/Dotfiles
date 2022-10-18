@@ -7,6 +7,7 @@ vim.g.user_emmet_leader_key = ","
 
 -- Silent and non-recursive
 local opts = { silent = true, noremap = true }
+local opts2 = { silent = true, noremap = true, expr = false }
 
 --Modes
 --  normal_mode = "n",
@@ -30,7 +31,7 @@ map("v", ">", ">gv")
 -- Terminal mappings
 map("t", "<C-[>", "<C-\\><C-N>", opts)
 map("n", "\\t", ":split term://zsh<CR>", opts)
-map("n", "\\p", ":split term://python3 %<CR>", opts)
+map("n", "\\p", ":split term://pyrun %<CR>", opts)
 map("n", "\\c", ":split term://cppc %<CR>", opts)
 map("n", "\\j", ":split term://deno run %<CR>", opts)
 map("n", "\\rj", ":split term://deno<CR>", opts)
@@ -61,6 +62,7 @@ map("n", "<Leader>ff", ":Files<CR>")
 map("n", "<Leader>fg", ":Rg<CR>")
 map("n", "<Leader>fb", ":Buffers<CR>")
 map("n", "<Leader>fl", ":BLines<CR>")
+map("n", "<Leader>fm", ":Marks<CR>")
 
 local toggleWinbar = function()
 	if vim.g.my_winbar_active == true then
@@ -74,3 +76,6 @@ end
 
 -- Optional winbar
 map("n", "<Leader>w", toggleWinbar)
+
+-- refactor
+map("v", "<Leader>rr", ":lua require('refactoring').select_refactor()<CR>", opts2)

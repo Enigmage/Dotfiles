@@ -19,6 +19,7 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'p00f/nvim-ts-rainbow'
 Plug 'nvim-treesitter/nvim-treesitter-context'
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+Plug 'ThePrimeagen/refactoring.nvim'
 Plug 'williamboman/mason.nvim'
 Plug 'williamboman/mason-lspconfig.nvim'
 Plug 'neovim/nvim-lspconfig'
@@ -52,6 +53,7 @@ local async = vim.loop.new_async(vim.schedule_wrap(function()
 	require("ali.treesitter")
 	local myConfig = require("ali.statusline")
 	require("lualine").setup(myConfig)
+	require("ali.refactor")
 	require("ali.null-ls")
 	require("Comment").setup()
 	require("colorizer").setup()
