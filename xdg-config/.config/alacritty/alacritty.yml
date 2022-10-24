@@ -31,7 +31,7 @@ window:
   #
   # Blank space added around the window in pixels. This padding is scaled
   # by DPI and the specified value is always added at both opposing sides.
-  opacity: 0.87
+  opacity: 0.92
   padding:
     x: 6
     y: 6
@@ -111,8 +111,8 @@ font:
     #family: Monoid Nerd Font
     # family: Hasklig
     # family: FiraCode Nerd Font
-    family: JetBrains Mono
-    # family: Fira Code
+    # family: JetBrains Mono
+    family: Fira Code
     # family: Fira Code
     # The `style` can be specified to pick a specific face.
     style: Regular
@@ -205,32 +205,30 @@ draw_bold_text_with_bright_colors: true
 colors:
   # Default colors
   primary:
-    # hard contrast: background = '#1d2021'
-    background: "#282828"
-    # soft contrast: background = '#32302f'
-    foreground: "#ebdbb2"
+    background: '#2E3440'
+    foreground: '#D8DEE9'
 
   # Normal colors
   normal:
-    black: "#282828"
-    red: "#cc241d"
-    green: "#98971a"
-    yellow: "#d79921"
-    blue: "#458588"
-    magenta: "#b16286"
-    cyan: "#689d6a"
-    white: "#a89984"
+    black: '#3B4252'
+    red: '#BF616A'
+    green: '#A3BE8C'
+    yellow: '#EBCB8B'
+    blue: '#81A1C1'
+    magenta: '#B48EAD'
+    cyan: '#88C0D0'
+    white: '#E5E9F0'
 
   # Bright colors
   bright:
-    black: "#928374"
-    red: "#fb4934"
-    green: "#b8bb26"
-    yellow: "#fabd2f"
-    blue: "#83a598"
-    magenta: "#d3869b"
-    cyan: "#8ec07c"
-    white: "#ebdbb2"
+    black: '#4C566A'
+    red: '#BF616A'
+    green: '#A3BE8C'
+    yellow: '#EBCB8B'
+    blue: '#81A1C1'
+    magenta: '#B48EAD'
+    cyan: '#8FBCBB'
+    white: '#ECEFF4'
 # Visual Bell
 #
 # Any time the BEL code is received, Alacritty "rings" the visual bell. Once
@@ -495,8 +493,28 @@ key_bindings:
   #  - { key: Copy,                     action: Copy                             }
   #  - { key: L,         mods: Control, action: ClearLogNotice                   }
   #  - { key: L,         mods: Control, chars: "\x0c"                            }
-  - { key: PageUp, mods: Shift, action: ScrollPageUp, mode: ~Alt }
-  - { key: PageDown, mods: Shift, action: ScrollPageDown, mode: ~Alt }
-  - { key: Home, mods: Shift, action: ScrollToTop, mode: ~Alt }
-  - { key: End, mods: Shift, action: ScrollToBottom, mode: ~Alt }
-theme: Gruvbox-Dark
+  - {
+      key: PageUp,
+      mods: Shift,
+      action: ScrollPageUp,
+      mode: ~Alt
+    }
+  - {
+      key: PageDown,
+      mods: Shift,
+      action: ScrollPageDown,
+      mode: ~Alt
+    }
+  - {
+      key: Home,
+      mods: Shift,
+      action: ScrollToTop,
+      mode: ~Alt
+    }
+  - {
+      key: End,
+      mods: Shift,
+      action: ScrollToBottom,
+      mode: ~Alt
+    }
+theme: Nord

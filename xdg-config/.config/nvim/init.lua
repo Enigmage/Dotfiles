@@ -5,6 +5,7 @@ Plug 'nvim-lualine/lualine.nvim'
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'luisiacc/gruvbox-baby', { 'branch': 'main'}
+Plug 'shaunsingh/nord.nvim'
 Plug 'RishabhRD/popfix'
 Plug 'RishabhRD/nvim-cheat.sh'
 Plug 'numToStr/Comment.nvim'
@@ -36,7 +37,6 @@ Plug 'tpope/vim-surround'
 " Plug 'quangnguyen30192/cmp-nvim-ultisnips'
 " Plug 'hrsh7th/nvim-cmp'
 " Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" Plug 'vimwiki/vimwiki'
 " Plug 'andweeb/presence.nvim'
 " Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 call plug#end()

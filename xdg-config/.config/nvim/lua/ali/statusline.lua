@@ -122,7 +122,7 @@ ins_left({
 ins_left({
 	"%f%m",
 	cond = conditions.buffer_not_empty,
-	color = { fg = colors.yellow, gui = "bold" },
+	color = { fg = colors.blue, gui = "bold" },
 })
 
 ins_left({
@@ -170,8 +170,7 @@ ins_left({
 -- Add components to right sections
 ins_right({
 	"filetype",
-	cond = conditions.hide_in_width,
-	color = { fg = colors.yellow, gui = "bold" },
+	color = { fg = colors.blue, gui = "bold" },
 })
 
 -- ins_right({
@@ -192,6 +191,7 @@ ins_right({
 ins_right({
 	"branch",
 	icons_enabled = false,
+	cond = conditions.hide_in_width,
 	-- icon = "",
 	color = { fg = colors.green, gui = "bold" },
 })
