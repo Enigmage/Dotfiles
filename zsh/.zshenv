@@ -7,8 +7,10 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="fdfind -t d . $HOME"
 export TERMINAL="st"
 export DENO_PATH="/home/alizaidi/.deno"
+export FLYCTL_INSTALL="/home/alizaidi/.fly"
 
 # Custom Search paths.
+export PATH=$PATH:$FLYCTL_INSTALL/bin/
 export PATH=$PATH:~/scripts
 export PATH=$PATH:~/.local/bin/
 export PATH=$PATH:$DENO_PATH/bin

@@ -25,58 +25,67 @@ end
 
 local lspconfig = require("lspconfig")
 local util = require("lspconfig.util")
-local coq = require("coq")
--- local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
+-- local coq = require("coq")
 
 -- local lsp_flags = {
 -- 	debounce_text_changes = 150,
 -- }
 
-lspconfig["tsserver"].setup(coq.lsp_ensure_capabilities({
+lspconfig["tsserver"].setup({
+	capabilities = capabilities,
 	on_attach = on_attach,
-}))
+})
 
-lspconfig["pyright"].setup(coq.lsp_ensure_capabilities({
+lspconfig["pyright"].setup({
+	capabilities = capabilities,
 	on_attach = on_attach,
 	analysis = {
 		typeCheckingMode = "basic",
 		autoImportCompletions = true,
 	},
-}))
+})
 
-lspconfig["gopls"].setup(coq.lsp_ensure_capabilities({
+lspconfig["gopls"].setup({
+	capabilities = capabilities,
 	on_attach = on_attach,
-}))
+})
 
-lspconfig["clangd"].setup(coq.lsp_ensure_capabilities({
+lspconfig["clangd"].setup({
+	capabilities = capabilities,
 	on_attach = on_attach,
-}))
+})
 
-lspconfig["denols"].setup(coq.lsp_ensure_capabilities({
+lspconfig["denols"].setup({
+	capabilities = capabilities,
 	on_attach = on_attach,
 	init_options = {
 		enable = true,
 		unstable = true,
 	},
 	root_dir = util.root_pattern("deno.json", "deno.jsonc", "deps.ts", "dev_deps.ts"),
-}))
+})
 
-lspconfig["texlab"].setup(coq.lsp_ensure_capabilities({
+lspconfig["texlab"].setup({
+	capabilities = capabilities,
 	on_attach = on_attach,
-}))
+})
 
-lspconfig["rust_analyzer"].setup(coq.lsp_ensure_capabilities({
+lspconfig["rust_analyzer"].setup({
+	capabilities = capabilities,
 	on_attach = on_attach,
-}))
+})
 
-lspconfig["cssmodules_ls"].setup(coq.lsp_ensure_capabilities({
+lspconfig["cssmodules_ls"].setup({
+	capabilities = capabilities,
 	on_attach = on_attach,
-}))
+})
 
 -- Not working!!
--- lspconfig["hls"].setup(coq.lsp_ensure_capabilities({
--- 	on_attach = on_attach,
--- }))
+lspconfig["hls"].setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+})
 
 -- lspconfig["tailwindcss"].setup(coq.lsp_ensure_capabilities({
 -- 	on_attach = on_attach,

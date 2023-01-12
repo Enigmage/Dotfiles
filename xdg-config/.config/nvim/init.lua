@@ -16,6 +16,7 @@ Plug 'mattn/emmet-vim'
 Plug 'tpope/vim-fugitive'
 Plug 'lervag/vimtex', { 'for': 'tex' }
 Plug 'preservim/vim-markdown', { 'for' : 'markdown' }
+Plug 'godlygeek/tabular'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'p00f/nvim-ts-rainbow'
 Plug 'nvim-treesitter/nvim-treesitter-context'
@@ -24,18 +25,26 @@ Plug 'ThePrimeagen/refactoring.nvim'
 Plug 'williamboman/mason.nvim'
 Plug 'williamboman/mason-lspconfig.nvim'
 Plug 'neovim/nvim-lspconfig'
-Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
-Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
+" Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
+" Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
 Plug 'nvim-lua/plenary.nvim'
 Plug 'jose-elias-alvarez/null-ls.nvim'
 Plug 'windwp/nvim-autopairs'
 Plug 'tpope/vim-surround'
-" Plug 'hrsh7th/cmp-nvim-lsp'
+"--- Experimental
+Plug 'eandrju/cellular-automaton.nvim'
+Plug 'stevearc/oil.nvim'
+" Plug 'folke/noice.nvim'
+" Plug 'MunifTanjim/nui.nvim'
+" Plug 'rcarriga/nvim-notify'
+"---
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'saadparwaiz1/cmp_luasnip'
+Plug 'L3MON4D3/LuaSnip'
 " Plug 'hrsh7th/cmp-buffer'
 " Plug 'hrsh7th/cmp-path'
 " Plug 'hrsh7th/cmp-cmdline'
-" Plug 'quangnguyen30192/cmp-nvim-ultisnips'
-" Plug 'hrsh7th/nvim-cmp'
 " Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Plug 'andweeb/presence.nvim'
 " Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
@@ -46,13 +55,16 @@ require("ali.options")
 require("ali.autocmds")
 require("ali.keymaps")
 require("ali.colorscheme")
+require("ali.oil")
 require("mason").setup()
+require("ali.cmp")
 require("ali.lsp")
 
 local async = vim.loop.new_async(vim.schedule_wrap(function()
 	require("ali.treesitter")
 	local myConfig = require("ali.statusline")
 	require("lualine").setup(myConfig)
+	-- require("ali.noice")
 	require("ali.refactor")
 	require("ali.null-ls")
 	require("Comment").setup()
