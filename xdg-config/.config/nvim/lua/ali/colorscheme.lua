@@ -10,7 +10,7 @@ vim.g.nord_uniform_diff_background = true
 -- require("nord").set()
 
 vim.cmd([[
-colo tokyonight-storm
+colo tokyonight-moon
 " hi Normal guibg=none
 " hi WinSeparator guibg=none
 ]])

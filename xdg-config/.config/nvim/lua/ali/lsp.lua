@@ -81,18 +81,18 @@ lspconfig["cssmodules_ls"].setup({
 	on_attach = on_attach,
 })
 
--- Not working!!
 lspconfig["hls"].setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+})
+
+lspconfig["cssls"].setup({
 	capabilities = capabilities,
 	on_attach = on_attach,
 })
 
 -- lspconfig["tailwindcss"].setup(coq.lsp_ensure_capabilities({
 -- 	on_attach = on_attach,
--- }))
-
--- lspconfig["cssls"].setup(coq.lsp_ensure_capabilities({
---     on_attach = on_attach,
 -- }))
 
 --lspconfig["sumneko_lua"].setup(coq.lsp_ensure_capabilities({
