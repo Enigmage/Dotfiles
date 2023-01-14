@@ -27,11 +27,7 @@ require("packer").startup(function(use)
 		end,
 	})
 	--colorschemes
-	use(
-		{ "folke/tokyonight.nvim", branch = "main" },
-		{ "luisiacc/gruvbox-baby", branch = "main" },
-		"shaunsingh/nord.nvim"
-	)
+	use({ "folke/tokyonight.nvim", branch = "main" })
 	-- use 'RishabhRD/popfix'
 	-- use 'RishabhRD/nvim-cheat.sh'
 	use({
@@ -104,6 +100,12 @@ require("packer").startup(function(use)
 	if is_bootstrap then
 		require("packer").sync()
 	end
+	use({
+		"lewis6991/gitsigns.nvim",
+		config = function()
+			require("gitsigns").setup()
+		end,
+	})
 end)
 -- When we are bootstrapping a configuration, it doesn't
 -- make sense to execute the rest of the init.lua.
