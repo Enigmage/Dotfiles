@@ -1,8 +1,0 @@
-snippet dev "tmux dev env" b
-session="$1"
-tmux has-session -t $session 2> /dev/null
-if [ $? -ne 0 ]; then
-	$2
-fi
-tmux a -t $session
-endsnippet
