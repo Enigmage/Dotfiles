@@ -26,79 +26,29 @@ end
 local lspconfig = require("lspconfig")
 local util = require("lspconfig.util")
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
+local mason_lspconfig = require("mason-lspconfig")
 -- local coq = require("coq")
 
 -- local lsp_flags = {
 -- 	debounce_text_changes = 150,
 -- }
 
-lspconfig["tsserver"].setup({
-	capabilities = capabilities,
-	on_attach = on_attach,
-})
-
-lspconfig["pyright"].setup({
-	capabilities = capabilities,
-	on_attach = on_attach,
-	analysis = {
-		typeCheckingMode = "basic",
-		autoImportCompletions = true,
+local servers = {
+	tsserver = {},
+	pyright = {
+		analysis = {
+			typeCheckingMode = "basic",
+			autoImportCompletions = true,
+		},
 	},
-})
-
-lspconfig["gopls"].setup({
-	capabilities = capabilities,
-	on_attach = on_attach,
-})
-
-lspconfig["clangd"].setup({
-	capabilities = capabilities,
-	on_attach = on_attach,
-})
-
-lspconfig["denols"].setup({
-	capabilities = capabilities,
-	on_attach = on_attach,
-	init_options = {
-		enable = true,
-		unstable = true,
-	},
-	root_dir = util.root_pattern("deno.json", "deno.jsonc", "deps.ts", "dev_deps.ts"),
-})
-
-lspconfig["texlab"].setup({
-	capabilities = capabilities,
-	on_attach = on_attach,
-})
-
-lspconfig["rust_analyzer"].setup({
-	capabilities = capabilities,
-	on_attach = on_attach,
-})
-
-lspconfig["cssmodules_ls"].setup({
-	capabilities = capabilities,
-	on_attach = on_attach,
-})
-
-lspconfig["hls"].setup({
-	capabilities = capabilities,
-	on_attach = on_attach,
-})
-
-lspconfig["cssls"].setup({
-	capabilities = capabilities,
-	on_attach = on_attach,
-})
-
--- lspconfig["tailwindcss"].setup(coq.lsp_ensure_capabilities({
--- 	on_attach = on_attach,
--- }))
-
-lspconfig["sumneko_lua"].setup({
-	capabilities = capabilities,
-	on_attach = on_attach,
-	settings = {
+	gopls = {},
+	clangd = {},
+	texlab = {},
+	rust_analyzer = {},
+	cssls = {},
+	cssmodules_ls = {},
+	hls = {},
+	sumneko_lua = {
 		runtime = {
 			version = "LuaJIT",
 		},
@@ -109,4 +59,28 @@ lspconfig["sumneko_lua"].setup({
 			library = vim.api.nvim_get_runtime_file("", true),
 		},
 	},
+}
+
+mason_lspconfig.setup({
+	ensure_installed = vim.tbl_keys(servers),
+})
+
+mason_lspconfig.setup_handlers({
+	function(server_name)
+		lspconfig[server_name].setup({
+			capabilities = capabilities,
+			on_attach = on_attach,
+			settings = servers[server_name],
+		})
+	end,
+})
+
+lspconfig["denols"].setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+	init_options = {
+		enable = true,
+		unstable = true,
+	},
+	root_dir = util.root_pattern("deno.json", "deno.jsonc", "deps.ts", "dev_deps.ts"),
 })
