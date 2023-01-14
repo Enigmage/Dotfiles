@@ -95,14 +95,18 @@ lspconfig["cssls"].setup({
 -- 	on_attach = on_attach,
 -- }))
 
---lspconfig["sumneko_lua"].setup(coq.lsp_ensure_capabilities({
---	on_attach = on_attach,
---	settings = {
---		diagnostics = {
---			globals = { "vim" },
---		},
---		workspace = {
---			library = vim.api.nvim_get_runtime_file("", true),
---		},
---	},
---}))
+lspconfig["sumneko_lua"].setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+	settings = {
+		runtime = {
+			version = "LuaJIT",
+		},
+		diagnostics = {
+			globals = { "vim" },
+		},
+		workspace = {
+			library = vim.api.nvim_get_runtime_file("", true),
+		},
+	},
+})
