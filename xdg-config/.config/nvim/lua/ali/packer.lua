@@ -9,6 +9,9 @@ end
 require("packer").startup(function(use)
 	-- Package manager
 	use("wbthomason/packer.nvim")
+	use({
+		"lewis6991/impatient.nvim",
+	})
 	use("nvim-lua/plenary.nvim")
 	use({
 		"nvim-lualine/lualine.nvim",
@@ -23,9 +26,12 @@ require("packer").startup(function(use)
 			require("colorizer").setup()
 		end,
 	})
-	use({ "folke/tokyonight.nvim", branch = "main" })
-	use({ "luisiacc/gruvbox-baby", branch = "main" })
-	use("shaunsingh/nord.nvim")
+	--colorschemes
+	use(
+		{ "folke/tokyonight.nvim", branch = "main" },
+		{ "luisiacc/gruvbox-baby", branch = "main" },
+		"shaunsingh/nord.nvim"
+	)
 	-- use 'RishabhRD/popfix'
 	-- use 'RishabhRD/nvim-cheat.sh'
 	use({
@@ -34,7 +40,7 @@ require("packer").startup(function(use)
 			require("Comment").setup()
 		end,
 	})
-	use("chrisbra/unicode.vim")
+	use({ "chrisbra/unicode.vim" })
 	use({
 		"junegunn/fzf",
 		run = function()
@@ -55,12 +61,11 @@ require("packer").startup(function(use)
 		config = function()
 			require("ali.treesitter")
 		end,
-	})
-	use({
-		"p00f/nvim-ts-rainbow",
-		"nvim-treesitter/nvim-treesitter-context",
-		"nvim-treesitter/nvim-treesitter-textobjects",
-		after = "nvim-treesitter",
+		requires = {
+			"p00f/nvim-ts-rainbow",
+			"nvim-treesitter/nvim-treesitter-context",
+			"nvim-treesitter/nvim-treesitter-textobjects",
+		},
 	})
 	-- Plug 'ThePrimeagen/refactoring.nvim'
 	use({
@@ -69,10 +74,20 @@ require("packer").startup(function(use)
 			require("mason").setup()
 		end,
 	})
-	use("williamboman/mason-lspconfig.nvim")
-	use({"neovim/nvim-lspconfig", config = function() 
-        require('ali.lsp')
-    end})
+	use({
+		"neovim/nvim-lspconfig",
+		config = function()
+			require("ali.lsp")
+		end,
+		requires = { "hrsh7th/cmp-nvim-lsp", "williamboman/mason-lspconfig.nvim" },
+	})
+	use({ -- Autocompletion
+		"hrsh7th/nvim-cmp",
+		config = function()
+			require("ali.cmp")
+		end,
+		requires = { "L3MON4D3/LuaSnip", "saadparwaiz1/cmp_luasnip", "hrsh7th/cmp-buffer" },
+	})
 	use({
 		"jose-elias-alvarez/null-ls.nvim",
 		config = function()
@@ -86,18 +101,12 @@ require("packer").startup(function(use)
 		end,
 	})
 	use("tpope/vim-surround")
-	use({ -- Autocompletion
-		"hrsh7th/nvim-cmp",
-		config = function()
-			require("ali.cmp")
-		end,
-		requires = { "hrsh7th/cmp-nvim-lsp", "L3MON4D3/LuaSnip", "saadparwaiz1/cmp_luasnip", "hrsh7th/cmp-buffer" },
-	})
+	if is_bootstrap then
+		require("packer").sync()
+	end
 end)
-
 -- When we are bootstrapping a configuration, it doesn't
 -- make sense to execute the rest of the init.lua.
---
 -- You'll need to restart nvim, and then it will work.
 if is_bootstrap then
 	print("==================================")
@@ -107,5 +116,3 @@ if is_bootstrap then
 	print("==================================")
 	return
 end
--- require("ali.noice")
--- require("ali.refactor")

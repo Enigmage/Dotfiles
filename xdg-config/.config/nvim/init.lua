@@ -1,5 +1,6 @@
-require("ali.packer")
+require('impatient')
 require("ali.options")
 require("ali.autocmds")
 require("ali.keymaps")
---require("ali.colorscheme")
+require("ali.colorscheme")
+require('ali.packer')
