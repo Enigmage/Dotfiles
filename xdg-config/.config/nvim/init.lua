@@ -1,6 +1,8 @@
-require('impatient')
+-- fast startup
+require("impatient")
+-- core
 require("ali.options")
 require("ali.autocmds")
 require("ali.keymaps")
-require("ali.colorscheme")
-require('ali.packer')
+-- plugins
+require("ali.packer")

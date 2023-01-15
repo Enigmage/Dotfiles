@@ -22,12 +22,19 @@ require("packer").startup(function(use)
 	})
 	use({
 		"norcalli/nvim-colorizer.lua",
+		ft = { "javascript", "typescript", "html", "css", "sass", "javascriptreact", "typescriptreact", "scss" },
 		config = function()
 			require("colorizer").setup()
 		end,
 	})
 	--colorschemes
 	use({ "folke/tokyonight.nvim", branch = "main" })
+	use({
+		"navarasu/onedark.nvim",
+		config = function()
+			require("ali.onedark")
+		end,
+	})
 	-- use 'RishabhRD/popfix'
 	-- use 'RishabhRD/nvim-cheat.sh'
 	use({
@@ -35,20 +42,31 @@ require("packer").startup(function(use)
 		config = function()
 			require("Comment").setup()
 		end,
+		event = "BufEnter",
 	})
 	use({ "chrisbra/unicode.vim" })
 	use({
-		"junegunn/fzf",
-		run = function()
-			vim.fn["fzf#install"]()
-		end,
+		"junegunn/fzf.vim",
+		requires = {
+			{
+				"junegunn/fzf",
+				run = function()
+					vim.fn["fzf#install"]()
+				end,
+			},
+		},
 	})
-	use("junegunn/fzf.vim")
-	use("mattn/emmet-vim")
+	use({
+		"mattn/emmet-vim",
+		ft = { "javascript", "typescript", "html", "css", "sass", "javascriptreact", "typescriptreact", "scss" },
+	})
 	use("tpope/vim-fugitive")
 	use({ "lervag/vimtex", ft = { "tex" } })
-	use({ "preservim/vim-markdown", ft = { "markdown" } })
-	use("godlygeek/tabular")
+	use({
+		"preservim/vim-markdown",
+		ft = { "markdown" },
+		requires = { "godlygeek/tabular", opt = true, ft = { "markdown" } },
+	})
 	use({ -- Highlight, edit, and navigate code
 		"nvim-treesitter/nvim-treesitter",
 		run = function()
@@ -95,17 +113,18 @@ require("packer").startup(function(use)
 		config = function()
 			require("nvim-autopairs").setup()
 		end,
+		command = "BufEnter",
 	})
-	use("tpope/vim-surround")
-	if is_bootstrap then
-		require("packer").sync()
-	end
+	use({ "tpope/vim-surround", command = "BufEnter" })
 	use({
 		"lewis6991/gitsigns.nvim",
 		config = function()
 			require("gitsigns").setup()
 		end,
 	})
+	if is_bootstrap then
+		require("packer").sync()
+	end
 end)
 -- When we are bootstrapping a configuration, it doesn't
 -- make sense to execute the rest of the init.lua.

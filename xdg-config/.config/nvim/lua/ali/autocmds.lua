@@ -11,7 +11,7 @@ local WebDevOptions = function()
     vim.opt_local.textwidth = 90
     vim.opt_local.expandtab = true
     vim.opt_local.colorcolumn = "90"
-    vim.cmd([[EmmetInstall]])
+    -- vim.cmd([[EmmetInstall]])
 end
 
 vim.api.nvim_create_autocmd({ "BufWritePost" }, {
