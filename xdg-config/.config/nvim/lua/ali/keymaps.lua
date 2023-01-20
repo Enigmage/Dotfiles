@@ -1,3 +1,5 @@
+-- General keymaps
+
 local map = vim.keymap.set -- provides non-recursive mapping by default
 --local rem = vim.keymap.del
 
@@ -7,7 +9,6 @@ vim.g.user_emmet_leader_key = ","
 
 -- Silent and non-recursive
 local opts = { silent = true, noremap = true }
-local opts2 = { silent = true, noremap = true, expr = false }
 
 --Modes
 --  normal_mode = "n",
@@ -57,13 +58,6 @@ map({ "n", "i" }, "<right>", "<nop>")
 -- Filetree
 map("n", "<C-n>", ":Vexplore<CR>", opts)
 
--- Fzf <Leader>f
-map("n", "<Leader>ff", ":Files<CR>")
-map("n", "<Leader>fg", ":Rg<CR>")
-map("n", "<Leader>fb", ":Buffers<CR>")
-map("n", "<Leader>fl", ":BLines<CR>")
-map("n", "<Leader>fm", ":Marks<CR>")
-
 local toggleWinbar = function()
 	if vim.g.my_winbar_active == true then
 		vim.opt.winbar = ""
@@ -76,6 +70,3 @@ end
 
 -- Optional winbar
 map("n", "<Leader>w", toggleWinbar)
-
--- refactor
-map("v", "<Leader>rr", ":lua require('refactoring').select_refactor()<CR>", opts2)

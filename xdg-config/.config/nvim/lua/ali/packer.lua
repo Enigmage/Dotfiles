@@ -22,7 +22,7 @@ require("packer").startup(function(use)
 	})
 	use({
 		"norcalli/nvim-colorizer.lua",
-		ft = { "javascript", "typescript", "html", "css", "sass", "javascriptreact", "typescriptreact", "scss" },
+		ft = { "javascript", "typescript", "html", "css", "sass", "javascriptreact", "typescriptreact", "scss", "astro" },
 		config = function()
 			require("colorizer").setup()
 		end,
@@ -55,10 +55,13 @@ require("packer").startup(function(use)
 				end,
 			},
 		},
+		config = function()
+			require("ali.fzf")
+		end,
 	})
 	use({
 		"mattn/emmet-vim",
-		ft = { "javascript", "typescript", "html", "css", "sass", "javascriptreact", "typescriptreact", "scss" },
+		ft = { "javascript", "typescript", "html", "css", "sass", "javascriptreact", "typescriptreact", "scss", "astro" },
 	})
 	use("tpope/vim-fugitive")
 	use({ "lervag/vimtex", ft = { "tex" } })
@@ -113,9 +116,9 @@ require("packer").startup(function(use)
 		config = function()
 			require("nvim-autopairs").setup()
 		end,
-		command = "BufEnter",
+		event = "BufEnter",
 	})
-	use({ "tpope/vim-surround", command = "BufEnter" })
+	use({ "tpope/vim-surround", event = "BufEnter" })
 	use({
 		"lewis6991/gitsigns.nvim",
 		config = function()
@@ -137,3 +140,11 @@ if is_bootstrap then
 	print("==================================")
 	return
 end
+
+local packer_group = vim.api.nvim_create_augroup("Packer", { clear = true })
+
+vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+	command = "source <afile> | silent! LspStop | silent! LspStart | PackerCompile",
+	group = packer_group,
+	pattern = vim.fn.expand("$MYVIMRC"),
+})

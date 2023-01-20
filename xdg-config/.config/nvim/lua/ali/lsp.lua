@@ -48,6 +48,7 @@ local servers = {
     cssls = {},
     cssmodules_ls = {},
     hls = {},
+    tailwindcss = {},
     sumneko_lua = {
         runtime = {
             version = "LuaJIT",

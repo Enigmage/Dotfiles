@@ -20,3 +20,11 @@ require("refactoring").setup({
 	printf_statements = {},
 	print_var_statements = {},
 })
+
+-- refactor keymap
+vim.keymap.set(
+	"v",
+	"<Leader>rr",
+	":lua require('refactoring').select_refactor()<CR>",
+	{ silent = true, noremap = true, expr = false }
+)

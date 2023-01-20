@@ -66,12 +66,3 @@ end
 for var, value in pairs(globalVars) do
 	vim.g[var] = value
 end
-
-vim.cmd([[
-let g:fzf_action = {
-            \ 'ctrl-t': 'tab split',
-            \ 'ctrl-s': 'split',
-            \ 'ctrl-v': 'vsplit'
-            \}
-let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
-]])
