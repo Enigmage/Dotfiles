@@ -26,7 +26,7 @@ require("nvim-treesitter.configs").setup({
 	},
 	indent = {
 		enable = true,
-		disable = { "python" },
+		disable = { "python", "haskell", "c", "cpp" },
 	},
 	rainbow = {
 		enable = true,

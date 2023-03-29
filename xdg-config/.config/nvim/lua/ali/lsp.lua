@@ -49,7 +49,7 @@ local servers = {
     cssmodules_ls = {},
     hls = {},
     tailwindcss = {},
-    sumneko_lua = {
+    lua_ls = {
         runtime = {
             version = "LuaJIT",
         },
@@ -62,9 +62,9 @@ local servers = {
     },
 }
 
-mason_lspconfig.setup({
-    ensure_installed = vim.tbl_keys(servers),
-})
+-- mason_lspconfig.setup({
+--     ensure_installed = vim.tbl_keys(servers),
+-- })
 
 mason_lspconfig.setup_handlers({
     function(server_name)
