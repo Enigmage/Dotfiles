@@ -7,7 +7,7 @@ require("ali.keymaps")
 -- plugins
 require("ali.packer")
 
--- colorscheme
+-- Colorscheme (uncomment to apply)
 -- require('ali.gruvbox')
 -- require('ali.onedark')
 -- require('ali.nord')
