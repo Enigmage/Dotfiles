@@ -9,5 +9,6 @@ null_ls.setup({
 		formatting.prettier.with({ extra_args = { "--arrow-parens=avoid" } }),
 		formatting.gofumpt,
 		formatting.stylua,
+		formatting.google_java_format,
 	},
 })

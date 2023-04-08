@@ -44,13 +44,10 @@ require("packer").startup(function(use)
         end,
     })
     --colorschemes
+    use("marko-cerovac/material.nvim")
+    use("ellisonleao/gruvbox.nvim")
     use({ "folke/tokyonight.nvim", branch = "main" })
-    use({
-        "navarasu/onedark.nvim",
-        config = function()
-            require("ali.onedark")
-        end,
-    })
+    use("navarasu/onedark.nvim")
     -- use 'RishabhRD/popfix'
     -- use 'RishabhRD/nvim-cheat.sh'
     use({
@@ -96,7 +93,8 @@ require("packer").startup(function(use)
         ft = { "markdown" },
         requires = { "godlygeek/tabular", opt = true, ft = { "markdown" } },
     })
-    use({ -- Highlight, edit, and navigate code
+    use({
+        -- Highlight, edit, and navigate code
         "nvim-treesitter/nvim-treesitter",
         run = function()
             pcall(require("nvim-treesitter.install").update({ with_sync = true }))
@@ -124,7 +122,8 @@ require("packer").startup(function(use)
         end,
         requires = { "hrsh7th/cmp-nvim-lsp", "williamboman/mason-lspconfig.nvim" },
     })
-    use({ -- Autocompletion
+    use({
+        -- Autocompletion
         "hrsh7th/nvim-cmp",
         config = function()
             require("ali.cmp")
