@@ -10,5 +10,6 @@ null_ls.setup({
 		formatting.gofumpt,
 		formatting.stylua,
 		formatting.google_java_format,
+		formatting.beautysh,
 	},
 })
