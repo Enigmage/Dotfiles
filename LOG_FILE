@@ -1,0 +1,6 @@
+[master 15feaa8] update
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 LOG_FILE
+remote: Resolving deltas:   0% (0/1)        remote: Resolving deltas: 100% (1/1)        remote: Resolving deltas: 100% (1/1), completed with 1 local object.        
+To github.com:Enigmage/Dotfiles.git
+   bb32fd0..15feaa8  master -> master
