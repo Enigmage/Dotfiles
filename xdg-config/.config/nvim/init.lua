@@ -10,4 +10,6 @@ require("ali.packer")
 -- colorscheme
 -- require('ali.gruvbox')
 -- require('ali.onedark')
-require('ali.material')
+-- require('ali.nord')
+-- require('ali.material')
+vim.cmd('colorscheme tokyonight-moon')
