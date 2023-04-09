@@ -31,7 +31,7 @@ window:
   #
   # Blank space added around the window in pixels. This padding is scaled
   # by DPI and the specified value is always added at both opposing sides.
-  opacity: 0.84
+  opacity: 0.92
   padding:
     x: 6
     y: 6
@@ -100,22 +100,14 @@ font:
     #   - (macOS) Menlo
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
-    # family: Hack
-    # family: mononoki Nerd Font Mono
-    # family: Inconsolata for Powerline
-    # family: Source Code Pro for Powerline
-    # family: SauceCodePro Nerd Font
     # family: Monaco
-    # family: Noto Mono for Powerline
-    # family: Monoid
-    #family: Monoid Nerd Font
     # family: Hasklig
-    family: FiraCode Nerd Font
-    # family: JetBrains Mono
-    # family: Fira Code
+    # family: FiraCode Nerd Font
+    family: JetBrains Mono
     # family: Fira Code
     # The `style` can be specified to pick a specific face.
-    style: Regular
+    style: Medium
+
     # Bold font face
     # bold:
     # Font family
@@ -204,40 +196,40 @@ draw_bold_text_with_bright_colors: true
 colors:
   # Default colors
   primary:
-    background: '#161616'
-    foreground: '#e4e4e4'
+    background: "#161616"
+    foreground: "#e4e4e4"
 
   # Cursor volors
   cursor:
-    text: '#feffff'
-    cursor: '#ffb472'
+    text: "#feffff"
+    cursor: "#ffb472"
 
   # Normal colors
   normal:
-    black: '#a3a3a3'
-    red: '#e98885'
-    green: '#a3c38b'
-    yellow: '#ffc68d'
-    blue: '#a6cae2'
-    magenta: '#e7cdfb'
-    cyan: '#00a69f'
-    white: '#e4e4e4'
+    black: "#a3a3a3"
+    red: "#e98885"
+    green: "#a3c38b"
+    yellow: "#ffc68d"
+    blue: "#a6cae2"
+    magenta: "#e7cdfb"
+    cyan: "#00a69f"
+    white: "#e4e4e4"
 
   # Bright colors
   bright:
-    black: '#c8c8c8'
-    red: '#ffb2b0'
-    green: '#c8e2b9'
-    yellow: '#ffe1af'
-    blue: '#bddff7'
-    magenta: '#fce2ff'
-    cyan: '#0bbdb6'
-    white: '#feffff'
+    black: "#c8c8c8"
+    red: "#ffb2b0"
+    green: "#c8e2b9"
+    yellow: "#ffe1af"
+    blue: "#bddff7"
+    magenta: "#fce2ff"
+    cyan: "#0bbdb6"
+    white: "#feffff"
 
   # Selection colors
   selection:
-    text: '#5963a2'
-    background: '#f6f6f6'
+    text: "#5963a2"
+    background: "#f6f6f6"
 # Visual Bell
 #
 # Any time the BEL code is received, Alacritty "rings" the visual bell. Once
@@ -502,28 +494,8 @@ key_bindings:
   #  - { key: Copy,                     action: Copy                             }
   #  - { key: L,         mods: Control, action: ClearLogNotice                   }
   #  - { key: L,         mods: Control, chars: "\x0c"                            }
-  - {
-      key: PageUp,
-      mods: Shift,
-      action: ScrollPageUp,
-      mode: ~Alt
-    }
-  - {
-      key: PageDown,
-      mods: Shift,
-      action: ScrollPageDown,
-      mode: ~Alt
-    }
-  - {
-      key: Home,
-      mods: Shift,
-      action: ScrollToTop,
-      mode: ~Alt
-    }
-  - {
-      key: End,
-      mods: Shift,
-      action: ScrollToBottom,
-      mode: ~Alt
-    }
+  - { key: PageUp, mods: Shift, action: ScrollPageUp, mode: ~Alt }
+  - { key: PageDown, mods: Shift, action: ScrollPageDown, mode: ~Alt }
+  - { key: Home, mods: Shift, action: ScrollToTop, mode: ~Alt }
+  - { key: End, mods: Shift, action: ScrollToBottom, mode: ~Alt }
 theme: Jellybeans

@@ -1,25 +1,14 @@
--- setup must be called before loading the colorscheme
--- Default options:
-require("gruvbox").setup({
-    undercurl = true,
-    underline = true,
-    bold = true,
-    italic = {
-        strings = true,
-        comments = true,
-        operators = false,
-        folds = true,
-    },
-    strikethrough = true,
-    invert_selection = false,
-    invert_signs = false,
-    invert_tabline = false,
-    invert_intend_guides = false,
-    inverse = true, -- invert background for search, diffs, statuslines and errors
-    contrast = "hard", -- can be "hard", "soft" or empty string
-    palette_overrides = {},
-    overrides = {},
-    dim_inactive = false,
-    transparent_mode = false,
-})
-vim.cmd("colorscheme gruvbox")
+-- vim.g.gruvbox_material_foreground = "material" -- (mix, material, original)
+vim.g.gruvbox_material_better_performance = 1
+vim.g.gruvbox_material_background = "medium" -- hard, soft, medium
+vim.g.gruvbox_material_enable_bold = 0
+vim.g.gruvbox_material_enable_italic = 0
+vim.g.gruvbox_material_transparent_background = 0
+vim.g.gruvbox_material_dim_inactive_windows = 0
+vim.g.gruvbox_material_menu_selection_background = "green" -- grey, red, orange, yellow, purple, green, aqua, blue
+vim.g.gruvbox_material_ui_contrast = "high"                -- low, high
+vim.g.gruvbox_material_diagnostic_text_highlight = 1
+vim.g.gruvbox_material_diagnostic_line_highlight = 1
+vim.g.gruvbox_material_diagnostic_virtual_text = 1
+
+vim.cmd("colorscheme gruvbox-material")
