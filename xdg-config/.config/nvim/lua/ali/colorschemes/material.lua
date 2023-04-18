@@ -47,7 +47,7 @@ require("material").setup({
 	},
 	high_visibility = {
 		lighter = false, -- Enable higher contrast text for lighter style
-		darker = false, -- Enable higher contrast text for darker style
+		darker = true, -- Enable higher contrast text for darker style
 	},
 	lualine_style = "default", -- Lualine style ( can be 'stealth' or 'default' )
 	async_loading = true, -- Load parts of the theme asyncronously for faster startup (turned on by default)
