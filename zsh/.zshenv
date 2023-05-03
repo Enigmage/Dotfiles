@@ -16,6 +16,9 @@ export PATH=$PATH:~/.local/bin/
 export PATH=$PATH:$DENO_PATH/bin
 export PATH=$PATH:/usr/local/go/bin/
 export PATH=$PATH:~/go/bin/
+export ANDROID_HOME=$HOME/Android/Sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/platform-tools
 # export PATH=$PATH:/usr/lib/x86_64-linux-gnu/pkgconfig
 
 export NVM_DIR="$HOME/.nvm"
