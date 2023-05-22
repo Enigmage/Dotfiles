@@ -17,7 +17,7 @@ theme.setup({
     -- You can configure multiple style with comma seperated, For e.g., keywords = 'italic,bold'
     code_style = {
         comments = "italic",
-        keywords = "bold",
+        keywords = "none",
         functions = "italic",
         strings = "none",
         variables = "none",
