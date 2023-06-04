@@ -16,6 +16,7 @@ export PATH=$PATH:~/.local/bin/
 export PATH=$PATH:$DENO_PATH/bin
 export PATH=$PATH:/usr/local/go/bin/
 export PATH=$PATH:~/go/bin/
+export PATH=$PATH:~/wezterm/target/debug/
 export ANDROID_HOME=$HOME/Android/Sdk
 export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/platform-tools

@@ -21,7 +21,7 @@ config.window_decorations = "NONE"
 config.window_background_opacity = 0.94
 config.text_background_opacity = 0.3
 config.hide_tab_bar_if_only_one_tab = true
-config.scrollback_lines = 3500
+config.scrollback_lines = 3000
 
 -- Keybinds
 config.keys = {
