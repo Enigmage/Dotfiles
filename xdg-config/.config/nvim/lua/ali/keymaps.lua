@@ -56,7 +56,7 @@ map({ "n", "i" }, "<left>", "<nop>")
 map({ "n", "i" }, "<right>", "<nop>")
 
 -- Filetree
-map("n", "<C-n>", ":Vexplore<CR>", opts)
+map("n", "<C-n>", ":Neotree toggle<CR>", opts)
 
 local toggleWinbar = function()
 	if vim.g.my_winbar_active == true then

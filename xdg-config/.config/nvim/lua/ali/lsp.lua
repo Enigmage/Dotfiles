@@ -34,6 +34,7 @@ local mason_lspconfig = require("mason-lspconfig")
 -- }
 
 local servers = {
+    jdtls = {},
 	tsserver = {},
 	pyright = {
 		analysis = {

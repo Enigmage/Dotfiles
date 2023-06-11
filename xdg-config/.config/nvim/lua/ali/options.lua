@@ -28,10 +28,13 @@ local generalOptions = {
     splitbelow = true,
     grepprg = "rg --vimgrep --smart-case --follow",
     laststatus = 3,
-    cmdheight = 0,
+    cmdheight = 1,
     termguicolors = true,
     list = true,
     listchars = { tab = "| ", trail = "-", nbsp = "+", eol = "↵" },
+    foldmethod = "expr",
+    foldexpr = "nvim_treesitter#foldexpr()",
+    foldenable = false,
 }
 
 local globalVars = {
@@ -49,12 +52,14 @@ local globalVars = {
     -- 	["display.icons.mode"] = "none",
     -- 	["display.pum.source_context"] = { " <", ">" },
     -- },
-    netrw_liststyle = 3, -- Tree style list view
-    netrw_banner = 0,
-    netrw_browse_split = 4, -- 3 opens files in new tabs, 4 uses prev window
-    netrw_altv = 1, -- open vertical split on right
-    netrw_alto = 0, -- open horizontal split on top
-    netrw_winsize = 30,
+    loaded_netrw = 1,
+    loaded_netrwPlugin = 1,
+    -- netrw_liststyle = 3, -- Tree style list view
+    -- netrw_banner = 0,
+    -- netrw_browse_split = 4, -- 3 opens files in new tabs, 4 uses prev window
+    -- netrw_altv = 1, -- open vertical split on right
+    -- netrw_alto = 0, -- open horizontal split on top
+    -- netrw_winsize = 30,
 }
 
 vim.opt.shortmess:append("c")

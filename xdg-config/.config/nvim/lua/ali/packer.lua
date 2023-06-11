@@ -20,6 +20,18 @@ require("packer").startup(function(use)
 		end,
 	})
 	use({
+		"nvim-neo-tree/neo-tree.nvim",
+		branch = "v2.x",
+		requires = {
+			"nvim-lua/plenary.nvim",
+			"MunifTanjim/nui.nvim",
+		},
+		config = function()
+			require("ali.neotree")
+		end,
+		cmd = "Neotree",
+	})
+	use({
 		"nvim-lualine/lualine.nvim",
 		config = function()
 			local myConfig = require("ali.statusline")
@@ -45,11 +57,9 @@ require("packer").startup(function(use)
 	})
 	--colorschemes
 	use("sainnhe/gruvbox-material")
-	use("rmehri01/onenord.nvim")
-	use("glepnir/zephyr-nvim")
 	use("marko-cerovac/material.nvim")
-	use({ "folke/tokyonight.nvim", branch = "main" })
 	use("navarasu/onedark.nvim")
+	use("rebelot/kanagawa.nvim")
 	-- use 'RishabhRD/popfix'
 	-- use 'RishabhRD/nvim-cheat.sh'
 	use({
