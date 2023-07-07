@@ -28,7 +28,7 @@ local generalOptions = {
     splitbelow = true,
     grepprg = "rg --vimgrep --smart-case --follow",
     laststatus = 3,
-    cmdheight = 1,
+    cmdheight = 0,
     termguicolors = true,
     list = true,
     listchars = { tab = "| ", trail = "-", nbsp = "+", eol = "↵" },
