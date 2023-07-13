@@ -19,7 +19,7 @@ config.color_scheme = 'MaterialDarker'
 -- config.color_scheme = 'Palenight (Gogh)'
 config.font = wezterm.font("FiraCode Nerd Font", { weight = "Regular" })
 
-config.font_size = 18.5
+config.font_size = 17.5
 config.window_decorations = "NONE"
 config.window_background_opacity = 1
 -- config.text_background_opacity = 0.3
