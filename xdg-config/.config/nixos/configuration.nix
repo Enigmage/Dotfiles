@@ -7,8 +7,7 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+      ./hardware-configuration.nix ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -67,8 +66,6 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     wget
-    firefox
-    brave
     gnomeExtensions.pop-shell
     gnomeExtensions.caffeine
     gnomeExtensions.clipboard-indicator

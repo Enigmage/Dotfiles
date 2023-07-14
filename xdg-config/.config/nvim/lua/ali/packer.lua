@@ -105,21 +105,21 @@ require("packer").startup(function(use)
 		ft = { "markdown" },
 		requires = { "godlygeek/tabular", opt = true, ft = { "markdown" } },
 	})
-	-- use({
-	-- 	-- Highlight, edit, and navigate code
-	-- 	"nvim-treesitter/nvim-treesitter",
-	-- 	run = function()
-	-- 		pcall(require("nvim-treesitter.install").update({ with_sync = true }))
-	-- 	end,
-	-- 	config = function()
-	-- 		require("ali.treesitter")
-	-- 	end,
-	-- 	requires = {
-	-- 		"p00f/nvim-ts-rainbow",
-	-- 		"nvim-treesitter/nvim-treesitter-context",
-	-- 		"nvim-treesitter/nvim-treesitter-textobjects",
-	-- 	},
-	-- })
+	 use({
+	 	-- Highlight, edit, and navigate code
+	 	"nvim-treesitter/nvim-treesitter",
+	 	run = function()
+	 		pcall(require("nvim-treesitter.install").update({ with_sync = true }))
+	 	end,
+	 	config = function()
+	 		require("ali.treesitter")
+	 	end,
+	 	requires = {
+	 		"p00f/nvim-ts-rainbow",
+	 		"nvim-treesitter/nvim-treesitter-context",
+	 		"nvim-treesitter/nvim-treesitter-textobjects",
+	 	},
+	 })
 	-- Plug 'ThePrimeagen/refactoring.nvim'
 	use({
 		"williamboman/mason.nvim",
