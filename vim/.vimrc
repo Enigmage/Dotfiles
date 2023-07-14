@@ -23,7 +23,6 @@ set hidden
 set updatetime=1000
 set shortmess+=c
 set colorcolumn=80
-set list lcs=tab:\|\ ,trail:-,nbsp:+,eol:↵
 setlocal omnifunc=syntaxcomplete#Complete
 autocmd CompleteDone * pclose " Close preview when done
 
