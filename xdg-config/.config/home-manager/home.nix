@@ -21,6 +21,7 @@
   home.packages = with pkgs; [
     neofetch
     neovim
+    tmux
     vim
     compsize
     htop
@@ -32,10 +33,7 @@
     go
     cargo
     rustc
-
-    # maybe system?
     unzip
-    file
     xclip
 
     # gui apps
@@ -79,7 +77,8 @@
     };
     shellAliases = {
       nv = "nvim";
-      nvconf = "cd .config/nvim && nvim .";
+      nvconf = "cd ~/.config/nvim && nvim init.lua";
+      hmconf = "cd ~/.config/home-manager && nvim home.nix";
       # alaconf = "nvim ~/.config/alacritty/alacritty.yml";
       wezconf = "nvim ~/.config/wezterm/wezterm.lua";
       # zconf = "nvim ~/.zshrc";

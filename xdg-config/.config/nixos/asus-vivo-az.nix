@@ -49,8 +49,13 @@
 
   fileSystems."/mnt/Backups" =
     {
-      device = "/dev/disk/by-uuid/7df18844-21a1-4023-a2e7-f73b83a45e66";
+      device = "/dev/disk_land/Backups";
       fsType = "ext4";
+    };
+  fileSystems."/mnt/Shack" =
+    {
+      device = "/dev/disk_land/Shack";
+      fsType = "ntfs";
     };
 
 

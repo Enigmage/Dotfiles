@@ -17,7 +17,7 @@ end
 -- config.color_scheme = "Gruvbox Material (Gogh)"
 config.color_scheme = 'MaterialDarker'
 -- config.color_scheme = 'Palenight (Gogh)'
-config.font = wezterm.font("Fira Code", { weight = "Regular" })
+config.font = wezterm.font("FiraCode Nerd Font", { weight = "Regular" })
 
 config.font_size = 17.5
 config.window_decorations = "NONE"

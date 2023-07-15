@@ -88,9 +88,13 @@
     gnomeExtensions.pop-shell
     gnomeExtensions.caffeine
     gnomeExtensions.clipboard-indicator
+    gnome.zenity
+    gnome.gnome-tweaks
     pop-launcher
     home-manager
     libgccjit
+    coreutils-full
+    gccgo12
   ];
   environment.shells = [ pkgs.zsh ];
 
