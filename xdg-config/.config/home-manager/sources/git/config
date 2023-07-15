@@ -1,0 +1,7 @@
+[user]
+	email = alizaidi0786.az@gmail.com
+	name = Enigmage
+[credential]
+	helper = cache --timeout=3600
+[init]
+	defaultBranch = main
