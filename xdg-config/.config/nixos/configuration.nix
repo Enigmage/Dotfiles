@@ -97,11 +97,15 @@
     gnomeExtensions.clipboard-indicator
     gnome.zenity
     gnome.gnome-tweaks
+    gparted
     pop-launcher
     home-manager
     libgccjit
     coreutils-full
+    pciutils
     gccgo12
+    exfat # for external hdd
+    exfatprogs
   ];
   environment.shells = [ pkgs.zsh ];
 
