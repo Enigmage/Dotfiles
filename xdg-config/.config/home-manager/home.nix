@@ -43,6 +43,7 @@
     obsidian
     wezterm
     vscode
+    guake
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
@@ -79,8 +80,8 @@
     };
     shellAliases = {
       nv = "nvim";
-      nvconf = "cd ~/.config/nvim && nvim init.lua";
-      hmconf = "cd ~/.config/home-manager && nvim home.nix";
+      # nvconf = "cd ~/.config/nvim && nvim init.lua";
+      # hmconf = "cd ~/.config/home-manager && nvim home.nix";
       nxconf = "cd ~/.config/nixos && nvim .";
       # alaconf = "nvim ~/.config/alacritty/alacritty.yml";
       wezconf = "nvim ~/.config/wezterm/wezterm.lua";

@@ -19,7 +19,7 @@
   nix.gc = {
     automatic = true;
     dates = "weekly";
-    options = "--delete-older-than 30d";
+    options = "--delete-older-than 15d";
   };
 
   nixpkgs.config.allowUnfree = true;
@@ -44,6 +44,13 @@
     useXkbConfig = true; # use xkbOptions in tty.
   };
 
+  virtualisation.docker = {
+    enable = true;
+    # enableNvidia = true;
+    daemon.settings = {
+      data-root = "/mnt/Backups/docker";
+    };
+  };
   # Enable the X11 windowing system.
   services.xserver = {
     enable = true;
@@ -77,7 +84,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.alizaidi = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "docker" ]; # Enable ‘sudo’ for the user.
     shell = pkgs.zsh;
   };
 
