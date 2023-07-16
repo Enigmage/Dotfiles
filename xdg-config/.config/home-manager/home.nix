@@ -21,7 +21,6 @@
   home.packages = with pkgs; [
     neofetch
     neovim
-    tmux
     vim
     compsize
     htop
@@ -35,6 +34,7 @@
     rustc
     unzip
     xclip
+    fd
 
     # gui apps
     vlc
@@ -73,12 +73,15 @@
       theme = "robbyrussell";
     };
     history = {
+      size = 3000;
+      save = 3000;
       share = true;
     };
     shellAliases = {
       nv = "nvim";
       nvconf = "cd ~/.config/nvim && nvim init.lua";
       hmconf = "cd ~/.config/home-manager && nvim home.nix";
+      nxconf = "cd ~/.config/nixos && nvim .";
       # alaconf = "nvim ~/.config/alacritty/alacritty.yml";
       wezconf = "nvim ~/.config/wezterm/wezterm.lua";
       # zconf = "nvim ~/.zshrc";
@@ -128,6 +131,33 @@
         autoload edit-command-line; zle -N edit-command-line
         bindkey '^e' edit-command-line
       '';
+    envExtra =
+      ''
+        export PATH=$PATH:~/scripts
+        export DENO_PATH="/home/alizaidi/.deno";
+      '';
+  };
+  programs.fzf = {
+    enable = true;
+    enableFishIntegration = true;
+    changeDirWidgetCommand = "fd --type d";
+  };
+  programs.tmux = {
+    enable = true;
+    baseIndex = 1;
+    mouse = true;
+    prefix = "C-a";
+    extraConfig =
+      ''
+        set -g default-terminal "screen-256color"
+        set -ga terminal-overrides ",*256col*:Tc"
+        bind r source-file ~/.tmux.conf
+        set-option -sg escape-time 10
+        set-option -g focus-events on
+        set -g status-style ""
+        set-option -g status-position bottom
+        set -g status-right ""
+      '';
   };
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -162,6 +192,7 @@
   # if you don't want to manage your shell through Home Manager.
   home.sessionVariables = {
     EDITOR = "nvim";
+    TERMINAL = "wezterm";
   };
 
   # Let Home Manager install and manage itself.
