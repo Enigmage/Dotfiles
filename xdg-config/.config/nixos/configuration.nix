@@ -82,7 +82,10 @@
   sound.enable = true;
   hardware.pulseaudio.enable = true;
   hardware.enableAllFirmware = true;
-
+  hardware.opentabletdriver = {
+    enable = true;
+    daemon.enable = true;
+  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.alizaidi = {

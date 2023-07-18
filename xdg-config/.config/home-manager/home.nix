@@ -102,11 +102,6 @@
       xmonaconf = "nv ~/.config/xmonad/xmonad.hs";
       xmobaconf = "nv ~/.config/xmobar/xmobarrc";
       #addbacklinks = "sed -i "1s\/\^/Back to [ index ] (index.md)\n\n /" *.md";
-      home-rsync = "rsync -av
-        --include-from=/home/alizaidi/rsync-backup-config/rsync-backup.txt
-        /home/alizaidi/ /home/alizaidi/Backups/home";
-      home-rsync-restore = "rsync -av /home/alizaidi/Backups/home/
-      /home/alizaidi/test-backup";
     };
     initExtra =
       ''
@@ -128,13 +123,14 @@
     envExtra =
       ''
         export PATH=$PATH:~/scripts
-        export DENO_PATH="/home/alizaidi/.deno";
+        export PATH=$PATH:$DENO_PATH/bin
+        export PATH=$PATH:~/.local/share/nvim/mason/bin
       '';
   };
   programs.fzf = {
     enable = true;
     enableFishIntegration = true;
-    changeDirWidgetCommand = "fd --type d";
+    changeDirWidgetCommand = "fd --type d . ~";
   };
   programs.tmux = {
     enable = true;
@@ -194,6 +190,7 @@
   home.sessionVariables = {
     EDITOR = "nvim";
     TERMINAL = "wezterm";
+    DENO_PATH="/home/alizaidi/.deno";
   };
 
   # Let Home Manager install and manage itself.
