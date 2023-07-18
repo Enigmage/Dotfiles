@@ -14,6 +14,7 @@
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   nix.settings.auto-optimise-store = true;
   nix.gc = {
@@ -48,7 +49,7 @@
     enable = true;
     # enableNvidia = true;
     daemon.settings = {
-      data-root = "/mnt/Backups/docker";
+      data-root = "/mnt/Vmstore/docker";
     };
   };
   # Enable the X11 windowing system.
@@ -56,13 +57,23 @@
     enable = true;
     xkbOptions = "ctrl:nocaps";
     # xserver.layout = "us";
+    # Enable the GNOME Desktop Environment.
+    displayManager.gdm.enable = true;
+    desktopManager.gnome.enable = true;
+    # Enable touchpad support (enabled default in most desktopManager).
+    libinput.enable = false;
+    # libinput.touchpad.middleEmulation = true;
+    # libinput.touchpad.tapping = true;
+    synaptics = {
+      enable = true;
+      twoFingerScroll = true;
+    };
   };
 
-
-  # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-
+  services.fstrim = {
+    enable = true;
+    interval = "weekly";
+  };
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -72,14 +83,6 @@
   hardware.pulseaudio.enable = true;
   hardware.enableAllFirmware = true;
 
-  # Enable touchpad support (enabled default in most desktopManager).
-  services.xserver.libinput.enable = false;
-  # services.xserver.libinput.touchpad.middleEmulation = true;
-  # services.xserver.libinput.touchpad.tapping = true;
-  services.xserver.synaptics = {
-    enable = true;
-    twoFingerScroll = true;
-  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.alizaidi = {
@@ -100,12 +103,12 @@
     gparted
     pop-launcher
     home-manager
-    libgccjit
     coreutils-full
     pciutils
+    exfatprogs # for exFAT
+    # possible redundant
+    libgccjit
     gccgo12
-    exfat # for external hdd
-    exfatprogs
   ];
   environment.shells = [ pkgs.zsh ];
 

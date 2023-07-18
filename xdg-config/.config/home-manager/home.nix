@@ -72,7 +72,9 @@
     };
     oh-my-zsh = {
       enable = true;
-      theme = "robbyrussell";
+      # theme = "minimal";
+      theme = "kphoen";
+      # plugins = [ "vi-mode"];
     };
     history = {
       size = 3000;
