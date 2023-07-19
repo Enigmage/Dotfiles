@@ -8,16 +8,20 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
   };
 
-  outputs = { nixpkgs, home-manager, ... }:
+  outputs = inputs@{ nixpkgs, home-manager, ... }:
     let
       system = "x86_64-linux";
+      overlays = [
+        inputs.neovim-nightly-overlay.overlay
+      ];
     in
     {
       homeConfigurations."alizaidi" = home-manager.lib.homeManagerConfiguration {
         pkgs = import nixpkgs {
-          inherit system;
+          inherit overlays system;
           config.allowUnfree = true;
         };
         # Specify your home configuration modules here, for example,
