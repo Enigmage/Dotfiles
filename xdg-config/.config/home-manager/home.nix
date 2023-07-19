@@ -20,7 +20,6 @@
   # environment.
   home.packages = with pkgs; [
     neofetch
-    # neovim
     vim
     compsize
     htop

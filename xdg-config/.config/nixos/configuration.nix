@@ -89,11 +89,15 @@
     enable = true;
     daemon.enable = true;
   };
+  hardware.sane = {
+    enable = true;
+    extraBackends = [ pkgs.hplipWithPlugin ];
+  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.alizaidi = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "docker" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "docker" "scanner" "lp" ]; # Enable ‘sudo’ for the user.
     shell = pkgs.zsh;
   };
 
