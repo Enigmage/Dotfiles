@@ -76,7 +76,10 @@
   };
 
   # Enable CUPS to print documents.
-  services.printing.enable = true;
+  services.printing = {
+    enable = true;
+    drivers = [ pkgs.hplipWithPlugin ];
+  };
 
   # Enable sound.
   sound.enable = true;
@@ -105,6 +108,7 @@
     gnome.gnome-tweaks
     gparted
     pop-launcher
+    evince
     home-manager
     coreutils-full
     pciutils
