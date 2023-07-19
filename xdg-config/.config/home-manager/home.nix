@@ -34,6 +34,7 @@
     unzip
     xclip
     fd
+    nix-prefetch
 
     # gui apps
     vlc
@@ -79,6 +80,7 @@
       nodePackages.bash-language-server
       nodePackages.prettier
       nodePackages.typescript-language-server
+      nodePackages.dockerfile-language-server-nodejs
       # Web (ESLint, HTML, CSS, JSON)
       nodePackages.vscode-langservers-extracted
       lua-language-server
@@ -101,12 +103,24 @@
     syntaxHighlighting = {
       enable = true;
     };
-    oh-my-zsh = {
-      enable = true;
-      # theme = "minimal";
-      theme = "kphoen";
-      # plugins = [ "vi-mode"];
-    };
+    # oh-my-zsh = {
+    #   enable = true;
+    #   # theme = "minimal";
+    #   # theme = "kphoen";
+    #   theme = "robbyrussell";
+    #   # plugins = [ "vi-mode"];
+    # };
+    plugins = [
+      {
+        name = "pure";
+        src = pkgs.fetchFromGitHub {
+          owner = "sindresorhus";
+          repo = "pure";
+          rev = "87e6f5dd4c793f6d980532205aaefe196780606f";
+          sha256 = "TR4CyBZ+KoZRs9XDmWE5lJuUXXU1J8E2Z63nt+FS+5w=";
+        };
+      }
+    ];
     history = {
       size = 3000;
       save = 3000;
@@ -137,15 +151,16 @@
     initExtra =
       ''
         zstyle ':completion:*' menu select
+        # enable vi mode
         bindkey -v
         export KEYTIMEOUT=1
 
         # Use vim keys in tab complete menu:
-        bindkey -M menuselect 'h' vi-backward-char
-        bindkey -M menuselect 'k' vi-up-line-or-history
-        bindkey -M menuselect 'l' vi-forward-char
-        bindkey -M menuselect 'j' vi-down-line-or-history
-        bindkey -v '^?' backward-delete-char
+        # bindkey -M menuselect 'h' vi-backward-char
+        # bindkey -M menuselect 'k' vi-up-line-or-history
+        # bindkey -M menuselect 'l' vi-forward-char
+        # bindkey -M menuselect 'j' vi-down-line-or-history
+        # bindkey -v '^?' backward-delete-char
 
         # Edit line in vim with ctrl-e:
         autoload edit-command-line; zle -N edit-command-line

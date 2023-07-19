@@ -49,6 +49,7 @@ local servers = {
             },
         },
     },
+    dockerls = {},
     tsserver = {},
     pyright = {
         analysis = {
@@ -99,10 +100,9 @@ local function default_lsp_setup(server_name)
     })
 end
 
-for server_name, _ in pairs(servers) do 
+for server_name, _ in pairs(servers) do
     default_lsp_setup(server_name)
 end
-
 
 lspconfig["denols"].setup({
     on_attach = on_attach,

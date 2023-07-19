@@ -14,14 +14,14 @@ end
 -- This is where you actually apply your config choices
 
 -- Base
--- config.color_scheme = "Gruvbox Material (Gogh)"
-config.color_scheme = 'MaterialDarker'
+config.color_scheme = "Gruvbox Material (Gogh)"
+-- config.color_scheme = 'MaterialDarker'
 -- config.color_scheme = 'Palenight (Gogh)'
 config.font = wezterm.font("FiraCode Nerd Font", { weight = "Regular" })
 
-config.font_size = 17.5
+config.font_size = 18.5
 config.window_decorations = "NONE"
-config.window_background_opacity = 1
+config.window_background_opacity = 0.92
 -- config.text_background_opacity = 0.3
 config.hide_tab_bar_if_only_one_tab = true
 config.scrollback_lines = 3000
