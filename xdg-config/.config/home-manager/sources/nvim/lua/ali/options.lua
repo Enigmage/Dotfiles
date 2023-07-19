@@ -1,5 +1,5 @@
 local python_path = "/home/alizaidi/.nix-profile/bin/python3"
-local undoDirectory = "/home/alizaidi/.config/nvim/undodir"
+local undoDirectory = "/home/alizaidi/.config/nvim_undodir"
 
 local generalOptions = {
     wrap = false,

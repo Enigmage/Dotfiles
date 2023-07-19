@@ -2,7 +2,7 @@
 local lspconfig = require("lspconfig")
 local util = require("lspconfig.util")
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
-local mason_lspconfig = require("mason-lspconfig")
+-- local mason_lspconfig = require("mason-lspconfig")
 
 local opts = { noremap = true, silent = true }
 local map = vim.keymap.set
@@ -81,15 +81,28 @@ local servers = {
 -- 	ensure_installed = vim.tbl_keys(servers),
 -- })
 
-mason_lspconfig.setup_handlers({
-    function(server_name)
-        lspconfig[server_name].setup({
-            capabilities = capabilities,
-            on_attach = on_attach,
-            settings = servers[server_name],
-        })
-    end,
-})
+-- mason_lspconfig.setup_handlers({
+--     function(server_name)
+--         lspconfig[server_name].setup({
+--             capabilities = capabilities,
+--             on_attach = on_attach,
+--             settings = servers[server_name],
+--         })
+--     end,
+-- })
+
+local function default_lsp_setup(server_name)
+    lspconfig[server_name].setup({
+        capabilities = capabilities,
+        on_attach = on_attach,
+        settings = servers[server_name],
+    })
+end
+
+for server_name, _ in pairs(servers) do 
+    default_lsp_setup(server_name)
+end
+
 
 lspconfig["denols"].setup({
     on_attach = on_attach,

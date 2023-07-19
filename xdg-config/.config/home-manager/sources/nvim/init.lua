@@ -6,7 +6,6 @@ require("ali.autocmds")
 require("ali.keymaps")
 -- plugins
 require("ali.packer")
-
 -- Colorscheme (uncomment to apply)
 require('ali.colorschemes.kanagawa')
 -- require('ali.colorschemes.gruvbox')

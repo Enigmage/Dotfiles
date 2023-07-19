@@ -20,7 +20,7 @@
   # environment.
   home.packages = with pkgs; [
     neofetch
-    neovim
+    # neovim
     vim
     compsize
     htop
@@ -61,6 +61,37 @@
 
   # For the packages with dotfiles managed by home-manager.
   programs.git.enable = true;
+  programs.neovim = {
+    enable = true;
+    plugins = with pkgs.vimPlugins; [
+      packer-nvim
+    ];
+    extraPackages = with pkgs; [
+      luajit
+      tree-sitter
+      python311Packages.pynvim
+      python311Packages.black
+      pyright
+      nodejs
+      gcc
+      deno
+      nil
+      nodePackages.bash-language-server
+      nodePackages.prettier
+      nodePackages.typescript-language-server
+      # Web (ESLint, HTML, CSS, JSON)
+      nodePackages.vscode-langservers-extracted
+      lua-language-server
+      texlab
+      nixpkgs-fmt
+      ripgrep
+      fd
+      clang-tools
+      stylua
+      gofumpt
+      beautysh
+    ];
+  };
   programs.zsh = {
     enable = true;
     enableAutosuggestions = true;
@@ -124,7 +155,6 @@
       ''
         export PATH=$PATH:~/scripts
         export PATH=$PATH:$DENO_PATH/bin
-        export PATH=$PATH:~/.local/share/nvim/mason/bin
       '';
   };
   programs.fzf = {
@@ -163,6 +193,11 @@
       source = ./sources/git;
     };
 
+    ".config/nvim" = {
+      source = ./sources/nvim;
+      recursive = true;
+    };
+
     # # You can also set the file content immediately.
     # ".gradle/gradle.properties".text = ''
     #   org.gradle.console=verbose
@@ -190,7 +225,7 @@
   home.sessionVariables = {
     EDITOR = "nvim";
     TERMINAL = "wezterm";
-    DENO_PATH="/home/alizaidi/.deno";
+    DENO_PATH = "/home/alizaidi/.deno";
   };
 
   # Let Home Manager install and manage itself.
