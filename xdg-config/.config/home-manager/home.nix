@@ -35,6 +35,7 @@
     xclip
     fd
     nix-prefetch
+    borgbackup
 
     # gui apps
     vlc
@@ -60,6 +61,7 @@
   ];
 
   # For the packages with dotfiles managed by home-manager.
+  programs.chromium.enable = true;
   programs.git.enable = true;
   programs.neovim = {
     enable = true;

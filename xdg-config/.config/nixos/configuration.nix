@@ -16,6 +16,9 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
+  # Possibly turn of nvidia card while not used, better battery.
+  # https://discourse.nixos.org/t/how-to-use-nvidia-prime-offload-to-run-the-x-server-on-the-integrated-board/9091/15?u=moritzschaefer
+
   nix.settings = {
     experimental-features = [ "nix-command" "flakes" ];
     auto-optimise-store = true;
@@ -26,7 +29,12 @@
     options = "--delete-older-than 15d";
   };
 
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config = {
+    allowUnfree = true;
+    packageOverrides = pkgs: {
+      vaapiIntel = pkgs.vaapiIntel.override { enableHybridCodec = true; };
+    };
+  };
 
   networking.hostName = "0xaf"; # Define your hostname.
   # Pick only one of the below networking options.
@@ -71,6 +79,8 @@
       enable = true;
       twoFingerScroll = true;
     };
+    # Comment to disable nvidia
+    videoDrivers = [ "nvidia" ];
   };
 
   services.fstrim = {
@@ -95,6 +105,36 @@
   hardware.sane = {
     enable = true;
     extraBackends = [ pkgs.hplipWithPlugin ];
+  };
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+    driSupport32Bit = true;
+    extraPackages = with pkgs; [
+      intel-media-driver # LIBVA_DRIVER_NAME=iHD
+      vaapiIntel # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
+      vaapiVdpau
+      libvdpau-va-gl
+      nvidia-vaapi-driver
+    ];
+  };
+
+  services.switcherooControl.enable = true;
+
+  # Comment to disable nvidia
+  hardware.nvidia = {
+    powerManagement.enable = true;
+    modesetting.enable = true;
+    nvidiaSettings = true;
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
+    prime = {
+      offload = {
+        enable = true;
+        enableOffloadCmd = true;
+      };
+      intelBusId = "PCI:00:02:0";
+      nvidiaBusId = "PCI:01:00:0";
+    };
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -123,6 +163,7 @@
     # possible redundant
     libgccjit
     gccgo12
+    # brave
   ];
   environment.shells = [ pkgs.zsh ];
 
