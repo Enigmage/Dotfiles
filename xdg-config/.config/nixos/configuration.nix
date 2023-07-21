@@ -15,6 +15,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelPackages = pkgs.linuxPackages_latest;
+  hardware.enableAllFirmware = true;
 
   nix.settings = {
     experimental-features = [ "nix-command" "flakes" ];
@@ -106,8 +107,29 @@
 
   # Enable sound.
   sound.enable = true;
-  hardware.pulseaudio.enable = true;
-  hardware.enableAllFirmware = true;
+  hardware.pulseaudio.enable = false;
+  # rtkit is optional but recommended
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    # If you want to use JACK applications, uncomment this
+    jack.enable = true;
+  };
+  # Might be needed for bluetooth
+  # environment.etc = {
+  #   "wireplumber/bluetooth.lua.d/51-bluez-config.lua".text = ''
+  #     		bluez_monitor.properties = {
+  #     			["bluez5.enable-sbc-xq"] = true,
+  #     			["bluez5.enable-msbc"] = true,
+  #     			["bluez5.enable-hw-volume"] = true,
+  #     			["bluez5.headset-roles"] = "[ hsp_hs hsp_ag hfp_hf hfp_ag ]"
+  #     		}
+  #     	'';
+  # };
+
   hardware.opentabletdriver = {
     enable = true;
     daemon.enable = true;
@@ -144,10 +166,10 @@
   environment.systemPackages = with pkgs; [
     wget
     virt-manager
+    pavucontrol
     gnomeExtensions.pop-shell
     gnomeExtensions.caffeine
     gnomeExtensions.clipboard-indicator
-    gnomeExtensions.cloudflare-1111-warp-switcher
     gnome.zenity
     gnome.gnome-tweaks
     gparted

@@ -61,7 +61,7 @@
     };
 
   fileSystems."/mnt/home-borg" =
-    { device = "/dev/disk/by-uuid/c7d0c8a5-1f5c-406f-b68b-6e4471e2ac8b";
+    { device = "/dev/disk/by-uuid/f89551f9-3cdb-4bea-95ac-3440379661f5";
       fsType = "btrfs";
       options = [ "subvol=home-borg" ];
     };
