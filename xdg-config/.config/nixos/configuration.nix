@@ -16,9 +16,6 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  # Possibly turn of nvidia card while not used, better battery.
-  # https://discourse.nixos.org/t/how-to-use-nvidia-prime-offload-to-run-the-x-server-on-the-integrated-board/9091/15?u=moritzschaefer
-
   nix.settings = {
     experimental-features = [ "nix-command" "flakes" ];
     auto-optimise-store = true;
@@ -40,6 +37,7 @@
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
+  # networking.nameservers = [ "1.1.1.1" "9.9.9.9" ];
 
   # Set your time zone.
   time.timeZone = "Asia/Kolkata";
@@ -56,6 +54,20 @@
     useXkbConfig = true; # use xkbOptions in tty.
   };
 
+  programs.dconf.enable = true;
+
+  virtualisation.libvirtd = {
+    enable = true;
+    qemu = {
+      package = pkgs.qemu_kvm;
+      # For windows
+      ovmf = {
+        enable = true;
+        packages = [ pkgs.OVMFFull.fd ];
+      };
+      swtpm.enable = true;
+    };
+  };
   virtualisation.docker = {
     enable = true;
     # enableNvidia = true;
@@ -79,8 +91,6 @@
       enable = true;
       twoFingerScroll = true;
     };
-    # Comment to disable nvidia
-    videoDrivers = [ "nvidia" ];
   };
 
   services.fstrim = {
@@ -102,6 +112,7 @@
     enable = true;
     daemon.enable = true;
   };
+  # scanning
   hardware.sane = {
     enable = true;
     extraBackends = [ pkgs.hplipWithPlugin ];
@@ -116,31 +127,15 @@
       vaapiVdpau
       libvdpau-va-gl
       nvidia-vaapi-driver
+      ffmpeg_6-full
     ];
   };
 
-  services.switcherooControl.enable = true;
-
-  # Comment to disable nvidia
-  hardware.nvidia = {
-    powerManagement.enable = true;
-    modesetting.enable = true;
-    nvidiaSettings = true;
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
-    prime = {
-      offload = {
-        enable = true;
-        enableOffloadCmd = true;
-      };
-      intelBusId = "PCI:00:02:0";
-      nvidiaBusId = "PCI:01:00:0";
-    };
-  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.alizaidi = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "docker" "scanner" "lp" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "docker" "scanner" "lp" "libvirtd" ]; # Enable ‘sudo’ for the user.
     shell = pkgs.zsh;
   };
 
@@ -148,9 +143,11 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     wget
+    virt-manager
     gnomeExtensions.pop-shell
     gnomeExtensions.caffeine
     gnomeExtensions.clipboard-indicator
+    gnomeExtensions.cloudflare-1111-warp-switcher
     gnome.zenity
     gnome.gnome-tweaks
     gparted
@@ -192,6 +189,32 @@
   # accidentally delete configuration.nix.
   # system.copySystemConfiguration = true;
 
+  specialisation = {
+    "0xaf-hybrid".configuration = {
+      # Possibly turn of nvidia card while not used, better battery.
+      # https://discourse.nixos.org/t/how-to-use-nvidia-prime-offload-to-run-the-x-server-on-the-integrated-board/9091/15?u=moritzschaefer
+
+      # gnome service to identify multiple gpu's
+      services.switcherooControl.enable = true;
+      services.xserver.videoDrivers = [ "nvidia" ];
+      hardware.nvidia = {
+        powerManagement.enable = true;
+        modesetting.enable = true;
+        open = false;
+        nvidiaPersistenced = false;
+        nvidiaSettings = true;
+        package = config.boot.kernelPackages.nvidiaPackages.stable;
+        prime = {
+          offload = {
+            enable = true;
+            enableOffloadCmd = true;
+          };
+          intelBusId = "PCI:00:02:0";
+          nvidiaBusId = "PCI:01:00:0";
+        };
+      };
+    };
+  };
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It's perfectly fine and recommended to leave

@@ -60,6 +60,13 @@
       fsType = "btrfs";
       options = [ "subvol=Vmstore" "noatime" "compress=zstd" ];
     };
+  fileSystems."/mnt/home-borg" =
+    {
+      device = "/dev/disk/by-uuid/c7d0c8a5-1f5c-406f-b68b-6e4471e2ac8b";
+      fsType = "btrfs";
+      options = [ "subvol=home-borg" "noatime" "compress=zstd" ];
+    };
+
 
 
   swapDevices = [{ device = "/swap/swapfile"; }];

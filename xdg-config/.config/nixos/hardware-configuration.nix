@@ -5,8 +5,7 @@
 
 {
   imports =
-    [
-      (modulesPath + "/installer/scan/not-detected.nix")
+    [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "usbhid" "sd_mod" ];
@@ -15,51 +14,56 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    {
-      device = "/dev/disk/by-uuid/c7d0c8a5-1f5c-406f-b68b-6e4471e2ac8b";
+    { device = "/dev/disk/by-uuid/c7d0c8a5-1f5c-406f-b68b-6e4471e2ac8b";
       fsType = "btrfs";
       options = [ "subvol=root" ];
     };
 
   fileSystems."/nix" =
-    {
-      device = "/dev/disk/by-uuid/c7d0c8a5-1f5c-406f-b68b-6e4471e2ac8b";
+    { device = "/dev/disk/by-uuid/c7d0c8a5-1f5c-406f-b68b-6e4471e2ac8b";
       fsType = "btrfs";
       options = [ "subvol=nix" ];
     };
 
   fileSystems."/home" =
-    {
-      device = "/dev/disk/by-uuid/c7d0c8a5-1f5c-406f-b68b-6e4471e2ac8b";
+    { device = "/dev/disk/by-uuid/c7d0c8a5-1f5c-406f-b68b-6e4471e2ac8b";
       fsType = "btrfs";
       options = [ "subvol=home" ];
     };
 
+  fileSystems."/boot" =
+    { device = "/dev/disk/by-uuid/26EB-A05D";
+      fsType = "vfat";
+    };
+
   fileSystems."/swap" =
-    {
-      device = "/dev/disk/by-uuid/c7d0c8a5-1f5c-406f-b68b-6e4471e2ac8b";
+    { device = "/dev/disk/by-uuid/c7d0c8a5-1f5c-406f-b68b-6e4471e2ac8b";
       fsType = "btrfs";
       options = [ "subvol=swap" ];
     };
 
-  fileSystems."/boot" =
-    {
-      device = "/dev/disk/by-uuid/26EB-A05D";
-      fsType = "vfat";
+  fileSystems."/mnt/Vmstore" =
+    { device = "/dev/disk/by-uuid/f89551f9-3cdb-4bea-95ac-3440379661f5";
+      fsType = "btrfs";
+      options = [ "subvol=Vmstore" ];
     };
 
   fileSystems."/mnt/Shack" =
-    {
-      device = "/dev/disk/by-uuid/f89551f9-3cdb-4bea-95ac-3440379661f5";
+    { device = "/dev/disk/by-uuid/f89551f9-3cdb-4bea-95ac-3440379661f5";
       fsType = "btrfs";
       options = [ "subvol=Shack" ];
     };
 
-  fileSystems."/mnt/Vmstore" =
-    {
-      device = "/dev/disk/by-uuid/f89551f9-3cdb-4bea-95ac-3440379661f5";
+  fileSystems."/mnt/Vmstore/docker/btrfs" =
+    { device = "/mnt/Shack/Vmstore/docker/btrfs";
+      fsType = "none";
+      options = [ "bind" ];
+    };
+
+  fileSystems."/mnt/home-borg" =
+    { device = "/dev/disk/by-uuid/c7d0c8a5-1f5c-406f-b68b-6e4471e2ac8b";
       fsType = "btrfs";
-      options = [ "subvol=Vmstore" ];
+      options = [ "subvol=home-borg" ];
     };
 
   swapDevices = [ ];
@@ -69,6 +73,7 @@
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
+  # networking.interfaces.docker0.useDHCP = lib.mkDefault true;
   # networking.interfaces.wlp2s0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
