@@ -196,7 +196,6 @@
     gparted
     pop-launcher
     evince
-    popsicle
 
     # core
     wget
