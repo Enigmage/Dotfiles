@@ -62,7 +62,7 @@
     # gui apps
     vlc
     firefox
-    brave
+    # brave
     obsidian
     wezterm
     vscode
