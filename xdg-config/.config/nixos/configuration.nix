@@ -182,7 +182,9 @@
     # possible redundant
     libgccjit
     gccgo12
-    # brave
+    # Temp
+    brave
+    firefox
   ];
   environment.shells = [ pkgs.zsh ];
 

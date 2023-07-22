@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running `nixos-help`).
 
-{ config, pkgs, outputs, inputs, lib, ... }:
+{ inputs, lib, config, pkgs, ... }:
 
 {
   imports =
@@ -10,64 +10,53 @@
       # Include the results of the hardware scan.
       ./asus-vivo-az.nix
     ];
-  nixpkgs = {
-    # You can add overlays here
-    overlays = [
-      # Add overlays your own flake exports (from overlays and pkgs dir):
-      outputs.overlays.additions
-      outputs.overlays.modifications
-      outputs.overlays.unstable-packages
-
-      # You can also add overlays exported from other flakes:
-      # neovim-nightly-overlay.overlays.default
-
-      # Or define it inline, for example:
-      # (final: prev: {
-      #   hi = final.hello.overrideAttrs (oldAttrs: {
-      #     patches = [ ./change-hello-to-hi.patch ];
-      #   });
-      # })
-    ];
-    # Configure your nixpkgs instance
-    config = {
-      # Disable if you don't want unfree packages
-      allowUnfree = true;
-    };
-  };
-
-  nix = {
-    # This will add each flake input as a registry
-    # To make nix3 commands consistent with your flake
-    registry = lib.mapAttrs (_: value: { flake = value; }) inputs;
-
-    # This will additionally add your inputs to the system's legacy channels
-    # Making legacy nix commands consistent as well, awesome!
-    nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;
-
-    settings = {
-      # Enable flakes and new 'nix' command
-      experimental-features = "nix-command flakes";
-      # Deduplicate and optimize nix store
-      auto-optimise-store = true;
-    };
-    gc = {
-      automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than 15d";
-    };
-
-  };
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelPackages = pkgs.linuxPackages_latest;
+  hardware.enableAllFirmware = true;
 
+  # This will add each flake input as a registry
+  # To make nix3 commands consistent with your flake
+  nix.registry = lib.mapAttrs (_: value: { flake = value; }) inputs;
+
+  # This will additionally add your inputs to the system's legacy channels
+  # Making legacy nix commands consistent as well, awesome!
+  nix.nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;
+  nix.settings = {
+    experimental-features = [ "nix-command" "flakes" ];
+    auto-optimise-store = true;
+  };
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 15d";
+  };
+
+  nixpkgs.config = {
+    allowUnfree = true;
+    packageOverrides = pkgs: {
+      vaapiIntel = pkgs.vaapiIntel.override { enableHybridCodec = true; };
+    };
+  };
+  nixpkgs.overlays = [
+    # If you want to use overlays exported from other flakes:
+    # neovim-nightly-overlay.overlays.default
+
+    # Or define it inline, for example:
+    # (final: prev: {
+    #   hi = final.hello.overrideAttrs (oldAttrs: {
+    #     patches = [ ./change-hello-to-hi.patch ];
+    #   });
+    # })
+  ];
 
   networking.hostName = "0xaf"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
+  # networking.nameservers = [ "1.1.1.1" "9.9.9.9" ];
 
   # Set your time zone.
   time.timeZone = "Asia/Kolkata";
@@ -84,6 +73,20 @@
     useXkbConfig = true; # use xkbOptions in tty.
   };
 
+  programs.dconf.enable = true;
+
+  virtualisation.libvirtd = {
+    enable = true;
+    qemu = {
+      package = pkgs.qemu_kvm;
+      # For windows
+      ovmf = {
+        enable = true;
+        packages = [ pkgs.OVMFFull.fd ];
+      };
+      swtpm.enable = true;
+    };
+  };
   virtualisation.docker = {
     enable = true;
     # enableNvidia = true;
@@ -122,21 +125,57 @@
 
   # Enable sound.
   sound.enable = true;
-  hardware.pulseaudio.enable = true;
-  hardware.enableAllFirmware = true;
+  hardware.pulseaudio.enable = false;
+  # rtkit is optional but recommended
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    # If you want to use JACK applications, uncomment this
+    jack.enable = true;
+  };
+  # Might be needed for bluetooth
+  # environment.etc = {
+  #   "wireplumber/bluetooth.lua.d/51-bluez-config.lua".text = ''
+  #     		bluez_monitor.properties = {
+  #     			["bluez5.enable-sbc-xq"] = true,
+  #     			["bluez5.enable-msbc"] = true,
+  #     			["bluez5.enable-hw-volume"] = true,
+  #     			["bluez5.headset-roles"] = "[ hsp_hs hsp_ag hfp_hf hfp_ag ]"
+  #     		}
+  #     	'';
+  # };
+
   hardware.opentabletdriver = {
     enable = true;
     daemon.enable = true;
   };
+  # scanning
   hardware.sane = {
     enable = true;
     extraBackends = [ pkgs.hplipWithPlugin ];
   };
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+    driSupport32Bit = true;
+    extraPackages = with pkgs; [
+      intel-media-driver # LIBVA_DRIVER_NAME=iHD
+      vaapiIntel # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
+      vaapiVdpau
+      libvdpau-va-gl
+      nvidia-vaapi-driver
+      ffmpeg_6-full
+    ];
+  };
+
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.alizaidi = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "docker" "scanner" "lp" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "docker" "scanner" "lp" "libvirtd" ]; # Enable ‘sudo’ for the user.
     shell = pkgs.zsh;
   };
 
@@ -144,6 +183,8 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     wget
+    virt-manager
+    pavucontrol
     gnomeExtensions.pop-shell
     gnomeExtensions.caffeine
     gnomeExtensions.clipboard-indicator
@@ -159,6 +200,9 @@
     # possible redundant
     libgccjit
     gccgo12
+    # Temp
+    brave
+    firefox
   ];
   environment.shells = [ pkgs.zsh ];
 
@@ -187,6 +231,53 @@
   # accidentally delete configuration.nix.
   # system.copySystemConfiguration = true;
 
+  specialisation = {
+    "0xaf-hybrid".configuration = {
+      # Possibly turn of nvidia card while not used, better battery.
+      # https://discourse.nixos.org/t/how-to-use-nvidia-prime-offload-to-run-the-x-server-on-the-integrated-board/9091/15?u=moritzschaefer
+
+      # gnome service to identify multiple gpu's
+      services.switcherooControl.enable = true;
+      services.xserver.videoDrivers = [ "nvidia" ];
+      hardware.nvidia = {
+        powerManagement.enable = true;
+        modesetting.enable = true;
+        open = false;
+        nvidiaPersistenced = false;
+        nvidiaSettings = true;
+        package = config.boot.kernelPackages.nvidiaPackages.stable;
+        prime = {
+          offload = {
+            enable = true;
+            enableOffloadCmd = true;
+          };
+          intelBusId = "PCI:00:02:0";
+          nvidiaBusId = "PCI:01:00:0";
+        };
+      };
+    };
+  };
+  # Timers and crons
+  systemd.timers."home-internal-backup" = {
+    wantedBy = [ "timers.target" ];
+    timerConfig = {
+      OnCalendar = "daily";
+      Persistent = true;
+      Unit = "home-internal-backup.service";
+    };
+  };
+  systemd.services."home-internal-backup" = {
+    path = [
+      pkgs.borgbackup
+    ];
+    script = ''
+      ${pkgs.bash}/bin/bash /home/alizaidi/scripts/layer1-home-borg.sh
+    '';
+    serviceConfig = {
+      Type = "oneshot";
+      User = "alizaidi";
+    };
+  };
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It's perfectly fine and recommended to leave

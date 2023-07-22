@@ -39,8 +39,8 @@
 
     # gui apps
     vlc
-    firefox
-    brave
+    # firefox
+    # brave
     obsidian
     wezterm
     vscode
@@ -61,7 +61,7 @@
   ];
 
   # For the packages with dotfiles managed by home-manager.
-  programs.chromium.enable = true;
+  # programs.chromium.enable = true;
   programs.git.enable = true;
   programs.neovim = {
     enable = true;

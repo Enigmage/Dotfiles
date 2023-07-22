@@ -1,0 +1,14 @@
+
+- [ ] Polybar
+- [X] Prompts
+- [ ] Update to latest version using stack
+- [ ] dynamic monitor configuration
+- [ ] screen lock
+- [ ] power management
+- [ ] volume management
+- [ ] switch to picom
+- [ ] optimize rofi
+- [X] Some apps starting up slowly.
+- [X] Dunst - system notifications.
+- [X] Grid select
+- [X] Spaces

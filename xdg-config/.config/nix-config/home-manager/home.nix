@@ -1,12 +1,11 @@
-{ inputs, outputs, lib, config, pkgs, ... }:
+# This is your home-manager configuration file
+# Use this to configure your home environment (it replaces ~/.config/nixpkgs/home.nix)
 
-{
+{ inputs, lib, config, pkgs, ... }: {
+  # You can import other home-manager modules here
   imports = [
-    # If you want to use modules your own flake exports (from modules/home-manager):
-    # outputs.homeManagerModules.example
-
-    # Or modules exported from other flakes (such as nix-colors):
-    # inputs.nix-colors.homeManagerModules.default
+    # If you want to use home-manager modules from other flakes (such as nix-colors):
+    # inputs.nix-colors.homeManagerModule
 
     # You can also split up your configuration and import pieces of it here:
     # ./nvim.nix
@@ -15,13 +14,8 @@
   nixpkgs = {
     # You can add overlays here
     overlays = [
-      # Add overlays your own flake exports (from overlays and pkgs dir):
-      outputs.overlays.additions
-      outputs.overlays.modifications
-      outputs.overlays.unstable-packages
-
-      # You can also add overlays exported from other flakes:
-      neovim-nightly-overlay.overlays.default
+      # If you want to use overlays exported from other flakes:
+      inputs.neovim-nightly-overlay.overlay
 
       # Or define it inline, for example:
       # (final: prev: {
@@ -35,7 +29,7 @@
       # Disable if you don't want unfree packages
       allowUnfree = true;
       # Workaround for https://github.com/nix-community/home-manager/issues/2942
-      allowUnfreePredicate = (_: true);
+      # allowUnfreePredicate = (_: true);
     };
   };
   # Home Manager needs a bit of information about you and the paths it should
@@ -43,15 +37,6 @@
   home.username = "alizaidi";
   home.homeDirectory = "/home/alizaidi";
   # targets.genericLinux.enable = true;
-
-  # This value determines the Home Manager release that your configuration is
-  # compatible with. This helps avoid breakage when a new Home Manager release
-  # introduces backwards incompatible changes.
-  #
-  # You should not change this value, even if you update Home Manager. If you do
-  # want to update the value, then make sure to first check the Home Manager
-  # release notes.
-  home.stateVersion = "23.05"; # Please read the comment before changing.
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
@@ -71,12 +56,13 @@
     unzip
     xclip
     fd
-    nix-prefetch-github
+    nix-prefetch
+    borgbackup
 
     # gui apps
     vlc
-    firefox
-    brave
+    # firefox
+    # brave
     obsidian
     wezterm
     vscode
@@ -97,6 +83,7 @@
   ];
 
   # For the packages with dotfiles managed by home-manager.
+  # programs.chromium.enable = true;
   programs.git.enable = true;
   programs.neovim = {
     enable = true;
@@ -279,8 +266,10 @@
     TERMINAL = "wezterm";
     DENO_PATH = "/home/alizaidi/.deno";
   };
-  systemd.user.startServices = "sd-switch";
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+
+  # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
+  home.stateVersion = "23.05";
 }
