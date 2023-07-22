@@ -267,6 +267,7 @@
     EDITOR = "nvim";
     TERMINAL = "wezterm";
     DENO_PATH = "/home/alizaidi/.deno";
+    XDG_DATA_DIRS = "/home/alizaidi/.local/share";
   };
 
   # Let Home Manager install and manage itself.
