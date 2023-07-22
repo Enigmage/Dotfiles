@@ -193,7 +193,7 @@
     gparted
     pop-launcher
     evince
-    home-manager
+    # home-manager
     coreutils-full
     pciutils
     exfatprogs # for exFAT
