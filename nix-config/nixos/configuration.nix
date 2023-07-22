@@ -184,9 +184,10 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    wget
     virt-manager
     pavucontrol
+
+    # DE
     gnomeExtensions.pop-shell
     gnomeExtensions.caffeine
     gnomeExtensions.clipboard-indicator
@@ -195,7 +196,10 @@
     gparted
     pop-launcher
     evince
-    # home-manager
+    popsicle
+
+    # core
+    wget
     coreutils-full
     pciutils
     exfatprogs # for exFAT
