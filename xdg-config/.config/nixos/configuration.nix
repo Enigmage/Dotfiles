@@ -99,26 +99,6 @@
     interval = "weekly";
   };
 
-  systemd.timers."home-internal-backup" = {
-    wantedBy = [ "timers.target" ];
-    timerConfig = {
-      OnCalendar = "daily";
-      Persistent = true;
-      Unit = "home-internal-backup.service";
-    };
-  };
-  systemd.services."home-internal-backup" = {
-    path = [
-      pkgs.borgbackup
-    ];
-    script = ''
-      ${pkgs.bash}/bin/bash /home/alizaidi/scripts/layer1-home-borg.sh
-    '';
-    serviceConfig = {
-      Type = "oneshot";
-      User = "root";
-    };
-  };
   # Enable CUPS to print documents.
   services.printing = {
     enable = true;
@@ -255,6 +235,27 @@
           nvidiaBusId = "PCI:01:00:0";
         };
       };
+    };
+  };
+  # Timers and crons
+  systemd.timers."home-internal-backup" = {
+    wantedBy = [ "timers.target" ];
+    timerConfig = {
+      OnCalendar = "daily";
+      Persistent = true;
+      Unit = "home-internal-backup.service";
+    };
+  };
+  systemd.services."home-internal-backup" = {
+    path = [
+      pkgs.borgbackup
+    ];
+    script = ''
+      ${pkgs.bash}/bin/bash /home/alizaidi/scripts/layer1-home-borg.sh
+    '';
+    serviceConfig = {
+      Type = "oneshot";
+      User = "alizaidi";
     };
   };
   # This value determines the NixOS release from which the default
