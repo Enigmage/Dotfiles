@@ -61,8 +61,8 @@
 
     # gui apps
     vlc
-    # firefox
-    # brave
+    firefox
+    brave
     obsidian
     wezterm
     vscode
@@ -151,6 +151,10 @@
       share = true;
     };
     shellAliases = {
+      home-switch = "home-manager switch --flake
+      ~/Dotfiles/xdg-config/.config/nix-config#alizaidi@0xaf";
+      system-switch = "home-manager switch --flake
+      ~/Dotfiles/xdg-config/.config/nix-config#0xaf";
       nv = "nvim";
       wezconf = "nvim ~/.config/wezterm/wezterm.lua";
       # at = "alacritty-themes";
