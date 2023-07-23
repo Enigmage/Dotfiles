@@ -84,11 +84,11 @@
   ];
 
   # For the packages with dotfiles managed by home-manager.
-  # programs.chromium.enable = true;
+  programs.chromium.enable = true;
   programs.git.enable = true;
   programs.neovim = {
     enable = true;
-    # package = pkgs.neovim-nightly;
+    package = pkgs.neovim-nightly;
     plugins = with pkgs.vimPlugins; [
       packer-nvim
     ];
