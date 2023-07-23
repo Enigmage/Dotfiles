@@ -88,7 +88,7 @@
   programs.git.enable = true;
   programs.neovim = {
     enable = true;
-    package = pkgs.neovim-nightly;
+    # package = pkgs.neovim-nightly;
     plugins = with pkgs.vimPlugins; [
       packer-nvim
     ];
@@ -100,6 +100,7 @@
       pyright
       nodejs
       gcc
+      gopls
       deno
       nil
       nodePackages.bash-language-server
@@ -117,7 +118,6 @@
       stylua
       gofumpt
       beautysh
-      gopls
     ];
   };
   programs.zsh = {
