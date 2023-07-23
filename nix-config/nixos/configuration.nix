@@ -276,6 +276,10 @@
 
   services.flatpak.enable = true;
 
+  services.tlp = {
+    enable = true;
+  };
+
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 
