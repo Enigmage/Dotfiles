@@ -276,7 +276,7 @@
 
   services.flatpak.enable = true;
 
-  # Power management
+  # power management
   # https://github.com/NixOS/nixpkgs/issues/211345
   services.thermald.enable = true;
   services.power-profiles-daemon.enable = false;

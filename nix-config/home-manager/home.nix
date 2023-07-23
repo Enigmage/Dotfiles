@@ -117,6 +117,7 @@
       stylua
       gofumpt
       beautysh
+      gopls
     ];
   };
   programs.zsh = {
