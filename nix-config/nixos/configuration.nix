@@ -36,24 +36,26 @@
     };
   };
 
-  nixpkgs.config = {
-    allowUnfree = true;
-    packageOverrides = pkgs: {
-      vaapiIntel = pkgs.vaapiIntel.override { enableHybridCodec = true; };
+  nixpkgs = {
+    config = {
+      allowUnfree = true;
+      packageOverrides = pkgs: {
+        vaapiIntel = pkgs.vaapiIntel.override { enableHybridCodec = true; };
+      };
     };
+    overlays = [
+      # If you want to use overlays exported from other flakes:
+      # neovim-nightly-overlay.overlays.default
+
+      # Or define it inline, for example:
+      # (final: prev: {
+      #   hi = final.hello.overrideAttrs (oldAttrs: {
+      #     patches = [ ./change-hello-to-hi.patch ];
+      #   });
+      # })
+    ];
+
   };
-  nixpkgs.overlays = [
-    # If you want to use overlays exported from other flakes:
-    # neovim-nightly-overlay.overlays.default
-
-    # Or define it inline, for example:
-    # (final: prev: {
-    #   hi = final.hello.overrideAttrs (oldAttrs: {
-    #     patches = [ ./change-hello-to-hi.patch ];
-    #   });
-    # })
-  ];
-
   networking.hostName = "0xaf"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -114,6 +116,7 @@
     };
   };
 
+  # for ssd
   services.fstrim = {
     enable = true;
     interval = "weekly";
@@ -278,7 +281,7 @@
 
   # power management
   # https://github.com/NixOS/nixpkgs/issues/211345
-  services.thermald.enable = true;
+  services.thermald.enable = false;
   services.power-profiles-daemon.enable = false;
   services.tlp = {
     enable = true;
@@ -304,6 +307,7 @@
   # accidentally delete configuration.nix.
   # system.copySystemConfiguration = true;
 
+  # Similar to pop-os hybrid mode
   specialisation = {
     "0xaf-hybrid".configuration = {
       # Possibly turn of nvidia card while not used, better battery.
