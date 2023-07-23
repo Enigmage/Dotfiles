@@ -276,9 +276,8 @@
 
   services.flatpak.enable = true;
 
-  services.tlp = {
-    enable = true;
-  };
+  services.power-profiles-daemon.enable = false;
+  services.tlp.enable = true;
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
