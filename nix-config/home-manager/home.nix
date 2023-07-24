@@ -203,7 +203,6 @@
   };
   programs.fzf = {
     enable = true;
-    enableFishIntegration = true;
     changeDirWidgetCommand = "fd --type d . ~";
   };
   programs.tmux = {
