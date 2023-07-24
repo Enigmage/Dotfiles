@@ -286,6 +286,7 @@
   services.power-profiles-daemon.enable = false;
   services.tlp = {
     enable = true;
+    extraConfig = builtins.readFile ./tlp.conf;
   };
 
   # Enable the OpenSSH daemon.
