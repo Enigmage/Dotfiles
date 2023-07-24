@@ -65,7 +65,6 @@
     firefox
     brave
     obsidian
-    wezterm
     vscode
     guake
     discord
@@ -84,6 +83,7 @@
   ];
 
   # For the packages with dotfiles managed by home-manager.
+  programs.wezterm.enable = true;
   programs.chromium.enable = true;
   programs.git.enable = true;
   programs.neovim = {
@@ -231,6 +231,12 @@
     # # symlink to the Nix store copy.
     # ".screenrc".source = dotfiles/screenrc;
 
+    ".vimrc".source = ./sources/vim/.vimrc;
+    ".vim" = {
+      source = ./sources/vim/.vim;
+      recursive = true;
+    };
+
     ".config/git" = {
       recursive = true;
       source = ./sources/git;
@@ -238,6 +244,11 @@
 
     ".config/nvim" = {
       source = ./sources/nvim;
+      recursive = true;
+    };
+
+    ".config/wezterm" = {
+      source = ./sources/wezterm;
       recursive = true;
     };
 
