@@ -24,8 +24,9 @@
         # > Our main nixos configuration file <
         modules = [
           ./nixos/configuration.nix
-          # https://github.com/NixOS/nixos-hardware/blob/master/flake.nix
-          inputs.hardware.nixosModules.common-cpu-intel-kaby-lake
+          # https://github.com/NixOS/nixos-hardware/blob/master/flake.nix -
+          # collision!!
+          # inputs.hardware.nixosModules.common-cpu-intel-kaby-lake
         ];
       };
     };
