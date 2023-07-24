@@ -12,10 +12,12 @@
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
 
     # TODO: Add any other flake you might need
-    hardware.url = "github:nixos/nixos-hardware";
+    # hardware.url = "github:nixos/nixos-hardware";
   };
 
   outputs = { nixpkgs, home-manager, ... }@inputs: {
+    # Your custom packages and modifications, exported as overlays
+    overlays = import ./overlays { inherit inputs; };
     # NixOS configuration entrypoint
     # Available through 'nixos-rebuild --flake .#your-hostname'
     nixosConfigurations = {
