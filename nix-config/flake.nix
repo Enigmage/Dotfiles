@@ -15,33 +15,47 @@
     # hardware.url = "github:nixos/nixos-hardware";
   };
 
-  outputs = { nixpkgs, home-manager, ... }@inputs: {
-    # Your custom packages and modifications, exported as overlays
-    overlays = import ./overlays { inherit inputs; };
-    # NixOS configuration entrypoint
-    # Available through 'nixos-rebuild --flake .#your-hostname'
-    nixosConfigurations = {
-      "0xaf" = nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs; }; # Pass flake inputs to our config
-        # > Our main nixos configuration file <
-        modules = [
-          ./nixos/configuration.nix
-          # https://github.com/NixOS/nixos-hardware/blob/master/flake.nix -
-          # collision!!
-          # inputs.hardware.nixosModules.common-cpu-intel-kaby-lake
-        ];
-      };
-    };
+  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+    let
+      inherit (self) outputs;
+      forAllSystems = nixpkgs.lib.genAttrs [
+        "x86_64-linux"
+      ];
+    in
+    {
+      # Devshell for bootstrapping
+      # Acessible through 'nix develop' or 'nix-shell' (legacy)
+      devShells = forAllSystems (system:
+        let pkgs = nixpkgs.legacyPackages.${system};
+        in import ./shell.nix { inherit pkgs; }
+      );
 
-    # Standalone home-manager configuration entrypoint
-    # Available through 'home-manager --flake .#your-username@your-hostname'
-    homeConfigurations = {
-      "alizaidi@0xaf" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
-        extraSpecialArgs = { inherit inputs; }; # Pass flake inputs to our config
-        # > Our main home-manager configuration file <
-        modules = [ ./home-manager/home.nix ];
+      # Your custom packages and modifications, exported as overlays
+      overlays = import ./overlays { inherit inputs; };
+      # NixOS configuration entrypoint
+      # Available through 'nixos-rebuild --flake .#your-hostname'
+      nixosConfigurations = {
+        "0xaf" = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs outputs; }; # Pass flake inputs to our config
+          # > Our main nixos configuration file <
+          modules = [
+            ./nixos/configuration.nix
+            # https://github.com/NixOS/nixos-hardware/blob/master/flake.nix -
+            # collision!!
+            # inputs.hardware.nixosModules.common-cpu-intel-kaby-lake
+          ];
+        };
+      };
+
+      # Standalone home-manager configuration entrypoint
+      # Available through 'home-manager --flake .#your-username@your-hostname'
+      homeConfigurations = {
+        "alizaidi@0xaf" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
+          extraSpecialArgs = { inherit inputs outputs; }; # Pass flake inputs to our config
+          # > Our main home-manager configuration file <
+          modules = [ ./home-manager/home.nix ];
+        };
       };
     };
-  };
 }
