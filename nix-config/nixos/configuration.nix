@@ -282,7 +282,7 @@
   # power management
   # https://github.com/NixOS/nixpkgs/issues/211345
   # https://gist.github.com/pauloromeira/787c75d83777098453f5c2ed7eafa42a
-  services.thermald.enable = true;
+  services.thermald.enable = false;
   services.power-profiles-daemon.enable = false;
   services.tlp = {
     enable = true;

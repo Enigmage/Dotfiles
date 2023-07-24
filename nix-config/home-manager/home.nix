@@ -156,7 +156,6 @@
       home-switch = "home-manager switch --flake ~/Dotfiles/nix-config#alizaidi@0xaf";
       system-switch = "sudo nixos-rebuild switch --flake ~/Dotfiles/nix-config#0xaf";
       nv = "nvim";
-      wezconf = "nvim ~/.config/wezterm/wezterm.lua";
       # at = "alacritty-themes";
       bat = "batcat";
       gch = "git checkout";
@@ -172,8 +171,6 @@
       # api2-ssh = "ssh ubuntu@35.154.71.34";
       # url-ssh = "ssh ubuntu@13.232.88.118";
       # static-ssh = "ssh ubuntu@15.206.70.213";
-      xmonaconf = "nv ~/.config/xmonad/xmonad.hs";
-      xmobaconf = "nv ~/.config/xmobar/xmobarrc";
       #addbacklinks = "sed -i "1s\/\^/Back to [ index ] (index.md)\n\n /" *.md";
     };
     initExtra =
