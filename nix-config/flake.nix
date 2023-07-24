@@ -17,6 +17,8 @@
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
     let
+      # to make outputs available inside itself to be able 
+      # to pass down to other modules
       inherit (self) outputs;
       forAllSystems = nixpkgs.lib.genAttrs [
         "x86_64-linux"
