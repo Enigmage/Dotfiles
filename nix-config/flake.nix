@@ -12,7 +12,7 @@
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
 
     # TODO: Add any other flake you might need
-    # hardware.url = "github:nixos/nixos-hardware";
+    hardware.url = "github:nixos/nixos-hardware";
   };
 
   outputs = { nixpkgs, home-manager, ... }@inputs: {
@@ -22,7 +22,11 @@
       "0xaf" = nixpkgs.lib.nixosSystem {
         specialArgs = { inherit inputs; }; # Pass flake inputs to our config
         # > Our main nixos configuration file <
-        modules = [ ./nixos/configuration.nix ];
+        modules = [
+          ./nixos/configuration.nix
+          # https://github.com/NixOS/nixos-hardware/blob/master/flake.nix
+          inputs.hardware.nixosModules.common-cpu-intel-kaby-lake
+        ];
       };
     };
 
