@@ -208,61 +208,57 @@
     # possible redundant
     libgccjit
     gccgo12
-    # to run generic binaries
-    (pkgs.buildFHSUserEnv {
-      name = "fhs";
-      targetPkgs = pkgs: with pkgs; [
-        alsa-lib
-        atk
-        cairo
-        cups
-        curl
-        dbus
-        expat
-        file
-        zsh
-        fontconfig
-        freetype
-        fuse
-        glib
-        gtk3
-        libGL
-        libnotify
-        libxml2
-        libxslt
-        netcat
-        nspr
-        nss
-        openjdk8
-        openssl.dev
-        pango
-        pkg-config
-        strace
-        udev
-        vulkan-loader
-        watch
-        wget
-        which
-        xorg.libX11
-        xorg.libxcb
-        xorg.libXcomposite
-        xorg.libXcursor
-        xorg.libXdamage
-        xorg.libXext
-        xorg.libXfixes
-        xorg.libXi
-        xorg.libXrandr
-        xorg.libXrender
-        xorg.libXScrnSaver
-        xorg.libxshmfence
-        xorg.libXtst
-        xorg.xcbutilkeysyms
-        zlib
-        fontconfig.lib
-      ];
-      profile = ''export FHS=1'';
-      runScript = "zsh";
-    })
+  ];
+  # to run generic binaries
+  programs.nix-ld.enable = true;
+  programs.nix-ld.libraries = with pkgs; [
+    stdenv.cc.cc
+    fuse3
+    alsa-lib
+    at-spi2-atk
+    at-spi2-core
+    atk
+    cairo
+    cups
+    curl
+    dbus
+    expat
+    fontconfig
+    freetype
+    gdk-pixbuf
+    glib
+    gtk3
+    libGL
+    libappindicator-gtk3
+    libdrm
+    libnotify
+    libpulseaudio
+    libuuid
+    libusb1
+    xorg.libxcb
+    libxkbcommon
+    mesa
+    nspr
+    nss
+    pango
+    pipewire
+    systemd
+    icu
+    openssl
+    xorg.libX11
+    xorg.libXScrnSaver
+    xorg.libXcomposite
+    xorg.libXcursor
+    xorg.libXdamage
+    xorg.libXext
+    xorg.libXfixes
+    xorg.libXi
+    xorg.libXrandr
+    xorg.libXrender
+    xorg.libXtst
+    xorg.libxkbfile
+    xorg.libxshmfence
+    zlib
   ];
   environment.shells = [ pkgs.zsh ];
 
