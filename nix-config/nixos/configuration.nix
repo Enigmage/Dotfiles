@@ -259,10 +259,9 @@
         xorg.libxkbfile
         xorg.libxshmfence
         zlib
-
       ];
       profile = ''export FHS=1'';
-      runScript = "bash";
+      runScript = "zsh";
     })
   ];
   environment.shells = [ pkgs.zsh ];
