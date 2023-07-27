@@ -12,6 +12,8 @@
       ./modules/fhs.nix
       ./modules/power-management.nix
       ./modules/nvidia-hybrid.nix
+      ./modules/timers.nix
+      ./modules/virtualisation.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
