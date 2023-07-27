@@ -58,7 +58,7 @@
     unzip
     xclip
     fd
-    nix-prefetch
+    nix-prefetch-github
     borgbackup
     rclone
     lm_sensors
