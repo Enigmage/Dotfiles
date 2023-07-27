@@ -9,6 +9,7 @@
     [
       # Include the results of the hardware scan.
       ./asus-vivo-az.nix
+      ./modules/fhs.nix 
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -208,61 +209,6 @@
     # possible redundant
     libgccjit
     gccgo12
-    # to run generic binaries
-    (pkgs.buildFHSUserEnv {
-      name = "fhs";
-      targetPkgs = pkgs: with pkgs; [
-        stdenv.cc.cc
-        fuse3
-        alsa-lib
-        at-spi2-atk
-        at-spi2-core
-        atk
-        cairo
-        cups
-        curl
-        dbus
-        expat
-        fontconfig
-        freetype
-        gdk-pixbuf
-        glib
-        gtk3
-        libGL
-        libappindicator-gtk3
-        libdrm
-        libnotify
-        libpulseaudio
-        libuuid
-        libusb1
-        xorg.libxcb
-        libxkbcommon
-        mesa
-        nspr
-        nss
-        pango
-        pipewire
-        systemd
-        icu
-        openssl
-        xorg.libX11
-        xorg.libXScrnSaver
-        xorg.libXcomposite
-        xorg.libXcursor
-        xorg.libXdamage
-        xorg.libXext
-        xorg.libXfixes
-        xorg.libXi
-        xorg.libXrandr
-        xorg.libXrender
-        xorg.libXtst
-        xorg.libxkbfile
-        xorg.libxshmfence
-        zlib
-      ];
-      profile = ''export FHS=1'';
-      runScript = "zsh";
-    })
   ];
   environment.shells = [ pkgs.zsh ];
 
