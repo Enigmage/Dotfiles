@@ -10,6 +10,7 @@
       ./machines/x510unr.nix
 
       ./modules/fhs.nix
+      # ./modules/nix-ld.nix # NOTE: doesn't work
       ./modules/power-management.nix
       ./modules/nvidia-hybrid.nix
       ./modules/timers.nix

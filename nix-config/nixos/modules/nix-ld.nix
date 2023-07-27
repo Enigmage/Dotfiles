@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }: {
+{ pkgs, ... }: {
   programs.nix-ld.enable = true;
   programs.nix-ld.libraries = with pkgs; [
     stdenv.cc.cc
@@ -50,12 +50,4 @@
     zlib
 
   ];
-  environment.variables = {
-    # NIX_LD_LIBRARY_PATH = lib.makeLibraryPath [
-    #   pkgs.stdenv.cc.cc
-    #   pkgs.openssl
-    #   # add here the libraries you want...
-    # ];
-    NIX_LD = lib.fileContents "${pkgs.stdenv.cc}/nix-support/dynamic-linker";
-  };
 }
