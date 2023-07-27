@@ -8,7 +8,7 @@
   imports =
     [
       # Include the results of the hardware scan.
-      ./asus-vivo-az.nix
+      ./machines/asus-vivo-az.nix
       ./modules/fhs.nix 
     ];
 
