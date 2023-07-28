@@ -7,15 +7,15 @@
 {
   imports =
     [
-      ./machines/x510unr.nix
+      ./hardware-configuration.nix
 
-      ./modules/fhs.nix
       # ./modules/nix-ld.nix # NOTE: doesn't work
-      ./modules/power-management.nix
-      ./modules/nvidia-hybrid.nix
-      ./modules/timers.nix
-      ./modules/virtualisation.nix
-      ./modules/gnome.nix
+      ../modules/fhs.nix
+      ../modules/power-management.nix
+      ../modules/nvidia-hybrid.nix
+      ../modules/timers.nix
+      ../modules/virtualisation.nix
+      ../modules/gnome.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
