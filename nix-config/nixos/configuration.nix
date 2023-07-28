@@ -15,6 +15,7 @@
       ./modules/nvidia-hybrid.nix
       ./modules/timers.nix
       ./modules/virtualisation.nix
+      ./modules/gnome.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -83,16 +84,12 @@
     useXkbConfig = true; # use xkbOptions in tty.
   };
 
-  programs.dconf.enable = true;
 
   # Enable the X11 windowing system.
   services.xserver = {
     enable = true;
     xkbOptions = "ctrl:nocaps";
     # xserver.layout = "us";
-    # Enable the GNOME Desktop Environment.
-    displayManager.gdm.enable = true;
-    desktopManager.gnome.enable = true;
     # Enable touchpad support (enabled default in most desktopManager).
     libinput.enable = false;
     # libinput.touchpad.middleEmulation = true;
@@ -128,17 +125,6 @@
     # If you want to use JACK applications, uncomment this
     jack.enable = true;
   };
-  # Might be needed for bluetooth
-  # environment.etc = {
-  #   "wireplumber/bluetooth.lua.d/51-bluez-config.lua".text = ''
-  #     		bluez_monitor.properties = {
-  #     			["bluez5.enable-sbc-xq"] = true,
-  #     			["bluez5.enable-msbc"] = true,
-  #     			["bluez5.enable-hw-volume"] = true,
-  #     			["bluez5.headset-roles"] = "[ hsp_hs hsp_ag hfp_hf hfp_ag ]"
-  #     		}
-  #     	'';
-  # };
 
   hardware.opentabletdriver = {
     enable = true;
@@ -174,19 +160,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    virt-manager
     pavucontrol
-
-    # DE
-    gnomeExtensions.pop-shell
-    gnomeExtensions.caffeine
-    gnomeExtensions.clipboard-indicator
-    gnome.zenity
-    gnome.gnome-tweaks
-    gparted
-    pop-launcher
-    evince
-
     # core
     wget
     coreutils-full

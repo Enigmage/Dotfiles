@@ -19,4 +19,7 @@
       data-root = "/mnt/Vmstore/docker";
     };
   };
+  environment.systemPackages = with pkgs; [
+    virt-manager
+  ];
 }
