@@ -7,7 +7,7 @@
 {
   imports =
     [
-      ./hardware-configuration.nix
+      ./modules/hardware.nix
       ./modules/power-management.nix
       ./modules/nvidia-hybrid.nix
 
