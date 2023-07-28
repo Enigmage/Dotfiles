@@ -8,14 +8,13 @@
   imports =
     [
       ./hardware-configuration.nix
+      ./modules/power-management.nix
+      ./modules/nvidia-hybrid.nix
 
-      # ./modules/nix-ld.nix # NOTE: doesn't work
-      ../modules/fhs.nix
-      ../modules/power-management.nix
-      ../modules/nvidia-hybrid.nix
-      ../modules/timers.nix
-      ../modules/virtualisation.nix
-      ../modules/gnome.nix
+      ../common/fhs.nix
+      ../common/timers.nix
+      ../common/virtualisation.nix
+      ../common/gnome.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
