@@ -10,9 +10,9 @@
       ./modules/hardware.nix
       ./modules/power-management.nix
       ./modules/nvidia-hybrid.nix
+      ./modules/timers.nix
 
       ../common/fhs.nix
-      ../common/timers.nix
       ../common/virtualisation.nix
       ../common/gnome.nix
     ];
