@@ -11,9 +11,9 @@
       ./modules/power-management.nix
       ./modules/nvidia-hybrid.nix
       ./modules/timers.nix
-      ./modules/fonts.nix
 
       ../common/fhs.nix
+      ../common/fonts.nix
       ../common/virtualisation.nix
       ../common/gnome.nix
     ];
