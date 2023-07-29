@@ -1,5 +1,6 @@
 { pkgs, ... }: {
   fonts = {
+    fontDir.enable = true;
     packages = with pkgs; [
       noto-fonts
       open-sans
