@@ -78,5 +78,5 @@ inoremap <A-l> <C-\><C-N><C-w>l
 " look and feel
 " To make colors work in st.
 set bg=dark
-colorscheme nord
+colorscheme gruvbox
 source ~/.vim/statusline.vim
