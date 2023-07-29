@@ -91,11 +91,17 @@
     xkbOptions = "ctrl:nocaps";
     # xserver.layout = "us";
     # Enable touchpad support (enabled default in most desktopManager).
-    libinput.enable = false;
-    # libinput.touchpad.middleEmulation = true;
-    # libinput.touchpad.tapping = true;
-    synaptics = {
+    libinput = {
       enable = true;
+      touchpad = {
+        tapping = true;
+        middleEmulation = true;
+        horizontalScrolling = true;
+        disableWhileTyping = true;
+      };
+    };
+    synaptics = {
+      enable = false;
       twoFingerScroll = true;
     };
   };

@@ -37,6 +37,7 @@
       # NixOS configuration entrypoint
       # Available through 'nixos-rebuild --flake .#your-hostname'
       nixosConfigurations = {
+        # 0xaf -> asus x510unr
         "0xaf" = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; }; # Pass flake inputs to our config
           # > Our main nixos configuration file <
