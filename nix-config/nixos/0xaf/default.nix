@@ -18,8 +18,10 @@
     ];
 
   # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.systemd-boot.configurationLimit = 20;
+  boot.loader.systemd-boot = {
+    enable = true;
+    configurationLimit = 20;
+  };
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelPackages = pkgs.linuxPackages_latest;
   hardware.enableAllFirmware = true;
@@ -36,11 +38,6 @@
       experimental-features = [ "nix-command" "flakes" ];
       auto-optimise-store = true;
     };
-    # gc = {
-    #   automatic = true;
-    #   dates = "weekly";
-    #   options = "--delete-older-than 7d";
-    # };
   };
 
   nixpkgs = {
@@ -105,6 +102,10 @@
       enable = false;
       twoFingerScroll = true;
     };
+  };
+  # host specific docker setup
+  virtualisation.docker.daemon.settings = {
+    data-root = "/mnt/Vmstore/docker";
   };
 
   # for ssd
