@@ -98,6 +98,7 @@
         middleEmulation = true;
         horizontalScrolling = true;
         disableWhileTyping = true;
+        naturalScrolling = true;
       };
     };
     synaptics = {
