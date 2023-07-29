@@ -19,7 +19,7 @@ config.color_scheme = "Gruvbox Material (Gogh)"
 -- config.color_scheme = 'Palenight (Gogh)'
 config.font = wezterm.font("JetBrains Mono", { weight = "Regular" })
 
-config.font_size = 18
+config.font_size = 18.5
 config.window_decorations = "NONE"
 config.window_background_opacity = 0.83
 -- config.text_background_opacity = 0.3
