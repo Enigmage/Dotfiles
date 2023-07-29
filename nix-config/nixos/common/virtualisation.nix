@@ -14,7 +14,6 @@
   };
   virtualisation.docker = {
     enable = true;
-    enableNvidia = true;
   };
   environment.systemPackages = with pkgs; [
     virt-manager

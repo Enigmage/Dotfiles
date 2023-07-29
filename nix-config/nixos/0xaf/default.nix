@@ -11,6 +11,7 @@
       ./modules/power-management.nix
       ./modules/nvidia-hybrid.nix
       ./modules/timers.nix
+      ./modules/fonts.nix
 
       ../common/fhs.nix
       ../common/virtualisation.nix
@@ -104,8 +105,11 @@
     };
   };
   # host specific docker setup
-  virtualisation.docker.daemon.settings = {
-    data-root = "/mnt/Vmstore/docker";
+  virtualisation.docker = {
+    enableNvidia = true;
+    daemon.settings = {
+      data-root = "/mnt/Vmstore/docker";
+    };
   };
 
   # for ssd
