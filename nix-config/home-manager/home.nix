@@ -63,6 +63,7 @@
     rclone
     lm_sensors
     powertop
+    awscli2
 
     # gui apps
     vlc
