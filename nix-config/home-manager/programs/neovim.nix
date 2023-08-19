@@ -2,7 +2,7 @@
 
   programs.neovim = {
     enable = true;
-    # package = pkgs.neovim-nightly;
+    package = pkgs.neovim;
     plugins = with pkgs.vimPlugins; [
       packer-nvim
     ];
