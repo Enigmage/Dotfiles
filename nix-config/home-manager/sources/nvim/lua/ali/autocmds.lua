@@ -3,12 +3,12 @@ local general = vim.api.nvim_create_augroup("general", {
 })
 
 local WebDevOptions = function()
-	vim.opt_local.tabstop = 2
-	vim.opt_local.softtabstop = 2
-	vim.opt_local.shiftwidth = 2
-	vim.opt_local.textwidth = 90
-	vim.opt_local.expandtab = true
-	vim.opt_local.colorcolumn = "90"
+	vim.o.tabstop = 2
+	vim.o.softtabstop = 2
+	vim.o.shiftwidth = 2
+	vim.o.textwidth = 90
+	vim.o.expandtab = true
+	vim.o.colorcolumn = "90"
 	-- vim.cmd([[EmmetInstall]])
 end
 
