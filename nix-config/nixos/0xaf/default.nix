@@ -90,7 +90,7 @@
     # xserver.layout = "us";
     # Enable touchpad support (enabled default in most desktopManager).
     libinput = {
-      enable = false;
+      enable = true;
       touchpad = {
         tapping = true;
         middleEmulation = true;
@@ -100,7 +100,7 @@
       };
     };
     synaptics = {
-      enable = true;
+      enable = false;
       twoFingerScroll = true;
     };
   };
