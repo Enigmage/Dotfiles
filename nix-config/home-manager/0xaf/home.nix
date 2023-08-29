@@ -122,19 +122,19 @@
     # # symlink to the Nix store copy.
     # ".screenrc".source = dotfiles/screenrc;
 
-    ".vimrc".source = ./sources/vim/.vimrc;
+    ".vimrc".source = ../sources/vim/.vimrc;
     ".vim" = {
-      source = ./sources/vim/.vim;
+      source = ../sources/vim/.vim;
       recursive = true;
     };
 
     ".config/git" = {
       recursive = true;
-      source = ./sources/git;
+      source = ../sources/git;
     };
 
     ".config/wezterm" = {
-      source = ./sources/wezterm;
+      source = ../sources/wezterm;
       recursive = true;
     };
 
