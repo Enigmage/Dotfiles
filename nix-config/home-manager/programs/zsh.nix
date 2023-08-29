@@ -35,6 +35,7 @@
     };
     shellAliases = {
       home-switch = "home-manager switch --flake ~/Dotfiles/nix-config#alizaidi@0xaf";
+      work-switch = "home-manager switch --flake ~/Dotfiles/nix-config#alizaidi@w-pf3xkjnm";
       system-switch = "sudo nixos-rebuild switch --flake ~/Dotfiles/nix-config#0xaf";
       nv = "nvim";
       # at = "alacritty-themes";
