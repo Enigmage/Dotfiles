@@ -9,8 +9,8 @@
 
     # You can also split up your configuration and import pieces of it here:
     # ./nvim.nix
-    ./programs/neovim.nix
-    ./programs/zsh.nix
+    ../programs/neovim.nix
+    ../programs/zsh.nix
   ];
 
   nixpkgs = {
@@ -43,6 +43,7 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
+    onefetch
     neofetch
     stable.vim
     htop
@@ -59,16 +60,11 @@
     fd
     nix-prefetch-github
     awscli2
+    cloudfoundry-cli
+    exa
+    kubernetes
+    minikube
 
-    # gui apps
-    # vlc
-    # firefox
-    # brave
-    # obsidian
-    # vscode
-    # guake
-    # discord
-    # psensor
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
@@ -117,9 +113,9 @@
     # # symlink to the Nix store copy.
     # ".screenrc".source = dotfiles/screenrc;
 
-    ".vimrc".source = ./sources/vim/.vimrc;
+    ".vimrc".source = ../sources/vim/.vimrc;
     ".vim" = {
-      source = ./sources/vim/.vim;
+      source = ../sources/vim/.vim;
       recursive = true;
     };
 
