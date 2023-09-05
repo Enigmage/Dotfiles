@@ -22,6 +22,7 @@
       inherit (self) outputs;
       forAllSystems = nixpkgs.lib.genAttrs [
         "x86_64-linux"
+        "x86_64-darwin"
       ];
     in
     {
@@ -57,13 +58,13 @@
           pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
           extraSpecialArgs = { inherit inputs outputs; }; # Pass flake inputs to our config
           # > Our main home-manager configuration file <
-          modules = [ ./home-manager/0xaf/home.nix ];
+          modules = [ ./home-manager/laptop/home.nix ];
         };
-        "alizaidi@w-pf3xkjnm" = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
+        "I528580@q3qqxqw906" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.x86_64-darwin; # Home-manager requires 'pkgs' instance
           extraSpecialArgs = { inherit inputs outputs; }; # Pass flake inputs to our config
           # > Our main home-manager configuration file <
-          modules = [ ./home-manager/workwsl/home.nix ];
+          modules = [ ./home-manager/workdarwin/home.nix ];
         };
       };
     };

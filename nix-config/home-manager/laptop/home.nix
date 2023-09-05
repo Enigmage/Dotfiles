@@ -9,8 +9,8 @@
 
     # You can also split up your configuration and import pieces of it here:
     # ./nvim.nix
-    ../programs/neovim.nix
-    ../programs/zsh.nix
+    ../common/programs/neovim.nix
+    ../common/programs/zsh.nix
   ];
 
   nixpkgs = {
@@ -122,19 +122,19 @@
     # # symlink to the Nix store copy.
     # ".screenrc".source = dotfiles/screenrc;
 
-    ".vimrc".source = ../sources/vim/.vimrc;
+    ".vimrc".source = ../common/sources/vim/.vimrc;
     ".vim" = {
-      source = ../sources/vim/.vim;
+      source = ../common/sources/vim/.vim;
       recursive = true;
     };
 
     ".config/git" = {
       recursive = true;
-      source = ../sources/git;
+      source = ../common/sources/git;
     };
 
     ".config/wezterm" = {
-      source = ../sources/wezterm;
+      source = ../common/sources/wezterm;
       recursive = true;
     };
 

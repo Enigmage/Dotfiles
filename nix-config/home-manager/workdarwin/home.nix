@@ -9,8 +9,8 @@
 
     # You can also split up your configuration and import pieces of it here:
     # ./nvim.nix
-    ../programs/neovim.nix
-    ../programs/zsh.nix
+    ../common/programs/neovim.nix
+    ../common/programs/zsh.nix
   ];
 
   nixpkgs = {
@@ -36,8 +36,8 @@
   };
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
-  home.username = "alizaidi";
-  home.homeDirectory = "/home/alizaidi";
+  home.username = "I528580";
+  home.homeDirectory = "/Users/I528580";
   # targets.genericLinux.enable = true;
 
   # The home.packages option allows you to install Nix packages into your
@@ -46,24 +46,25 @@
     onefetch
     neofetch
     stable.vim
-    htop
-    deno
+    # htop
+    # deno
     nodejs_20
     yarn
     python311
     python311Packages.pip
-    go
-    cargo
-    rustc
+    jdk20
+    # go
+    # cargo
+    # rustc
     unzip
-    xclip
+    # xclip
     fd
     nix-prefetch-github
-    awscli2
-    cloudfoundry-cli
-    exa
-    kubernetes
-    minikube
+    # awscli2
+    # cloudfoundry-cli
+    # exa
+    # kubernetes
+    # minikube
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
@@ -82,7 +83,7 @@
   # For the packages with dotfiles managed by home-manager.
   # programs.wezterm.enable = true;
   # programs.chromium.enable = true;
-  programs.git.enable = true;
+  # programs.git.enable = true;
   programs.fzf = {
     enable = true;
     changeDirWidgetCommand = "fd --type d . ~";
@@ -113,9 +114,9 @@
     # # symlink to the Nix store copy.
     # ".screenrc".source = dotfiles/screenrc;
 
-    ".vimrc".source = ../sources/vim/.vimrc;
+    ".vimrc".source = ../common/sources/vim/.vimrc;
     ".vim" = {
-      source = ../sources/vim/.vim;
+      source = ../common/sources/vim/.vim;
       recursive = true;
     };
 
@@ -148,8 +149,8 @@
   # if you don't want to manage your shell through Home Manager.
   home.sessionVariables = {
     EDITOR = "nvim";
-    DENO_PATH = "/home/alizaidi/.deno";
-    XDG_DATA_HOME = "/home/alizaidi/.local/share";
+    # DENO_PATH = "/home/alizaidi/.deno";
+    # XDG_DATA_HOME = "/home/alizaidi/.local/share";
   };
 
   # Let Home Manager install and manage itself.
