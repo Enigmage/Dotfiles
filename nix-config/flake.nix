@@ -60,11 +60,11 @@
           # > Our main home-manager configuration file <
           modules = [ ./home-manager/laptop/home.nix ];
         };
-        "I528580@q3qqxqw906" = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.x86_64-darwin; # Home-manager requires 'pkgs' instance
+        "alizaidi@wsl" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
           extraSpecialArgs = { inherit inputs outputs; }; # Pass flake inputs to our config
           # > Our main home-manager configuration file <
-          modules = [ ./home-manager/workdarwin/home.nix ];
+          modules = [ ./home-manager/wsl/home.nix ];
         };
       };
     };

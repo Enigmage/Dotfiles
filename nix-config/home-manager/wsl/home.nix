@@ -46,25 +46,25 @@
     onefetch
     neofetch
     stable.vim
-    # htop
-    # deno
+    htop
+    deno
     nodejs_20
     yarn
     python311
     python311Packages.pip
     jdk20
-    # go
-    # cargo
-    # rustc
+    go
+    cargo
+    rustc
     unzip
-    # xclip
+    xclip
     fd
     nix-prefetch-github
-    # awscli2
-    # cloudfoundry-cli
-    # exa
-    # kubernetes
-    # minikube
+    awscli2
+    cloudfoundry-cli
+    exa
+    kubernetes
+    minikube
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
@@ -83,7 +83,7 @@
   # For the packages with dotfiles managed by home-manager.
   # programs.wezterm.enable = true;
   # programs.chromium.enable = true;
-  # programs.git.enable = true;
+  programs.git.enable = true;
   programs.fzf = {
     enable = true;
     changeDirWidgetCommand = "fd --type d . ~";
@@ -149,8 +149,8 @@
   # if you don't want to manage your shell through Home Manager.
   home.sessionVariables = {
     EDITOR = "nvim";
-    # DENO_PATH = "/home/alizaidi/.deno";
-    # XDG_DATA_HOME = "/home/alizaidi/.local/share";
+    DENO_PATH = "/home/alizaidi/.deno";
+    XDG_DATA_HOME = "/home/alizaidi/.local/share";
   };
 
   # Let Home Manager install and manage itself.
