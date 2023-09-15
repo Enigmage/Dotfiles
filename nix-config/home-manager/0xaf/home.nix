@@ -66,6 +66,7 @@
     awscli2
 
     # gui apps
+    staruml
     vlc
     firefox
     brave
