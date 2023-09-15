@@ -97,6 +97,7 @@
         horizontalScrolling = true;
         disableWhileTyping = true;
         naturalScrolling = true;
+        tappingButtonMap = "lmr";
       };
     };
     synaptics = {
