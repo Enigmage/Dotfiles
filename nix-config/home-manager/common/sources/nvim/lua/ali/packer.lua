@@ -114,7 +114,6 @@ require("packer").startup(function(use)
 	 		require("ali.treesitter")
 	 	end,
 	 	requires = {
-	 		"p00f/nvim-ts-rainbow",
 	 		"nvim-treesitter/nvim-treesitter-context",
 	 		"nvim-treesitter/nvim-treesitter-textobjects",
 	 	},
