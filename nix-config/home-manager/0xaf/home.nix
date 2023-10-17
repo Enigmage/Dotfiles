@@ -70,7 +70,7 @@
     vlc
     firefox
     brave
-    obsidian
+    # obsidian
     vscode
     guake
     discord
