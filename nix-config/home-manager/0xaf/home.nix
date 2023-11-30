@@ -63,10 +63,9 @@
     rclone
     lm_sensors
     powertop
-    awscli2
+    # awscli2
 
     # gui apps
-    staruml
     vlc
     firefox
     brave

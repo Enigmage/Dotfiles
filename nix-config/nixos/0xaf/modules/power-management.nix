@@ -2,9 +2,9 @@
   # power management
   # https://github.com/NixOS/nixpkgs/issues/211345
   services.thermald.enable = true;
-  services.power-profiles-daemon.enable = true;
+  services.power-profiles-daemon.enable = false;
   services.tlp = {
-    enable = false;
+    enable = true;
     # extraConfig = builtins.readFile ./tlp.conf;
     settings = {
       # https://gist.github.com/pauloromeira/787c75d83777098453f5c2ed7eafa42a
