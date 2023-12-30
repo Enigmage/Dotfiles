@@ -28,6 +28,11 @@ equire("nvim-treesitter.configs").setup({
         enable = true,
         disable = { "python", "haskell", "c", "cpp" },
     },
+    rainbow = {
+        enable = false,
+        extended_mode = true,
+        max_file_lines = nil,
+    },
     textobjects = {
         select = {
             enable = true,
