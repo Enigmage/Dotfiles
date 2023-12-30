@@ -43,7 +43,6 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
-    neofetch
     stable.vim
     compsize
     htop
@@ -66,15 +65,15 @@
     # awscli2
 
     # gui apps
-    vlc
-    firefox
+    #vlc
+    #firefox
     brave
-    # obsidian
-    vscode
-    guake
-    discord
-    psensor
-    libreoffice
+    ## obsidian
+    #vscode
+    #guake
+    #discord
+    #psensor
+    #libreoffice
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
@@ -90,8 +89,8 @@
   ];
 
   # For the packages with dotfiles managed by home-manager.
-  programs.wezterm.enable = true;
-  programs.chromium.enable = true;
+  # programs.wezterm.enable = true;
+  # programs.chromium.enable = true;
   programs.git.enable = true;
   programs.fzf = {
     enable = true;
@@ -146,12 +145,12 @@
     # '';
   };
 
-  services.syncthing = {
-    enable = true;
-    tray = {
-      enable = false;
-    };
-  };
+  # services.syncthing = {
+  #   enable = true;
+  #   tray = {
+  #     enable = false;
+  #   };
+  # };
 
   # You can also manage environment variables but you will have to manually
   # source

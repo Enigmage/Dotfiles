@@ -14,9 +14,9 @@ end
 -- This is where you actually apply your config choices
 
 -- Base
-config.color_scheme = "Gruvbox Material (Gogh)"
+-- config.color_scheme = "Gruvbox Material (Gogh)"
 -- config.color_scheme = 'MaterialDarker'
--- config.color_scheme = 'Palenight (Gogh)'
+config.color_scheme = 'Palenight (Gogh)'
 config.font = wezterm.font("Fira Code", { weight = "Regular" })
 
 config.font_size = 18
