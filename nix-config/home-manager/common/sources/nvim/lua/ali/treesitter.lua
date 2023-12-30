@@ -21,7 +21,7 @@ require("nvim-treesitter.configs").setup({
     ignore_install = {},
     highlight = {
         enable = true,
-        disable = {},
+        disable = { "bash" },
         additional_vim_regex_highlighting = false,
     },
     indent = {
