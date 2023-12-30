@@ -68,6 +68,7 @@
     #vlc
     #firefox
     brave
+    wezterm
     ## obsidian
     #vscode
     #guake
@@ -89,7 +90,7 @@
   ];
 
   # For the packages with dotfiles managed by home-manager.
-  programs.wezterm.enable = true;
+  # programs.wezterm.enable = true;
   # programs.chromium.enable = true;
   programs.git.enable = true;
   programs.fzf = {
