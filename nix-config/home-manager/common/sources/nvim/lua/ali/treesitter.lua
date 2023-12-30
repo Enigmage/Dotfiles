@@ -1,4 +1,4 @@
-require("nvim-treesitter.configs").setup({
+equire("nvim-treesitter.configs").setup({
     ensure_installed = {
         "cpp",
         "c",
@@ -27,11 +27,6 @@ require("nvim-treesitter.configs").setup({
     indent = {
         enable = true,
         disable = { "python", "haskell", "c", "cpp" },
-    },
-    rainbow = {
-        enable = false,
-        extended_mode = true,
-        max_file_lines = nil,
     },
     textobjects = {
         select = {
