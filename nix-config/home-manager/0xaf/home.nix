@@ -67,8 +67,8 @@
     # gui apps
     #vlc
     #firefox
-    brave
-    wezterm
+    # brave
+    # wezterm
     ## obsidian
     #vscode
     #guake
