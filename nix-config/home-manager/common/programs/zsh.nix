@@ -3,7 +3,7 @@
 
   programs.zsh = {
     enable = true;
-    autosuggestions.enable = true;
+    autosuggestion.enable = true;
     # enableAutosuggestions = true;
     enableCompletion = true;
     enableVteIntegration = true;
