@@ -63,6 +63,7 @@
     rclone
     lm_sensors
     powertop
+    bun
     # awscli2
 
     # gui apps
