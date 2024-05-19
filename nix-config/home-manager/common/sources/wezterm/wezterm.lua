@@ -21,7 +21,7 @@ config.font = wezterm.font("Fira Mono", { weight = "Regular" })
 
 config.font_size = 18
 config.window_decorations = "NONE"
-config.window_background_opacity = 0.83
+config.window_background_opacity = 0.94
 -- config.text_background_opacity = 0.3
 config.hide_tab_bar_if_only_one_tab = true
 config.scrollback_lines = 3000
