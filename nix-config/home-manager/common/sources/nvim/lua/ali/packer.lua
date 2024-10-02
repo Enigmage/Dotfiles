@@ -141,7 +141,7 @@ require("packer").startup(function(use)
 		requires = { "L3MON4D3/LuaSnip", "saadparwaiz1/cmp_luasnip", "hrsh7th/cmp-buffer" },
 	})
 	use({
-		"jose-elias-alvarez/null-ls.nvim",
+		"nvimtools/none-ls.nvim",
 		config = function()
 			require("ali.null-ls")
 		end,

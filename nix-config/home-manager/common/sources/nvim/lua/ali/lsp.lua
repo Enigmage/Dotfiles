@@ -51,7 +51,6 @@ local servers = {
     },
     dockerls = {},
     ts_ls = {},
-    tsserver = {},
     pyright = {
         analysis = {
             typeCheckingMode = "basic",
