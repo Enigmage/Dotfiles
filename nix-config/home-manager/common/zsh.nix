@@ -11,21 +11,14 @@
     syntaxHighlighting = {
       enable = true;
     };
-    # oh-my-zsh = {
-    #   enable = true;
-    #   # theme = "minimal";
-    #   # theme = "kphoen";
-    #   theme = "robbyrussell";
-    #   # plugins = [ "vi-mode"];
-    # };
     plugins = [
       {
         name = "pure";
         src = pkgs.fetchFromGitHub {
           owner = "sindresorhus";
           repo = "pure";
-          rev = "87e6f5dd4c793f6d980532205aaefe196780606f";
-          sha256 = "TR4CyBZ+KoZRs9XDmWE5lJuUXXU1J8E2Z63nt+FS+5w=";
+          rev = "a02209d36c8509c0e62f44324127632999c9c0cf";
+          sha256 = "BmQO4xqd/3QnpLUitD2obVxL0UulpboT8jGNEh4ri8k=";
         };
       }
     ];

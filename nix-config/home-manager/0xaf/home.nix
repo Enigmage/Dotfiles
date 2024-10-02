@@ -38,9 +38,21 @@ let
     # # You can also create simple shell scripts directly inside your
     # # configuration. For example, this adds a command 'my-hello' to your
     # # environment:
-    # (pkgs.writeShellScriptBin "my-hello" ''
-    #   echo "Hello, ${config.home.username}!"
-    # '')
+    (pkgs.writeShellScriptBin "greetme" ''
+      echo "Hello, ${config.home.username}!"
+    '')
+    (pkgs.writeShellScriptBin "nixconf" ''
+      cd ~/Dotfiles/nix-config
+      nvim home-manager/0xaf/home.nix
+    '')
+    (pkgs.writeShellScriptBin "nvconf" ''
+      cd ~/Dotfiles/nix-config
+      nvim home-manager/sources/nvim/init.lua
+    '')
+    (pkgs.writeShellScriptBin "wezconf" ''
+      cd ~/Dotfiles/nix-config
+      nvim home-manager/sources/wezterm/wezterm.lua
+    '')
   ];
   guiPackages = with pkgs; [
     # vlc
@@ -55,11 +67,11 @@ in
     # If you want to use home-manager modules from other flakes (such as nix-colors):
     # inputs.nix-colors.homeManagerModule
 
-    ../common/programs/neovim.nix
-    ../common/programs/zsh.nix
-    ../common/programs/tmux.nix
-    ../common/programs/git.nix
-    ../common/programs/fzf.nix
+    ../common/neovim.nix
+    ../common/zsh.nix
+    ../common/tmux.nix
+    ../common/git.nix
+    ../common/fzf.nix
   ];
 
   nixpkgs = {
@@ -98,14 +110,14 @@ in
     # # symlink to the Nix store copy.
     # ".screenrc".source = dotfiles/screenrc;
 
-    ".vimrc".source = ../common/sources/vim/.vimrc;
+    ".vimrc".source = ../sources/vim/.vimrc;
     ".vim" = {
-      source = ../common/sources/vim/.vim;
+      source = ../sources/vim/.vim;
       recursive = true;
     };
 
     ".config/wezterm" = {
-      source = ../common/sources/wezterm;
+      source = ../sources/wezterm;
       recursive = true;
     };
 
