@@ -25,6 +25,9 @@ let
     lm_sensors
     powertop
     bun
+    # Ideally use ghcup for haskell toolchain
+    ghc
+    haskellPackages.stack
     # awscli2
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the

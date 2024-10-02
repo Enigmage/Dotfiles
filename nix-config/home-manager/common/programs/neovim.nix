@@ -32,6 +32,7 @@
       stylua
       gofumpt
       beautysh
+      haskellPackages.haskell-language-server
     ];
   };
   home.file.".config/nvim" = {
