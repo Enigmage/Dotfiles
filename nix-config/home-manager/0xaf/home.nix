@@ -1,16 +1,62 @@
 # This is your home-manager configuration file
 # Use this to configure your home environment (it replaces ~/.config/nixpkgs/home.nix)
 
-{ inputs, outputs, lib, config, pkgs, ... }: {
+{ inputs, outputs, lib, config, pkgs, ... }:
+let
+  shellPackages = with pkgs; [
+    stable.vim
+    compsize
+    htop
+    deno
+    nodejs_latest
+    yarn
+    python311
+    python311Packages.pip
+    python311Packages.mypy
+    go
+    cargo
+    rustc
+    unzip
+    xclip
+    fd
+    nix-prefetch-github
+    borgbackup
+    rclone
+    lm_sensors
+    powertop
+    bun
+    # awscli2
+    # # It is sometimes useful to fine-tune packages, for example, by applying
+    # # overrides. You can do that directly here, just don't forget the
+    # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
+    # # fonts?
+    # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
+
+    # # You can also create simple shell scripts directly inside your
+    # # configuration. For example, this adds a command 'my-hello' to your
+    # # environment:
+    # (pkgs.writeShellScriptBin "my-hello" ''
+    #   echo "Hello, ${config.home.username}!"
+    # '')
+  ];
+  guiPackages = with pkgs; [
+    # vlc
+    neovide
+    # guake
+    # discord
+  ];
+in
+{
   # You can import other home-manager modules here
   imports = [
     # If you want to use home-manager modules from other flakes (such as nix-colors):
     # inputs.nix-colors.homeManagerModule
 
-    # You can also split up your configuration and import pieces of it here:
-    # ./nvim.nix
     ../common/programs/neovim.nix
     ../common/programs/zsh.nix
+    ../common/programs/tmux.nix
+    ../common/programs/git.nix
+    ../common/programs/fzf.nix
   ];
 
   nixpkgs = {
@@ -31,79 +77,16 @@
   # manage.
   home.username = "alizaidi";
   home.homeDirectory = "/home/alizaidi";
-  # targets.genericLinux.enable = true;
+  targets.genericLinux.enable = true;
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
-  home.packages = with pkgs; [
-    stable.vim
-    compsize
-    htop
-    deno
-    nodejs_20
-    yarn
-    python311
-    python311Packages.pip
-    python311Packages.mypy
-    go
-    cargo
-    rustc
-    unzip
-    xclip
-    fd
-    nix-prefetch-github
-    borgbackup
-    rclone
-    lm_sensors
-    powertop
-    bun
-    # awscli2
 
-    # gui apps
-    # vlc
-    # vscode
-    # guake
-    # discord
-    # # It is sometimes useful to fine-tune packages, for example, by applying
-    # # overrides. You can do that directly here, just don't forget the
-    # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
-    # # fonts?
-    # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
-
-    # # You can also create simple shell scripts directly inside your
-    # # configuration. For example, this adds a command 'my-hello' to your
-    # # environment:
-    # (pkgs.writeShellScriptBin "my-hello" ''
-    #   echo "Hello, ${config.home.username}!"
-    # '')
-  ];
+  home.packages = shellPackages ++ guiPackages;
 
   # For the packages with dotfiles managed by home-manager.
   # programs.wezterm.enable = true;
   # programs.chromium.enable = true;
-  programs.git.enable = true;
-  programs.fzf = {
-    enable = true;
-    changeDirWidgetCommand = "fd --type d . ~";
-  };
-  programs.tmux = {
-    enable = true;
-    baseIndex = 1;
-    mouse = true;
-    prefix = "C-a";
-    extraConfig =
-      ''
-        set -g default-terminal "screen-256color"
-        set -ga terminal-overrides ",*256col*:Tc"
-        bind r source-file ~/.tmux.conf
-        set-option -sg escape-time 10
-        set-option -g focus-events on
-        set -g status-style ""
-        set-option -g status-position bottom
-        set -g status-right ""
-      '';
-  };
-
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
   home.file = {
@@ -116,11 +99,6 @@
     ".vim" = {
       source = ../common/sources/vim/.vim;
       recursive = true;
-    };
-
-    ".config/git" = {
-      recursive = true;
-      source = ../common/sources/git;
     };
 
     ".config/wezterm" = {
