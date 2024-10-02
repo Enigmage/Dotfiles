@@ -24,6 +24,7 @@
         "x86_64-linux"
         # "aarch64-darwin"
       ];
+      mySystem = "x86_64-linux";
     in
     {
       # Devshell for bootstrapping
@@ -55,13 +56,13 @@
       # Available through 'home-manager --flake .#your-username@your-hostname'
       homeConfigurations = {
         "alizaidi@0xaf" = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
+          pkgs = nixpkgs.legacyPackages.${mySystem}; # Home-manager requires 'pkgs' instance
           extraSpecialArgs = { inherit inputs outputs; }; # Pass flake inputs to our config
           # > Our main home-manager configuration file <
           modules = [ ./home-manager/0xaf/home.nix ];
         };
         "alizaidi@wsl" = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
+          pkgs = nixpkgs.legacyPackages.${mySystem}; # Home-manager requires 'pkgs' instance
           extraSpecialArgs = { inherit inputs outputs; }; # Pass flake inputs to our config
           # > Our main home-manager configuration file <
           modules = [ ./home-manager/wsl/home.nix ];

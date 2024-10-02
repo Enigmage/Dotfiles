@@ -7,10 +7,10 @@
 {
   imports =
     [
-      ./modules/hardware.nix
-      ./modules/power-management.nix
-      ./modules/nvidia-hybrid.nix
-      ./modules/timers.nix
+      ./hardware.nix
+      ./power-management.nix
+      ./nvidia-hybrid.nix
+      ./timers.nix
 
       ../common/fhs.nix
       ../common/fonts.nix
